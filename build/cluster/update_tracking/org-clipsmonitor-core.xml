@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.clipsmonitor.core">
-    <module_version install_time="1490354884877" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1490373390776" last="true" origin="installer" specification_version="1.0">
         <file crc="556203978" name="config/Modules/org-clipsmonitor-core.xml"/>
-        <file crc="2550820404" name="modules/org-clipsmonitor-core.jar"/>
+        <file crc="1213490755" name="modules/org-clipsmonitor-core.jar"/>
     </module_version>
 </module>

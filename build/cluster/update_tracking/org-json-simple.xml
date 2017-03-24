@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.json.simple">
-    <module_version install_time="1490354884774" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1490373390706" last="true" origin="installer" specification_version="1.0">
         <file crc="3295106389" name="config/Modules/org-json-simple.xml"/>
         <file crc="3194964662" name="modules/ext/json-simple-1.1.1.jar"/>
-        <file crc="24831875" name="modules/org-json-simple.jar"/>
+        <file crc="2256627893" name="modules/org-json-simple.jar"/>
     </module_version>
 </module>

@@ -1,7 +1,7 @@
 netbeans-8.2/platform=1490024708000
-cluster.Scrivania/ClipsMonitor-master/build/cluster=1490354884000
+cluster.Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/cluster=1490373390000
 cluster.netbeans-8.2/platform=1490024708000
-user=1490354884000
+user=1490373390000
 crc=7
 locale=it_IT
 branding=clipsmonitor

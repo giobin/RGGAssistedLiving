@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Friday, March 24, 2017 12:28:05 PM CET
+>Log Session: Friday, March 24, 2017 5:36:31 PM CET
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Linux version 4.8.0-41-generic running on amd64
@@ -8,10 +8,10 @@
   Java Home               = /usr/lib/jvm/java-8-oracle/jre
   System Locale; Encoding = it_IT (clipsmonitor); UTF-8
   Home Directory          = /home/riccardo
-  Current Directory       = /home/riccardo/Scrivania/ClipsMonitor-master
-  User Directory          = /home/riccardo/Scrivania/ClipsMonitor-master/build/testuserdir
-  Cache Directory         = /home/riccardo/Scrivania/ClipsMonitor-master/build/testuserdir/var/cache
-  Installation            = /home/riccardo/Scrivania/ClipsMonitor-master/build/cluster
+  Current Directory       = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving
+  User Directory          = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir
+  Cache Directory         = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir/var/cache
+  Installation            = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/cluster
                             /home/riccardo/netbeans-8.2/platform
                             /home/riccardo/netbeans-8.2/platform
   Boot & Ext. Classpath   = /usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jfxrt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar
@@ -95,7 +95,7 @@ Diagnostic information
 Input arguments:
 	-Djdk.home=/usr/lib/jvm/java-8-oracle
 	-Dnetbeans.running.environment=gnome
-	-Dnetbeans.dirs=/home/riccardo/Scrivania/ClipsMonitor-master/build/cluster:/home/riccardo/netbeans-8.2/platform
+	-Dnetbeans.dirs=/home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/cluster:/home/riccardo/netbeans-8.2/platform
 	-Dnetbeans.home=/home/riccardo/netbeans-8.2/platform
 	-Dnetbeans.logger.console=true
 	-ea
@@ -107,13 +107,13 @@ Input arguments:
 	-DaddExports:java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED
 	-DaddExports:java.management/sun.management=ALL-UNNAMED
 	-XX:+HeapDumpOnOutOfMemoryError
-	-XX:HeapDumpPath=/home/riccardo/Scrivania/ClipsMonitor-master/build/testuserdir/var/log/heapdump.hprof
+	-XX:HeapDumpPath=/home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir/var/log/heapdump.hprof
 Compiler: HotSpot 64-Bit Tiered Compilers
 Heap memory usage: initial 124,0MB maximum 1756,5MB
 Non heap memory usage: initial 2,4MB maximum -1b
-Garbage collector: PS Scavenge (Collections=5 Total time spent=0s)
+Garbage collector: PS Scavenge (Collections=4 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
-Classes: loaded=4945 total loaded=4945 unloaded 0
+Classes: loaded=4947 total loaded=4947 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 8.281.907.200
 INFO [null]: Total physical memory 8.281.907.200
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
@@ -125,7 +125,7 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@123fd5[Windows2Local/Components/ControlsTopComponent.settings]
+Source: MultiFileObject@2719e11b[Windows2Local/Components/ControlsTopComponent.settings]
 Content: 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
@@ -133,7 +133,7 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@123fd5[Windows2Local/Components/ControlsTopComponent.settings]
+Source: MultiFileObject@2719e11b[Windows2Local/Components/ControlsTopComponent.settings]
 Caused: java.lang.NullPointerException
 	at org.clipsmonitor.gui.ControlsTopComponent.<init>(ControlsTopComponent.java:99)
 Caused: java.lang.reflect.InvocationTargetException
@@ -174,5 +174,5 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 ALL [null]: Class: class org.clipsmonitor.gui.ControlsTopComponent
-ALL [null]: Source: MultiFileObject@123fd5[Windows2Local/Components/ControlsTopComponent.settings]
+ALL [null]: Source: MultiFileObject@2719e11b[Windows2Local/Components/ControlsTopComponent.settings]
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)

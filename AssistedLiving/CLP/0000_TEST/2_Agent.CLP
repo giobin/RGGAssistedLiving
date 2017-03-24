@@ -14,16 +14,22 @@
   (slot clear)      ;non serve
 )
 
-(deftemplate K-agent
+(deftemplate K-agent
+
 	(slot step)
-        (slot time) 
-	(slot pos-r) 
-	(slot pos-c) 
+  (slot time)
+
+	(slot pos-r)
+
+	(slot pos-c)
+
 	(slot direction)
-        (slot loaded) 
+  (slot loaded)
+
 	(multislot content)
         (slot free)
-        (slot waste)
+        (slot waste)
+
 )
 
 ; arriva da rescue, non so cosa serva
@@ -45,10 +51,10 @@
 ; sono i fatti di cui Ã¨ formato un piano che verrano poi convertite in exec
 (deftemplate plan-action
   (slot plan-step)
-  (slot action  (allowed-values Forward Turnright Turnleft Wait 
-                                      LoadMeal LoadPill LoadDessert 
-                                      DeliveryMeal DeliveryPill DeliveryDessert 
-                                      CleanTable EmptyRobot ReleaseTrash CheckId 
+  (slot action  (allowed-values Forward Turnright Turnleft Wait
+                                      LoadMeal LoadPill LoadDessert
+                                      DeliveryMeal DeliveryPill DeliveryDessert
+                                      CleanTable EmptyRobot ReleaseTrash CheckId
                                       Inform Done))
   (slot param1)
   (slot param2)
@@ -85,29 +91,44 @@
 ;  --- Regole iniziali per creare la mappa   ---
 ;  ---------------------------------------------
 
-(defrule  beginagent1
-    (declare (salience 11))
-    (status (step 0))
+(defrule  beginagent1
+
+    (declare (salience 11))
+
+    (status (step 0))
+
     (not (exec (step 0)))
-    (real_cell (pos-r ?r) (pos-c ?c) (contains ?x)) 
-=>
+    (real_cell (pos-r ?r) (pos-c ?c) (contains ?x))
+
+=>
+
      (assert (K-cell (pos-r ?r) (pos-c ?c) (contains ?x)))
-)
-            
-
-
- 
-(defrule  beginagent2
-      (declare (salience 10))
-      (status (step 0))
+)
+
+
+
+
+
+
+
+
+(defrule  beginagent2
+
+      (declare (salience 10))
+
+      (status (step 0))
+
       (not (exec (step 0)))
       (K-cell (pos-r ?r) (pos-c ?c) (contains Parking))
-        
+
+
 =>
      (assert (K-agent (time 0) (step 0) (pos-r ?r) (pos-c ?c) (direction north)
                           (free 2) (waste no) (loaded no))
-             (init-agent (done yes)))
-            
+             (init-agent (done yes)))
+
+
+
 )
 
 
@@ -178,4 +199,49 @@
   (printout t "Don't know what to do")
   (assert (clips-monitor stop))
   (halt)
+)
+
+
+; ;  ------------------------------------------------
+;  --- Regole per il movimento  ---
+;  ------------------------------------------------
+
+(defrule turnleft1
+    (declare (salience 10))
+    (exec (step ?step) (action Turnleft))
+    ?k <- (K-agent (time ?time) (step ?step) (direction west) (pos-r ?r) (pos-c ?c) (loaded ?l))
+    =>
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction south))
+    (pop-focus)
+    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction south) (loaded ?l)))
+)
+
+(defrule turnleft2
+    (declare (salience 10))
+    (exec (step ?step) (action Turnleft))
+    ?k <- (K-agent (time ?time) (step ?step) (direction south))
+    =>
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction east))
+    (pop-focus)
+    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction east) (loaded ?l)))
+)
+
+(defrule turnleft3
+    (declare (salience 10))
+    (exec (step ?step) (action Turnleft))
+    ?k <- (K-agent (time ?time) (step ?step) (direction east))
+    =>
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction north))
+    (pop-focus)
+    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction north) (loaded ?l)))
+)
+
+(defrule turnleft4
+    (declare (salience 10))
+    (exec (step ?step) (action Turnleft))
+    ?k <- (K-agent (time ?time) (step ?step) (direction north))
+    =>
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction west))
+    (pop-focus)
+    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction west) (loaded ?l)))
 )
