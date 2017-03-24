@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="AgendaTopComponent.settings">
+                <!--org.clipsmonitor.gui.AgendaTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.AgendaTopComponent"/>
+</settings>
+]]></file>
+            <file name="AgentMapTopComponent.settings">
+                <!--org.clipsmonitor.gui.AgentMapTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.AgentMapTopComponent"/>
+</settings>
+]]></file>
+            <file name="ConsoleTopComponent.settings">
+                <!--org.clipsmonitor.gui.ConsoleTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.ConsoleTopComponent"/>
+</settings>
+]]></file>
+            <file name="ControlsTopComponent.settings">
+                <!--org.clipsmonitor.gui.ControlsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
+</settings>
+]]></file>
+            <file name="EnvMapTopComponent.settings">
+                <!--org.clipsmonitor.gui.EnvMapTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.EnvMapTopComponent"/>
+</settings>
+]]></file>
+            <file name="FactsTopComponent.settings">
+                <!--org.clipsmonitor.gui.FactsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.FactsTopComponent"/>
+</settings>
+]]></file>
+            <file name="FocusTopComponent.settings">
+                <!--org.clipsmonitor.gui.FocusTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.FocusTopComponent"/>
+</settings>
+]]></file>
+            <file name="MapGeneratorTopComponent.settings">
+                <!--org.clipsmonitor.gui.MapGeneratorTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.clipsmonitor.gui.MapGeneratorTopComponent"/>
+</settings>
+]]></file>
+        </folder>
+        <folder name="Modes">
+            <folder name="agenda">
+                <file name="AgendaTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.AgendaTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="AgendaTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="map">
+                <file name="AgentMapTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.AgentMapTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="AgentMapTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+                <file name="EnvMapTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.EnvMapTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="EnvMapTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="console">
+                <file name="ConsoleTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.ConsoleTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="ConsoleTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="controls">
+                <file name="ControlsTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.ControlsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="ControlsTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="facts">
+                <file name="FactsTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.FactsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="FactsTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="focus">
+                <file name="FocusTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.FocusTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="FocusTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="mapGenerator">
+                <file name="MapGeneratorTopComponent.wstcref">
+                    <!--org.clipsmonitor.gui.MapGeneratorTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="MapGeneratorTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-clipsmonitor-gui-AgendaTopComponent.instance">
+                <!--org.clipsmonitor.gui.AgendaTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.AgendaTopComponent"/>
+                <attr name="preferredID" stringvalue="AgendaTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_AgendaAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-AgentMapTopComponent.instance">
+                <!--org.clipsmonitor.gui.AgentMapTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.AgentMapTopComponent"/>
+                <attr name="preferredID" stringvalue="AgentMapTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_AgentMapAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-ConsoleTopComponent.instance">
+                <!--org.clipsmonitor.gui.ConsoleTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.ConsoleTopComponent"/>
+                <attr name="preferredID" stringvalue="ConsoleTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_ConsoleAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-core-ControlsTopComponent.instance">
+                <!--org.clipsmonitor.gui.ControlsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.ControlsTopComponent"/>
+                <attr name="preferredID" stringvalue="ControlsTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_ControlsAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-EnvMapTopComponent.instance">
+                <!--org.clipsmonitor.gui.EnvMapTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.EnvMapTopComponent"/>
+                <attr name="preferredID" stringvalue="EnvMapTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_EnvMapAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-FactsTopComponent.instance">
+                <!--org.clipsmonitor.gui.FactsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.FactsTopComponent"/>
+                <attr name="preferredID" stringvalue="FactsTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_FactsAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-FocusTopComponent.instance">
+                <!--org.clipsmonitor.gui.FocusTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.FocusTopComponent"/>
+                <attr name="preferredID" stringvalue="FocusTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_FocusAction" name="displayName"/>
+            </file>
+            <file name="org-clipsmonitor-gui-MapGeneratorTopComponent.instance">
+                <!--org.clipsmonitor.gui.MapGeneratorTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.clipsmonitor.gui.MapGeneratorTopComponent"/>
+                <attr name="preferredID" stringvalue="MapGeneratorTopComponent"/>
+                <attr
+                    bundlevalue="org.clipsmonitor.gui.Bundle#CTL_MapGeneratorAction" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="org-clipsmonitor-gui-AgendaTopComponent.shadow">
+                <!--org.clipsmonitor.gui.AgendaTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-AgendaTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-AgentMapTopComponent.shadow">
+                <!--org.clipsmonitor.gui.AgentMapTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-AgentMapTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-ConsoleTopComponent.shadow">
+                <!--org.clipsmonitor.gui.ConsoleTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-ConsoleTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-core-ControlsTopComponent.shadow">
+                <!--org.clipsmonitor.gui.ControlsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-core-ControlsTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-EnvMapTopComponent.shadow">
+                <!--org.clipsmonitor.gui.EnvMapTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-EnvMapTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-FactsTopComponent.shadow">
+                <!--org.clipsmonitor.gui.FactsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-FactsTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-FocusTopComponent.shadow">
+                <!--org.clipsmonitor.gui.FocusTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-FocusTopComponent.instance"/>
+            </file>
+            <file name="org-clipsmonitor-gui-MapGeneratorTopComponent.shadow">
+                <!--org.clipsmonitor.gui.MapGeneratorTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-clipsmonitor-gui-MapGeneratorTopComponent.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="xml">
+        <folder name="entities">
+            <folder name="org_clipsmonitor_gui">
+                <file name="Agenda" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.AgendaTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//Agenda//EN"/>
+                </file>
+                <file name="AgentMap" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.AgentMapTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//AgentMap//EN"/>
+                </file>
+                <file name="Console" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.ConsoleTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//Console//EN"/>
+                </file>
+                <file name="EnvMap" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.EnvMapTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//EnvMap//EN"/>
+                </file>
+                <file name="Facts" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.FactsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//Facts//EN"/>
+                </file>
+                <file name="Focus" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.FocusTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//Focus//EN"/>
+                </file>
+                <file name="MapGenerator" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.MapGeneratorTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.gui//MapGenerator//EN"/>
+                </file>
+            </folder>
+            <folder name="org_clipsmonitor_core">
+                <file name="Controls" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.clipsmonitor.gui.ControlsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.clipsmonitor.core//Controls//EN"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="memory">
+            <folder name="org">
+                <folder name="clipsmonitor">
+                    <folder name="gui">
+                        <file name="AgendaTopComponent">
+                            <!--org.clipsmonitor.gui.AgendaTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/Agenda.instance"/>
+                        </file>
+                        <file name="AgentMapTopComponent">
+                            <!--org.clipsmonitor.gui.AgentMapTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/AgentMap.instance"/>
+                        </file>
+                        <file name="ConsoleTopComponent">
+                            <!--org.clipsmonitor.gui.ConsoleTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/Console.instance"/>
+                        </file>
+                        <file name="ControlsTopComponent">
+                            <!--org.clipsmonitor.gui.ControlsTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_core/Controls.instance"/>
+                        </file>
+                        <file name="EnvMapTopComponent">
+                            <!--org.clipsmonitor.gui.EnvMapTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/EnvMap.instance"/>
+                        </file>
+                        <file name="FactsTopComponent">
+                            <!--org.clipsmonitor.gui.FactsTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/Facts.instance"/>
+                        </file>
+                        <file name="FocusTopComponent">
+                            <!--org.clipsmonitor.gui.FocusTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/Focus.instance"/>
+                        </file>
+                        <file name="MapGeneratorTopComponent">
+                            <!--org.clipsmonitor.gui.MapGeneratorTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_clipsmonitor_gui/MapGenerator.instance"/>
+                        </file>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+        <folder name="lookups">
+            <folder name="org_clipsmonitor_gui">
+                <file name="Agenda.instance">
+                    <!--org.clipsmonitor.gui.AgendaTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.AgendaTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.AgendaTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="AgentMap.instance">
+                    <!--org.clipsmonitor.gui.AgentMapTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.AgentMapTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.AgentMapTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Console.instance">
+                    <!--org.clipsmonitor.gui.ConsoleTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.ConsoleTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.ConsoleTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="EnvMap.instance">
+                    <!--org.clipsmonitor.gui.EnvMapTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.EnvMapTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.EnvMapTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Facts.instance">
+                    <!--org.clipsmonitor.gui.FactsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.FactsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.FactsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Focus.instance">
+                    <!--org.clipsmonitor.gui.FocusTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.FocusTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.FocusTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="MapGenerator.instance">
+                    <!--org.clipsmonitor.gui.MapGeneratorTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.MapGeneratorTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.MapGeneratorTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+            <folder name="org_clipsmonitor_core">
+                <file name="Controls.instance">
+                    <!--org.clipsmonitor.gui.ControlsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.clipsmonitor.gui.ControlsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.clipsmonitor.gui.ControlsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
