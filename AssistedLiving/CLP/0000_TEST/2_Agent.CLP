@@ -206,15 +206,6 @@
 ;  --- Regole per il movimento  ---
 ;  ------------------------------------------------
 
-(defrule  wait
-  (declare (salience 10))
-  (exec (step ?step) (action Wait))
-  ?k <- (K-agent (time ?time) (step ?step))
-  =>
-  (modify ?k (time (+ ?time 5)) (step (+ ?step 1)))
-)
-
-
 (deffunction getDirectionTurnLeft(?a)
   (if (eq ?a north) then
     west
@@ -225,6 +216,16 @@
         (if (eq ?a south) then
           east
           else north)))
+)
+
+
+
+(defrule  wait
+  (declare (salience 10))
+  (exec (step ?step) (action Wait))
+  ?k <- (K-agent (time ?time) (step ?step))
+  =>
+  (modify ?k (time (+ ?time 5)) (step (+ ?step 1)))
 )
 
 (defrule turnleft
