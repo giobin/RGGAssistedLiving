@@ -230,6 +230,24 @@
           else south)))
 )
 
+(deffunction getForwardR(?dir ?r)
+  (if (eq ?dir north) then
+    (+ ?r 1)
+    else
+      (if (eq ?dir south) then
+       (- ?r 1)
+        else ?r))
+)
+
+(deffunction getForwardC(?dir ?c)
+  (if (eq ?dir east) then
+    (+ ?c 1)
+    else
+      (if (eq ?dir west) then
+       (- ?c 1)
+        else ?c))
+)
+
 (defrule  wait
   (declare (salience 10))
   (exec (step ?step) (action Wait))
@@ -252,4 +270,13 @@
     ?k <- (K-agent (time ?time) (step ?step) (direction ?dir))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction (getDirectionTurnRight ?dir)))
+)
+
+(defrule forward
+  (declare (salience 10))
+  (exec (step ?step) (action Forward))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir))
+  (perc-vision (step ?step) (time ?time) (perc2 Empty|Parking))
+  =>
+  (modify ?k (time (+ ?time 1)) (step (+ ?step 1)) (pos-r (getForwardR ?dir ?r)) (pos-c (getForwardC ?dir ?c)))
 )
