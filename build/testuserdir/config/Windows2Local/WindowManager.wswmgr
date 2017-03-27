@@ -3,8 +3,8 @@
 <windowmanager version="2.1">
     <main-window>
   <joined-properties
-   x="125"
-   y="65"
+   x="87"
+   y="85"
    width="1669"
    height="950"
    relative-x="0.0"
@@ -41,16 +41,16 @@
   <bounds x="612" y="253" width="779" height="464" />
     </editor-area>
     <screen width="1920" height="1080"/>
-    <active-mode name="facts"/>
+    <active-mode name="console"/>
     <toolbar configuration="Standard" preferred-icon-size="24"/>
     <tc-list>
-  <tc-id id="FactsTopComponent"/>
-  <tc-id id="ControlsTopComponent"/>
+  <tc-id id="ConsoleTopComponent"/>
   <tc-id id="AgentMapTopComponent"/>
   <tc-id id="EnvMapTopComponent"/>
-  <tc-id id="ConsoleTopComponent"/>
-  <tc-id id="FocusTopComponent"/>
+  <tc-id id="ControlsTopComponent"/>
   <tc-id id="AgendaTopComponent"/>
+  <tc-id id="FactsTopComponent"/>
+  <tc-id id="FocusTopComponent"/>
   <tc-id id="MapGeneratorTopComponent"/>
     </tc-list>
 </windowmanager>

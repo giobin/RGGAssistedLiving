@@ -206,14 +206,20 @@
 ;  --- Regole per il movimento  ---
 ;  ------------------------------------------------
 
+(defrule  wait
+  (declare (salience 10))
+  (exec (step ?step) (action Wait))
+  ?k <- (K-agent (time ?time) (step ?step))
+  =>
+  (modify ?k (time (+ ?time 5)) (step (+ ?step 1)))
+)
+
 (defrule turnleft1
     (declare (salience 10))
     (exec (step ?step) (action Turnleft))
-    ?k <- (K-agent (time ?time) (step ?step) (direction west) (pos-r ?r) (pos-c ?c) (loaded ?l))
+    ?k <- (K-agent (time ?time) (step ?step) (direction west))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction south))
-    (pop-focus)
-    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction south) (loaded ?l)))
 )
 
 (defrule turnleft2
@@ -222,8 +228,6 @@
     ?k <- (K-agent (time ?time) (step ?step) (direction south))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction east))
-    (pop-focus)
-    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction east) (loaded ?l)))
 )
 
 (defrule turnleft3
@@ -232,8 +236,6 @@
     ?k <- (K-agent (time ?time) (step ?step) (direction east))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction north))
-    (pop-focus)
-    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction north) (loaded ?l)))
 )
 
 (defrule turnleft4
@@ -242,6 +244,4 @@
     ?k <- (K-agent (time ?time) (step ?step) (direction north))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction west))
-    (pop-focus)
-    ;(assert (agentstatusdisplayed (step (+ ?step 1)) (time (+ ?time 2)) (pos-r ?r) (pos-c ?c) (direction west) (loaded ?l)))
 )
