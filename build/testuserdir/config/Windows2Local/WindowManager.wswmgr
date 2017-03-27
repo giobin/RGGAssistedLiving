@@ -41,12 +41,12 @@
   <bounds x="612" y="253" width="779" height="464" />
     </editor-area>
     <screen width="1920" height="1080"/>
-    <active-mode name="map"/>
+    <active-mode name="controls"/>
     <toolbar configuration="Standard" preferred-icon-size="24"/>
     <tc-list>
-  <tc-id id="EnvMapTopComponent"/>
-  <tc-id id="AgentMapTopComponent"/>
   <tc-id id="ControlsTopComponent"/>
+  <tc-id id="AgentMapTopComponent"/>
+  <tc-id id="EnvMapTopComponent"/>
   <tc-id id="ConsoleTopComponent"/>
   <tc-id id="FocusTopComponent"/>
   <tc-id id="AgendaTopComponent"/>

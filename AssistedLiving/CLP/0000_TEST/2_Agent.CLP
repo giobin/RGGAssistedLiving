@@ -218,7 +218,17 @@
           else north)))
 )
 
-
+(deffunction getDirectionTurnRight(?a)
+  (if (eq ?a north) then
+    east
+    else
+      (if (eq ?a west) then
+       north
+       else
+        (if (eq ?a south) then
+          west
+          else south)))
+)
 
 (defrule  wait
   (declare (salience 10))
@@ -228,10 +238,18 @@
   (modify ?k (time (+ ?time 5)) (step (+ ?step 1)))
 )
 
-(defrule turnleft
+(defrule turnLeft
     (declare (salience 10))
     (exec (step ?step) (action Turnleft))
     ?k <- (K-agent (time ?time) (step ?step) (direction ?dir))
     =>
     (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction (getDirectionTurnLeft ?dir)))
+)
+
+(defrule turnRight
+    (declare (salience 10))
+    (exec (step ?step) (action Turnright))
+    ?k <- (K-agent (time ?time) (step ?step) (direction ?dir))
+    =>
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction (getDirectionTurnRight ?dir)))
 )
