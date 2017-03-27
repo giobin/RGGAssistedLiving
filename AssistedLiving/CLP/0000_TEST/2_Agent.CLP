@@ -214,34 +214,23 @@
   (modify ?k (time (+ ?time 5)) (step (+ ?step 1)))
 )
 
-(defrule turnleft1
-    (declare (salience 10))
-    (exec (step ?step) (action Turnleft))
-    ?k <- (K-agent (time ?time) (step ?step) (direction west))
-    =>
-    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction south))
+
+(deffunction getDirectionTurnLeft(?a)
+  (if (eq ?a north) then
+    west
+    else
+      (if (eq ?a west) then
+       south
+       else
+        (if (eq ?a south) then
+          east
+          else north)))
 )
 
-(defrule turnleft2
+(defrule turnleft
     (declare (salience 10))
     (exec (step ?step) (action Turnleft))
-    ?k <- (K-agent (time ?time) (step ?step) (direction south))
+    ?k <- (K-agent (time ?time) (step ?step) (direction ?dir))
     =>
-    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction east))
-)
-
-(defrule turnleft3
-    (declare (salience 10))
-    (exec (step ?step) (action Turnleft))
-    ?k <- (K-agent (time ?time) (step ?step) (direction east))
-    =>
-    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction north))
-)
-
-(defrule turnleft4
-    (declare (salience 10))
-    (exec (step ?step) (action Turnleft))
-    ?k <- (K-agent (time ?time) (step ?step) (direction north))
-    =>
-    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction west))
+    (modify ?k (time (+ ?time 2)) (step (+ ?step 1)) (direction (getDirectionTurnLeft ?dir)))
 )
