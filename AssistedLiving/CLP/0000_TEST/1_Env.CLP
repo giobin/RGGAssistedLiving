@@ -3432,7 +3432,7 @@
 	(cell (pos-r ?r) (pos-c ?c))
 =>
 	(modify ?f1 (direction east) (step (+ ?i 1)) (time (+ ?t 2)))
-	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 2)))		
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 2)))
 ;	(printout t " ENVIRONMENT:" crlf)
 ;	(printout t " - azione eseguita: turnright" crlf)
 ;	(printout t " - nuova direzione dell'agente: east" crlf)

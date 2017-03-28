@@ -80,6 +80,41 @@
 ; Serve per ricordarsi qual Ã¨ il prossimo modulo da attivare
 (deftemplate go (slot module (allowed-values perception deliberation reasoning action none)))
 
+;  ---------------------------------------------
+;  --- Template per tracciare le risposte ai vecchietti   ---
+;  ---------------------------------------------
+
+(deftemplate K-mealstatus
+	(slot step)
+        (slot time)
+	(slot arrivaltime)	;// momento in cui é arrivata l'ordinazione
+	(slot requested-by)
+	(slot type)
+        (slot tpos-r)
+        (slot tpos-c)
+        (slot delivered)
+        (slot delivertime)
+        (slot answer (allowed-values pending yes wait reject))
+)
+
+(deftemplate K-dessertstatus
+	(slot step)
+        (slot time)
+	(slot arrivaltime)	;// momento in cui é arrivata l'ordinazione
+	(slot requested-by)
+        (slot tpos-r)
+        (slot tpos-c)
+        (slot delivered)
+        (slot answer (allowed-values pending yes wait reject))
+)
+
+(deftemplate K-pillstatus
+	(slot step)
+        (slot time)			;// tempo corrente
+	(slot for)	
+        (slot delivered)
+        (slot when (allowed-values before after no))
+)
 
 (deffacts initial-fact-agent
   (last-perc (step -1))
