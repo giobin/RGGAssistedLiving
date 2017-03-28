@@ -3,10 +3,10 @@
 <windowmanager version="2.1">
     <main-window>
   <joined-properties
-   x="125"
-   y="65"
-   width="1669"
-   height="950"
+   x="0"
+   y="0"
+   width="1280"
+   height="800"
    relative-x="0.0"
    relative-y="0.0"
    relative-width="0.0"
@@ -18,10 +18,10 @@
    frame-state="0"
 />
   <separated-properties
-   x="218"
-   y="105"
-   width="1484"
-   height="84"
+   x="128"
+   y="72"
+   width="1024"
+   height="58"
    relative-x="0.0"
    relative-y="0.0"
    relative-width="0.0"
@@ -38,19 +38,19 @@
   <path orientation="horizontal" number="40" weight="0.7" />
   <path orientation="vertical" number="40" weight="0.5" />
   </constraints>
-  <bounds x="612" y="253" width="779" height="464" />
+  <bounds x="422" y="174" width="537" height="319" />
     </editor-area>
-    <screen width="1920" height="1080"/>
-    <active-mode name="controls"/>
+    <screen width="1280" height="800"/>
+    <active-mode name="anonymousMode_1"/>
     <toolbar configuration="Standard" preferred-icon-size="24"/>
     <tc-list>
+  <tc-id id="FactsTopComponent"/>
   <tc-id id="ControlsTopComponent"/>
-  <tc-id id="AgentMapTopComponent"/>
   <tc-id id="EnvMapTopComponent"/>
+  <tc-id id="AgentMapTopComponent"/>
   <tc-id id="ConsoleTopComponent"/>
   <tc-id id="FocusTopComponent"/>
   <tc-id id="AgendaTopComponent"/>
-  <tc-id id="FactsTopComponent"/>
   <tc-id id="MapGeneratorTopComponent"/>
     </tc-list>
 </windowmanager>
