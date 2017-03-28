@@ -1,6 +1,6 @@
-json-simple/*
-org.json/*
-ClipsMonitorCore/*
-clips.jni/*
-nbproject/*
-build/*
+json-simple/**
+org.json/**
+ClipsMonitorCore/**
+clips.jni/**
+nbproject/**
+build/**

@@ -41,13 +41,13 @@
   <bounds x="422" y="174" width="537" height="319" />
     </editor-area>
     <screen width="1280" height="800"/>
-    <active-mode name="anonymousMode_1"/>
+    <active-mode name="controls"/>
     <toolbar configuration="Standard" preferred-icon-size="24"/>
     <tc-list>
-  <tc-id id="FactsTopComponent"/>
   <tc-id id="ControlsTopComponent"/>
-  <tc-id id="EnvMapTopComponent"/>
+  <tc-id id="FactsTopComponent"/>
   <tc-id id="AgentMapTopComponent"/>
+  <tc-id id="EnvMapTopComponent"/>
   <tc-id id="ConsoleTopComponent"/>
   <tc-id id="FocusTopComponent"/>
   <tc-id id="AgendaTopComponent"/>

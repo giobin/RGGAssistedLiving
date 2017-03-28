@@ -283,7 +283,7 @@
 
 (defrule loadMeal
   (declare (salience 10))
-  (exec (step ?step) (action LoadMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+  (exec (step ?step) (action LoadMeal) (param1 ?y) (param2 ?x) (param3 ?type))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
   (test (> ?free 0))
   (perc-vision (step ?step) (time ?time) (perc2 MealDispenser))
@@ -298,5 +298,5 @@
   (exec (step ?step) (action Inform) (param1 ?receiver) (param2 ?request) (param3 ?answer))
   ?k <- (K-agent (time ?time) (step ?step))
   =>
-  
+  (modify ?k (time (+ ?time 1)) (step (+ ?step 1)))
 )

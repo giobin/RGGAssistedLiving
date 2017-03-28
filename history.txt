@@ -1,0 +1,81 @@
+(maxduration 1000)
+
+
+(initpersonpos 	
+
+	(ident P1)
+        (type patient)
+
+	(pos-r 6)
+
+	(pos-c 3)
+
+	)
+
+(initpersonpos	
+
+	(ident P2)
+
+	(type patient)
+        (pos-r 3)
+
+	(pos-c 4)
+
+)
+
+(initpersonpos	
+
+	(ident P3)
+        (type patient)
+
+	(pos-r 5)
+
+	(pos-c 8)
+
+	)
+
+
+
+(initpersonpos	
+
+	(ident St1)
+        (type staff)
+
+	(pos-r 2)
+
+	(pos-c 6)
+
+	)
+
+		
+(event (step 1) (type meal) (person P2))  
+(event (step 3) (type dessert) (person P2))
+(event (step 30) (type meal) (person P1)) 
+(event (step 40) (type dessert) (person P1))
+
+
+
+(personmove (step 1) (ident P1) (path-id PP1))
+
+(personmove (step 25) (ident P1) (path-id PP2))
+
+(move-path PP1 1 P1  6 2)
+(move-path PP1 2 P1  5 2)
+(move-path PP1 3 P1  4 2)
+(move-path PP1 4 P1  3 2)
+(move-path PP1 5 P1  3 3)
+
+(move-path PP2 1 P1  3 2)
+(move-path PP2 2 P1  4 2)
+(move-path PP2 3 P1  5 2)
+(move-path PP2 4 P1  5 3)
+(move-path PP2 5 P1  5 4)
+(move-path PP2 6 P1  6 4)
+(move-path PP2 7 P1  7 4)
+(move-path PP2 8 P1  8 4)
+(move-path PP2 9 P1  9 4)
+(move-path PP2 10 P1  9 3)
+
+
+
+
