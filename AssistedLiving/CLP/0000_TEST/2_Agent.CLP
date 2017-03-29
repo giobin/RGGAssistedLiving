@@ -111,7 +111,7 @@
 (deftemplate K-pillstatus
 	(slot step)
         (slot time)			;// tempo corrente
-	(slot for)	
+	(slot for)
         (slot delivered)
         (slot when (allowed-values before after no))
 )
