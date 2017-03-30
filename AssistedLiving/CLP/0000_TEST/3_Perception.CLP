@@ -1,14 +1,28 @@
 (defmodule PERCEPTION (import MAIN ?ALL) (import AGENT ?ALL) (export ?ALL))
 
 ; -----------------------------------
+; --- deftemplate ---
+; -----------------------------------
+(deftemplate updated-K-cell
+  (slot done (allowed-values yes no))
+)
+
+(defrule create-update-K-cell
+	(declare (salience 100))
+	(not(updated-K-cell))
+	=>
+	(assert (updated-K-cell (done no)))
+)
+
+; -----------------------------------
 ; --- aggiornamento perc-vision ---
 ; -----------------------------------
 
 (defrule update-K-cell-north
   (declare (salience 10))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c))
-  (test (> ?step 0))
   (last-perc (step =(- ?step 1)))
+  ?d <- (updated-K-cell (done no))
   (perc-vision (step ?step) (time ?time) (pos-r ?r) (pos-c ?c) (direction north)
     (perc1 ?x1) (perc2 ?x2) (perc3 ?x3)
     (perc4 ?x4) (perc5 ?x5) (perc6 ?x6)
@@ -33,14 +47,14 @@
   (modify ?k7 (contains ?x7))
   (modify ?k8 (contains ?x8))
   (modify ?k9 (contains ?x9))
-  (assert (updated-K-cell))
+  (modify ?d (done yes))
 )
 
 (defrule update-K-cell-south
   (declare (salience 10))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c))
-  (test (> ?step 0))
   (last-perc (step =(- ?step 1)))
+  ?d <- (updated-K-cell (done no))
   (perc-vision (step ?step) (time ?time) (pos-r ?r) (pos-c ?c) (direction south)
     (perc1 ?x1) (perc2 ?x2) (perc3 ?x3)
     (perc4 ?x4) (perc5 ?x5) (perc6 ?x6)
@@ -65,14 +79,14 @@
   (modify ?k7 (contains ?x7))
   (modify ?k8 (contains ?x8))
   (modify ?k9 (contains ?x9))
-  (assert (updated-K-cell))
+  (modify ?d (done yes))
 )
 
 (defrule update-K-cell-east
   (declare (salience 10))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c))
-  (test (> ?step 0))
   (last-perc (step =(- ?step 1)))
+  ?d <- (updated-K-cell (done no))
   (perc-vision (step ?step) (time ?time) (pos-r ?r) (pos-c ?c) (direction east)
     (perc1 ?x1) (perc2 ?x2) (perc3 ?x3)
     (perc4 ?x4) (perc5 ?x5) (perc6 ?x6)
@@ -97,14 +111,14 @@
   (modify ?k7 (contains ?x7))
   (modify ?k8 (contains ?x8))
   (modify ?k9 (contains ?x9))
-  (assert (updated-K-cell))
+  (modify ?d (done yes))
 )
 
 (defrule update-K-cell-west
   (declare (salience 10))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c))
-  (test (> ?step 0))
   (last-perc (step =(- ?step 1)))
+  ?d <- (updated-K-cell (done no))
   (perc-vision (step ?step) (time ?time) (pos-r ?r) (pos-c ?c) (direction west)
     (perc1 ?x1) (perc2 ?x2) (perc3 ?x3)
     (perc4 ?x4) (perc5 ?x5) (perc6 ?x6)
@@ -129,7 +143,7 @@
   (modify ?k7 (contains ?x7))
   (modify ?k8 (contains ?x8))
   (modify ?k9 (contains ?x9))
-  (assert (updated-K-cell))
+  (modify ?d (done yes))
 )
 
 ;fixme:
@@ -144,5 +158,5 @@
   (test (> ?s ?l))
   =>
   (modify ?last-perc (step ?s))
-  (retract ?updated-K-cell)
+  (modify ?updated-K-cell (done no))
 )

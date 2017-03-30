@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Wednesday, March 29, 2017 12:00:29 PM CEST
+>Log Session: Thursday, March 30, 2017 10:23:53 AM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Mac OS X version 10.12.3 running on x86_64
@@ -80,10 +80,10 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.netbeans.core.nativeaccess/1 [1.31.1 201609300101]
 	org.netbeans.core.multitabs/1 [1.12.1.1 1 201609300101]
 	org.netbeans.core.io.ui/1 [1.30.1 201609300101]
-	org.json.simple [1.0 170329]
-	org.json [1.0 170329]
-	org.clipsmonitor.clipsjni [1.0 170329]
-	org.clipsmonitor.core [1.0 170329]
+	org.json.simple [1.0 170330]
+	org.json [1.0 170330]
+	org.clipsmonitor.clipsjni [1.0 170330]
+	org.clipsmonitor.core [1.0 170330]
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy resolver: Mac
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy reloading failed! Trying fallback resolver.
 INFO [org.netbeans.core.network.proxy.fallback.FallbackNetworkProxy]: Fallback system proxy resolver: no http_proxy variable found
@@ -118,7 +118,6 @@ Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
 Classes: loaded=4978 total loaded=4978 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 8.589.934.592
 INFO [null]: Total physical memory 8.589.934.592
-WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
 INFO [org.netbeans.core.windows.persistence]: [PersistenceManager.getTopComponentForID] Problem when deserializing TopComponent for tcID:'ControlsTopComponent'. Reason: null
 Content: 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -127,7 +126,7 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@302ed19d[Windows2Local/Components/ControlsTopComponent.settings]
+Source: MultiFileObject@68f11fa3[Windows2Local/Components/ControlsTopComponent.settings]
 Content: 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
@@ -135,7 +134,7 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@302ed19d[Windows2Local/Components/ControlsTopComponent.settings]
+Source: MultiFileObject@68f11fa3[Windows2Local/Components/ControlsTopComponent.settings]
 Caused: java.lang.NullPointerException
 	at org.clipsmonitor.gui.ControlsTopComponent.<init>(ControlsTopComponent.java:99)
 Caused: java.lang.reflect.InvocationTargetException
@@ -176,5 +175,6 @@ Content:
   <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
 </settings>
 ALL [null]: Class: class org.clipsmonitor.gui.ControlsTopComponent
-ALL [null]: Source: MultiFileObject@302ed19d[Windows2Local/Components/ControlsTopComponent.settings]
+ALL [null]: Source: MultiFileObject@68f11fa3[Windows2Local/Components/ControlsTopComponent.settings]
+WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
