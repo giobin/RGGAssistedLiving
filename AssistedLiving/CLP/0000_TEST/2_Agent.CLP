@@ -15,24 +15,17 @@
 )
 
 (deftemplate K-agent
-
 	(slot step)
   (slot time)
-
 	(slot pos-r)
-
 	(slot pos-c)
-
 	(slot direction)
   (slot loaded)
-
 	(multislot content)
         (slot free)
         (slot waste)
-
 )
 
-; arriva da rescue, non so cosa serva
 (deftemplate K-person
   (slot step)
   (slot time)
@@ -40,7 +33,6 @@
   (slot pos-c)
 )
 
-; arriva da rescue, non so cosa serva
 (deftemplate goal
   (slot ident)
   (slot priority)
@@ -79,6 +71,26 @@
 
 ; Serve per ricordarsi qual Ã¨ il prossimo modulo da attivare
 (deftemplate go (slot module (allowed-values perception deliberation reasoning action none)))
+
+;  ---------------------------------------------
+;  --- Template per tracciare lo stato dei tavoli  ---
+;  ---------------------------------------------
+
+(deftemplate K-table-seat
+  (slot t_pos-r)
+  (slot t_pos-c)
+  (slot s_pos-r)
+  (slot s_pos-c)
+  )
+
+(deftemplate K-tablestatus
+	(slot step)
+  (slot time)
+	(slot pos-r)
+	(slot pos-c)
+	(slot clean (allowed-values yes no stop))
+	(slot occupied-by)
+        )
 
 ;  ---------------------------------------------
 ;  --- Template per tracciare le risposte ai vecchietti   ---
@@ -129,54 +141,40 @@
 (defrule  beginagent1
 
     (declare (salience 11))
-
     (status (step 0))
-
     (not (exec (step 0)))
     (real_cell (pos-r ?r) (pos-c ?c) (contains ?x))
-
 =>
-
      (assert (K-cell (pos-r ?r) (pos-c ?c) (contains ?x)))
 )
-
-
-
-
-
-
-
 
 (defrule  beginagent2
 
       (declare (salience 10))
-
       (status (step 0))
-
       (not (exec (step 0)))
       (K-cell (pos-r ?r) (pos-c ?c) (contains Parking))
-
-
 =>
      (assert (K-agent (time 0) (step 0) (pos-r ?r) (pos-c ?c) (direction north)
                           (free 2) (waste no) (loaded no))
              (init-agent (done yes)))
-
-
-
 )
 
+; inizializzazione fatti k-table-seat
+(defrule  beginagent3
 
-
-
-
-
-
+    (declare (salience 11))
+    (status (step 0))
+    (not (exec (step 0)))
+    (table-seat (t_pos-r ?tr) (t_pos-c ?tc) (s_pos-r ?sr) (s_pos-c ?sc))
+=>
+    (assert (K-table-seat (t_pos-r ?tr) (t_pos-c ?tc) (s_pos-r ?sr) (s_pos-c ?sc)))
+    (assert (K-tablestatus (step 0) (time 0) (pos-r ?tr) (pos-c ?tc) (clean yes) (occupied-by no)))
+)
 
 ; ;  -----------------------------------------------------
 ; ;  --- Regole per gestire l'attivazione dei moduli   ---
 ; ;  -----------------------------------------------------
-
 
 (defrule first-module
   (declare (salience 9))
@@ -238,8 +236,14 @@
 
 
 ; ;  ------------------------------------------------
-;  --- Regole per il movimento  ---
+;  --- Funzioni  ---
 ;  ------------------------------------------------
+
+(deffunction getLoaded(?free)
+  (if (= free 2) then
+    no
+    else yes)
+)
 
 (deffunction getDirectionTurnLeft(?a)
   (if (eq ?a north) then
@@ -282,6 +286,10 @@
        (- ?c 1)
         else ?c))
 )
+
+; ;  ------------------------------------------------
+;  --- Regole per il movimento  ---
+;  ------------------------------------------------
 
 (defrule  wait
   (declare (salience 10))
@@ -326,6 +334,52 @@
   (test (= ?y (getForwardR ?dir ?r)))
   =>
   (modify ?k (time (+ ?time 15)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 ?type)))
+)
+
+(defrule loadDessert
+  (declare (salience 10))
+  (exec (step ?step) (action LoadDessert) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (> ?free 0))
+  (perc-vision (step ?step) (time ?time) (perc2 DessertDispenser))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  =>
+  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 dessert)))
+)
+
+(defrule deliveryMealBefore
+  (declare (salience 10))
+  (exec (step ?step) (action deliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (member$ ?type $?cont))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-meal <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
+  ?k-pillstatus <- (K-pillstatus (time ?time) (step ?step) (for ?id) (when before) (delivered yes))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-meal (delivered yes))
+  (modify ?k-tablestatus (clean no))
+)
+
+(defrule deliveryMealNoBefore
+  (declare (salience 10))
+  (exec (step ?step) (action deliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (member$ ?type $?cont))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-meal <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
+  ?k-pillstatus <- (K-pillstatus (time ?time) (step ?step) (for ?id) (when no|after))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-meal (delivered yes))
+  (modify ?k-tablestatus (clean no))
 )
 
 (defrule inform
