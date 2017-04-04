@@ -240,7 +240,7 @@
 ;  ------------------------------------------------
 
 (deffunction getLoaded(?free)
-  (if (= free 2) then
+  (if (= ?free 2) then
     no
     else yes)
 )
