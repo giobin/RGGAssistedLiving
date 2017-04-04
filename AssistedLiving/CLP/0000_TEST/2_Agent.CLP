@@ -350,7 +350,7 @@
 
 (defrule deliveryMealBefore
   (declare (salience 10))
-  (exec (step ?step) (action deliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  (exec (step ?step) (action DeliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
   (test (member$ ?type $?cont))
   (perc-vision (step ?step) (time ?time) (perc2 Table))
@@ -367,7 +367,7 @@
 
 (defrule deliveryMealNoBefore
   (declare (salience 10))
-  (exec (step ?step) (action deliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  (exec (step ?step) (action DeliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
   ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
   (test (member$ ?type $?cont))
   (perc-vision (step ?step) (time ?time) (perc2 Table))
