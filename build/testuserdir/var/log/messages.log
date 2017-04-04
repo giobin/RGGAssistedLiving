@@ -176,3 +176,5 @@ Content:
 ALL [null]: Class: class org.clipsmonitor.gui.ControlsTopComponent
 ALL [null]: Source: MultiFileObject@2bd53de4[Windows2Local/Components/ControlsTopComponent.settings]
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
+WARNING [org.netbeans.modules.progress.spi.InternalHandle]: Cannot switch to silent mode when not running at org.netbeans.core.ui.warmup.MenuWarmUpTask$NbWindowsAdapter$1HandleBridge.run(MenuWarmUpTask.java:269)
+WARNING [null]: Last record repeated again.

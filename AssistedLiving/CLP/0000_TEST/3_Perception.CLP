@@ -146,6 +146,28 @@
   (modify ?d (done yes))
 )
 
+(defrule newmeal-request
+  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (step ?step) (sender ?sender) (request meal) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  =>
+  (assert (K-mealstatus (step ?step) (time ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (retract ?msg-to-agent)
+)
+
+(defrule newdessert-request
+  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (step ?step) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  =>
+  (assert (K-dessertstatus (step ?step) (time ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (retract ?msg-to-agent)
+)
+
+(defrule newpill-request
+  (status (step ?step) (time ?time))
+  (prescription (patient ?patient) (pills ?pills))
+  (not (K-pillstatus (for ?patient)))
+  =>
+  (assert (K-pillstatus (step ?step) (time ?time) (for ?patient) (delivered no) (when ?pills)))
+)
+
 ;fixme:
 ; -----------------------------------
 ; --- Ultime regole di perception ---
