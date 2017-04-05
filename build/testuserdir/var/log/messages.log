@@ -1,22 +1,22 @@
 -------------------------------------------------------------------------------
->Log Session: Tuesday, April 4, 2017 10:05:39 AM CEST
+>Log Session: Wednesday, April 5, 2017 11:40:46 AM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
-  Operating System        = Linux version 4.8.0-45-generic running on amd64
+  Operating System        = Linux version 4.4.0-71-generic running on amd64
   Java; VM; Vendor        = 1.8.0_121; Java HotSpot(TM) 64-Bit Server VM 25.121-b13; Oracle Corporation
   Runtime                 = Java(TM) SE Runtime Environment 1.8.0_121-b13
   Java Home               = /usr/lib/jvm/java-8-oracle/jre
-  System Locale; Encoding = it_IT (clipsmonitor); UTF-8
-  Home Directory          = /home/riccardo
-  Current Directory       = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving
-  User Directory          = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir
-  Cache Directory         = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir/var/cache
-  Installation            = /home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/cluster
-                            /home/riccardo/netbeans-8.2/platform
-                            /home/riccardo/netbeans-8.2/platform
-  Boot & Ext. Classpath   = /usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jfxrt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar
-  Application Classpath   = /home/riccardo/netbeans-8.2/platform/lib/boot.jar:/home/riccardo/netbeans-8.2/platform/lib/org-openide-modules.jar:/home/riccardo/netbeans-8.2/platform/lib/org-openide-util-lookup.jar:/home/riccardo/netbeans-8.2/platform/lib/org-openide-util-ui.jar:/home/riccardo/netbeans-8.2/platform/lib/org-openide-util.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/boot_ja.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/boot_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/boot_ru.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/boot_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-modules_ja.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-modules_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-modules_ru.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-modules_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_ja.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_ru.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-ui_ja.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-ui_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-ui_ru.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util-ui_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util_ja.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util_ru.jar:/home/riccardo/netbeans-8.2/platform/lib/locale/org-openide-util_zh_CN.jar:/usr/lib/jvm/java-8-oracle/lib/dt.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar
-  Startup Classpath       = /home/riccardo/netbeans-8.2/platform/core/core-base.jar:/home/riccardo/netbeans-8.2/platform/core/org-openide-filesystems.jar:/home/riccardo/netbeans-8.2/platform/core/core.jar:/home/riccardo/netbeans-8.2/platform/core/asm-all-5.0.1.jar:/home/riccardo/netbeans-8.2/platform/core/org-netbeans-libs-asm.jar:/home/riccardo/netbeans-8.2/platform/core/org-openide-filesystems-compat8.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_ja.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_ru.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core-base_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core_ru.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core-base_ru.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core-base_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems_ru.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core-base_ja.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core_ja.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_ja.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems_ja.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_zh_CN.jar:/home/riccardo/netbeans-8.2/platform/core/locale/core_pt_BR.jar:/home/riccardo/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_ru.jar
+  System Locale; Encoding = en_US (clipsmonitor); UTF-8
+  Home Directory          = /home/the-silent-fox
+  Current Directory       = /home/the-silent-fox/GithubUni/RGGAssistedLiving
+  User Directory          = /home/the-silent-fox/GithubUni/RGGAssistedLiving/build/testuserdir
+  Cache Directory         = /home/the-silent-fox/GithubUni/RGGAssistedLiving/build/testuserdir/var/cache
+  Installation            = /home/the-silent-fox/GithubUni/RGGAssistedLiving/build/cluster
+                            /home/the-silent-fox/netbeans-8.2/platform
+                            /home/the-silent-fox/netbeans-8.2/platform
+  Boot & Ext. Classpath   = /usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jfxrt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jaccess.jar
+  Application Classpath   = /home/the-silent-fox/netbeans-8.2/platform/lib/boot.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/org-openide-modules.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/org-openide-util-lookup.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/org-openide-util-ui.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/org-openide-util.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/boot_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/boot_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/boot_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/boot_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-modules_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-modules_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-modules_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-modules_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-lookup_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-ui_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-ui_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-ui_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util-ui_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/lib/locale/org-openide-util_zh_CN.jar:/usr/lib/jvm/java-8-oracle/lib/dt.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar
+  Startup Classpath       = /home/the-silent-fox/netbeans-8.2/platform/core/core-base.jar:/home/the-silent-fox/netbeans-8.2/platform/core/org-netbeans-libs-asm.jar:/home/the-silent-fox/netbeans-8.2/platform/core/org-openide-filesystems.jar:/home/the-silent-fox/netbeans-8.2/platform/core/asm-all-5.0.1.jar:/home/the-silent-fox/netbeans-8.2/platform/core/org-openide-filesystems-compat8.jar:/home/the-silent-fox/netbeans-8.2/platform/core/core.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core-base_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core-base_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core-base_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core_zh_CN.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core-base_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-netbeans-libs-asm_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems-compat8_ja.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems_ru.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/the-silent-fox/netbeans-8.2/platform/core/locale/core_pt_BR.jar
 -------------------------------------------------------------------------------
 WARNING [org.netbeans.core.modules]: had to upgrade dependencies for module org.clipsmonitor.core: added = [module org.openide.util.ui > 9.3] removed = []; details: [#243100: Separate desktop-independent utilities]
 INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
@@ -89,51 +89,10 @@ INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network prox
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy - mode: direct
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy: fell to default (correct if direct mode went before)
 INFO [org.netbeans.ui.metrics.laf]: USG_LOOK_AND_FEEL
-INFO [org.netbeans.core.windows.persistence]: [WinSys.ModeParser.handleSlidingSide] Warning: Wrong value "null" of attribute "side" for sliding mode
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
-Diagnostic information
-Input arguments:
-	-Djdk.home=/usr/lib/jvm/java-8-oracle
-	-Dnetbeans.running.environment=gnome
-	-Dnetbeans.dirs=/home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/cluster:/home/riccardo/netbeans-8.2/platform
-	-Dnetbeans.home=/home/riccardo/netbeans-8.2/platform
-	-Dnetbeans.logger.console=true
-	-ea
-	-DaddExports:java.desktop/sun.awt=ALL-UNNAMED
-	-DaddExports:java.base/jdk.internal.jrtfs=ALL-UNNAMED
-	-DaddExports:java.desktop/java.awt.peer=ALL-UNNAMED
-	-DaddExports:java.desktop/com.sun.beans.editors=ALL-UNNAMED
-	-DaddExports:java.desktop/sun.awt.im=ALL-UNNAMED
-	-DaddExports:java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED
-	-DaddExports:java.management/sun.management=ALL-UNNAMED
-	-XX:+HeapDumpOnOutOfMemoryError
-	-XX:HeapDumpPath=/home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/build/testuserdir/var/log/heapdump.hprof
-Compiler: HotSpot 64-Bit Tiered Compilers
-Heap memory usage: initial 124,0MB maximum 1756,5MB
-Non heap memory usage: initial 2,4MB maximum -1b
-Garbage collector: PS Scavenge (Collections=4 Total time spent=0s)
-Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
-Classes: loaded=4933 total loaded=4933 unloaded 0
-INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 8.281.915.392
-INFO [null]: Total physical memory 8.281.915.392
-WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
-INFO [org.netbeans.core.windows.persistence]: [PersistenceManager.getTopComponentForID] Problem when deserializing TopComponent for tcID:'ControlsTopComponent'. Reason: null
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@2bd53de4[Windows2Local/Components/ControlsTopComponent.settings]
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@2bd53de4[Windows2Local/Components/ControlsTopComponent.settings]
+INFO [org.netbeans.core.windows.persistence]: [PersistenceManager.getTopComponentForID] Problem when deserializing TopComponent for tcID:'ControlsTopComponent'. Reason: Cannot create instance of org.clipsmonitor.gui.ControlsTopComponent
+
+msg
 Caused: java.lang.NullPointerException
 	at org.clipsmonitor.gui.ControlsTopComponent.<init>(ControlsTopComponent.java:99)
 Caused: java.lang.reflect.InvocationTargetException
@@ -142,16 +101,19 @@ Caused: java.lang.reflect.InvocationTargetException
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
 	at org.netbeans.modules.settings.convertors.XMLSettingsSupport.newInstance(XMLSettingsSupport.java:100)
-	at org.netbeans.modules.settings.convertors.XMLSettingsSupport$SettingsRecognizer.instanceCreate(XMLSettingsSupport.java:628)
-Caused: java.io.IOException
-	at org.netbeans.modules.settings.convertors.XMLSettingsSupport$SettingsRecognizer.instanceCreate(XMLSettingsSupport.java:630)
-	at org.netbeans.modules.settings.convertors.SerialDataConvertor$SettingsInstance.instanceCreate(SerialDataConvertor.java:426)
+	at org.netbeans.modules.settings.convertors.XMLPropertiesConvertor.defaultInstanceCreate(XMLPropertiesConvertor.java:228)
+Caused: java.io.IOException: Cannot create instance of org.clipsmonitor.gui.ControlsTopComponent
+	at org.netbeans.modules.settings.convertors.XMLPropertiesConvertor.defaultInstanceCreate(XMLPropertiesConvertor.java:230)
+	at org.netbeans.modules.settings.convertors.XMLPropertiesConvertor.read(XMLPropertiesConvertor.java:99)
+	at org.netbeans.modules.settings.InstanceProvider$InstanceCookieImpl.instanceCreate(InstanceProvider.java:317)
 [catch] at org.netbeans.core.windows.persistence.PersistenceManager.getTopComponentPersistentForID(PersistenceManager.java:571)
 	at org.netbeans.core.windows.persistence.PersistenceManager.getTopComponentForID(PersistenceManager.java:681)
 	at org.netbeans.core.windows.PersistenceHandler.getTopComponentForID(PersistenceHandler.java:478)
-	at org.netbeans.core.windows.LazyLoader.loadNow(LazyLoader.java:158)
-	at org.netbeans.core.windows.LazyLoader.access$400(LazyLoader.java:62)
-	at org.netbeans.core.windows.LazyLoader$2.run(LazyLoader.java:129)
+	at org.netbeans.core.windows.LazyLoader.lazyLoad(LazyLoader.java:138)
+	at org.netbeans.core.windows.PersistenceHandler.initModeFromConfig(PersistenceHandler.java:441)
+	at org.netbeans.core.windows.PersistenceHandler.load(PersistenceHandler.java:204)
+	at org.netbeans.core.windows.WindowSystemImpl.load(WindowSystemImpl.java:81)
+	at org.netbeans.core.GuiRunLevel$InitWinSys.run(GuiRunLevel.java:229)
 	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
 	at java.awt.EventQueue.access$500(EventQueue.java:97)
@@ -167,14 +129,32 @@ Caused: java.io.IOException
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-ALL [null]: Class: class org.clipsmonitor.gui.ControlsTopComponent
-ALL [null]: Source: MultiFileObject@2bd53de4[Windows2Local/Components/ControlsTopComponent.settings]
+ALL [null]: org.netbeans.modules.settings.InstanceProvider@6199b30b[org.openide.loaders.InstanceDataObject@49f3d6d[MultiFileObject@2561fccf[Windows2Local/Components/ControlsTopComponent.settings]], MultiFileObject@397993a9[xml/lookups/org_clipsmonitor_core/Controls.instance]]
+Diagnostic information
+Input arguments:
+	-Djdk.home=/usr/lib/jvm/java-8-oracle
+	-Dnetbeans.running.environment=gnome
+	-Dnetbeans.dirs=/home/the-silent-fox/GithubUni/RGGAssistedLiving/build/cluster:/home/the-silent-fox/netbeans-8.2/platform
+	-Dnetbeans.home=/home/the-silent-fox/netbeans-8.2/platform
+	-Dnetbeans.logger.console=true
+	-ea
+	-DaddExports:java.desktop/sun.awt=ALL-UNNAMED
+	-DaddExports:java.base/jdk.internal.jrtfs=ALL-UNNAMED
+	-DaddExports:java.desktop/java.awt.peer=ALL-UNNAMED
+	-DaddExports:java.desktop/com.sun.beans.editors=ALL-UNNAMED
+	-DaddExports:java.desktop/sun.awt.im=ALL-UNNAMED
+	-DaddExports:java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED
+	-DaddExports:java.management/sun.management=ALL-UNNAMED
+	-XX:+HeapDumpOnOutOfMemoryError
+	-XX:HeapDumpPath=/home/the-silent-fox/GithubUni/RGGAssistedLiving/build/testuserdir/var/log/heapdump.hprof
+Compiler: HotSpot 64-Bit Tiered Compilers
+Heap memory usage: initial 186.0MB maximum 2642.0MB
+Non heap memory usage: initial 2.4MB maximum -1b
+Garbage collector: PS Scavenge (Collections=3 Total time spent=0s)
+Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
+Classes: loaded=5004 total loaded=5004 unloaded 0
+INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 12,457,148,416
+INFO [null]: Total physical memory 12,457,148,416
+WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
+INFO [org.netbeans.core.windows.persistence]: [WinSys.ModeParser.handleSlidingSide] Warning: Wrong value "null" of attribute "side" for sliding mode
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
-WARNING [org.netbeans.modules.progress.spi.InternalHandle]: Cannot switch to silent mode when not running at org.netbeans.core.ui.warmup.MenuWarmUpTask$NbWindowsAdapter$1HandleBridge.run(MenuWarmUpTask.java:269)
-WARNING [null]: Last record repeated again.

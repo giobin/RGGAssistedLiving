@@ -9,7 +9,7 @@
   (not
     (plan-action)
   )
-  => 
+  =>
   (assert
     (plan-action (plan-step -1)(action Wait) )
     (plan-action (plan-step 0)(action Turnleft) )
@@ -63,9 +63,32 @@
     (plan-action (plan-step 48)(action Forward) )
     (plan-action (plan-step 49)(action Forward) )
     (plan-action (plan-step 50)(action ReleaseTrash)(param1 9) (param2 6) )
-    (plan-action (plan-step 51)(action Turnleft) )   
+    (plan-action (plan-step 51)(action Turnleft) )
     (plan-action (plan-step 52)(action Turnleft) )
     (plan-action (plan-step 53)(action Forward) )
     (plan-action (plan-step 54)(action Done) )
    )
+)
+
+(deftemplate main-goal
+  (slot id)
+  (slot k-request)
+  (slot request-type)
+)
+
+(deftemplate sub-goal
+  (slot goal-ref)
+  (slot id)
+  (slot pos-r-target)
+  (slot pos-c-target)
+  (slot action-to-do)
+)
+
+;prossimo sub-goal di cui stiamo creando il piano
+(deftemplate current-sub-goal
+  (slot goal-ref)
+  (slot id)
+  (slot pos-r-target)
+  (slot pos-c-target)
+  (slot action-to-do)
 )
