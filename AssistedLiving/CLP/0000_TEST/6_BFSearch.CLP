@@ -80,7 +80,7 @@
   => (assert (exec-temp ?curr (+ ?n 1) TurnLeft ?r ?c ?dir)
              (newnode (ident (+ ?n 1)) (pos-r ?r) (pos-c ?c) (gcost (+ ?g 1)) (direction (getDirectionTurnLeft ?dir)) (father ?curr)))
      (retract ?f1)
-     ;(focus NEW)
+     (focus NEW)
 )
 
 (defrule turnRight-exec
@@ -92,7 +92,7 @@
   => (assert (exec-temp ?curr (+ ?n 1) TurnRight ?r ?c ?dir)
              (newnode (ident (+ ?n 1)) (pos-r ?r) (pos-c ?c) (gcost (+ ?g 1)) (direction (getDirectionTurnRight ?dir)) (father ?curr)))
      (retract ?f1)
-     ;(focus NEW)
+     (focus NEW)
 )
 
 (defrule forward-exec
@@ -104,5 +104,57 @@
   => (assert (exec-temp ?curr (+ ?n 1) Forward ?r ?c ?dir)
              (newnode (ident (+ ?n 1)) (pos-r (getForwardR ?dir ?r)) (pos-c (getForwardC ?dir ?c)) (gcost (+ ?g 1)) (direction ?dir) (father ?curr)))
      (retract ?f1)
-     ;(focus NEW)
+     (focus NEW)
 )
+
+; scegliamo quale nodo espandere
+(defrule change-current
+  (declare (salience 49))
+  ?f1 <- (current ?curr)
+  ?f2 <- (node (ident ?curr))
+  (node (ident ?best&:(neq ?best ?curr)) (gcost ?bestcost) (open yes))
+  (not (node (ident ?id&:(neq ?id ?curr)) (gcost ?gg&:(< ?gg ?bestcost)) (open yes)))
+  ?f3 <- (lastnode ?last)
+  =>
+  (assert (current ?best) (lastnode (+ ?last 5)))
+  (retract ?f1 ?f3)
+  (modify ?f2 (open no)))
+
+; non ci sono nodi più nodi da espandere quindi ci fermiamo (caso in cui fallisce)
+(defrule close-empty
+  (declare (salience 49))
+  ?f1 <- (current ?curr)
+  ?f2 <- (node (ident ?curr))
+  (not (node (ident ?id&:(neq ?id ?curr))  (open yes)))
+  =>
+  (retract ?f1)
+  (modify ?f2 (open no))
+  (printout t " fail (last  node expanded " ?curr ")" crlf)
+  (halt))
+
+(defmodule NEW (import MAIN ?ALL) (export ?ALL))
+
+; controllo per evitare loop
+(defrule check-closed
+  (declare (salience 50))
+  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (direction ?dir))
+  (node (ident ?old) (pos-r ?r) (pos-c ?c) (open no) (direction ?dir))
+  ?f2 <- (alreadyclosed ?a)
+  =>
+  (assert (alreadyclosed (+ ?a 1)))
+  (retract ?f1)
+  (retract ?f2)
+  (pop-focus))
+
+; TODo
+(defrule check-open-better
+  (declare (salience 50))
+  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc))
+  ?f2 <- (node (ident ?old) (pos-r ?r) (pos-c ?c) (gcost ?g-old) (open yes))
+  (test (<  ?g ?g-old))
+  ?f3 <- (open-better ?a)
+  =>
+  (assert (node (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (open yes)))
+  (assert (open-better (+ ?a 1)))
+  (retract ?f1 ?f2 ?f3)
+  (pop-focus))

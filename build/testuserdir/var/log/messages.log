@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Monday, April 10, 2017 4:50:00 PM CEST
+>Log Session: Monday, April 10, 2017 5:43:24 PM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Linux version 4.4.0-72-generic running on amd64
@@ -110,9 +110,58 @@ Input arguments:
 Compiler: HotSpot 64-Bit Tiered Compilers
 Heap memory usage: initial 186.0MB maximum 2642.0MB
 Non heap memory usage: initial 2.4MB maximum -1b
-Garbage collector: PS Scavenge (Collections=3 Total time spent=0s)
+Garbage collector: PS Scavenge (Collections=2 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
-Classes: loaded=4977 total loaded=4977 unloaded 0
+Classes: loaded=4966 total loaded=4966 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 12,457,148,416
 INFO [null]: Total physical memory 12,457,148,416
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
+SEVERE [org.openide.util.Exceptions]
+[PRNTUTIL2] 
+	at net.sf.clipsrules.jni.Environment.build(Native Method)
+	at net.sf.clipsrules.jni.Environment.build(Environment.java:235)
+	at org.clipsmonitor.clips.ClipsCore.build(ClipsCore.java:216)
+	at org.clipsmonitor.core.MonitorModel.injectExecutionRules(MonitorModel.java:416)
+	at org.clipsmonitor.monitor2015.AssistedLivingModel.injectExecutionRules(AssistedLivingModel.java:663)
+	at org.clipsmonitor.core.MonitorModel.startCore(MonitorModel.java:251)
+[catch] at org.clipsmonitor.gui.ControlsTopComponent.loadDefaultFileButtonActionPerformed(ControlsTopComponent.java:518)
+	at org.clipsmonitor.gui.ControlsTopComponent.access$300(ControlsTopComponent.java:78)
+	at org.clipsmonitor.gui.ControlsTopComponent$4.actionPerformed(ControlsTopComponent.java:167)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:289)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:90)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at org.netbeans.core.TimableEventQueue.dispatchEvent(TimableEventQueue.java:159)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
