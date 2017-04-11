@@ -30,7 +30,7 @@
 (defrule piano-di-prova
   (not(plan-action))
   =>
-  (assert (current-sub-goal (goal-ref 1) (id 1) (pos-r-target 2) (pos-c-target 9)))
+  (assert (current-sub-goal (goal-ref 1) (id 1) (pos-r-target 7) (pos-c-target 7)))
   (focus BFSEARCH)
 )
 

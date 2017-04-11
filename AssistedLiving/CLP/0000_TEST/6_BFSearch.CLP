@@ -54,11 +54,11 @@
 (defrule stampaSol
   (declare (salience 101))
   ?f<-(stampa ?id)
-      (node (ident ?id) (father ?anc&~NA))
+      (node (ident ?id) (father ?anc&~NA) (gcost ?g))
       (exec-temp ?anc ?id ?action ?r ?c ?d)
   => (printout t " Eseguo azione " ?action " da stato (" ?r "," ?c "), direzione: " ?d crlf)
      (assert (stampa ?anc))
-     (assert (plan-action (plan-step ?id)(action ?action)))
+     (assert (plan-action (plan-step ?g)(action ?action)))
      (retract ?f)
      (pop-focus)
 )
@@ -75,6 +75,7 @@
    (printout t " stati generati gia in closed " ?closed crlf)
    (printout t " stati generati gia in open (open-worse) " ?worse crlf)
    (printout t " stati generati gia in open (open-better) " ?better crlf)
+   (pop-focus)
 )
 
 (defrule turnLeft-apply
@@ -117,8 +118,8 @@
   (lastnode ?n)
   ?f1<-  (apply ?curr TurnRight ?r ?c ?dir)
   (node (ident ?curr) (gcost ?g))
-  => (assert (exec-temp ?curr (+ ?n 1) TurnRight ?r ?c ?dir)
-             (newnode (ident (+ ?n 1)) (pos-r ?r) (pos-c ?c) (gcost (+ ?g 1)) (direction (getDirectionTurnRight ?dir)) (father ?curr)))
+  => (assert (exec-temp ?curr (+ ?n 2) TurnRight ?r ?c ?dir)
+             (newnode (ident (+ ?n 2)) (pos-r ?r) (pos-c ?c) (gcost (+ ?g 1)) (direction (getDirectionTurnRight ?dir)) (father ?curr)))
      (retract ?f1)
      (focus NEW)
 )
@@ -129,8 +130,8 @@
   (lastnode ?n)
   ?f1<-  (apply ?curr Forward ?r ?c ?dir)
   (node (ident ?curr) (gcost ?g))
-  => (assert (exec-temp ?curr (+ ?n 1) Forward ?r ?c ?dir)
-             (newnode (ident (+ ?n 1)) (pos-r (getForwardR ?dir ?r)) (pos-c (getForwardC ?dir ?c)) (gcost (+ ?g 1)) (direction ?dir) (father ?curr)))
+  => (assert (exec-temp ?curr (+ ?n 3) Forward ?r ?c ?dir)
+             (newnode (ident (+ ?n 3)) (pos-r (getForwardR ?dir ?r)) (pos-c (getForwardC ?dir ?c)) (gcost (+ ?g 1)) (direction ?dir) (father ?curr)))
      (retract ?f1)
      (focus NEW)
 )
@@ -144,7 +145,7 @@
   (not (node (ident ?id&:(neq ?id ?curr)) (gcost ?gg&:(< ?gg ?bestcost)) (open yes)))
   ?f3 <- (lastnode ?last)
   =>
-  (assert (current ?best) (lastnode (+ ?last 5)))
+  (assert (current ?best) (lastnode (+ ?last 4)))
   (retract ?f1 ?f3)
   (modify ?f2 (open no)))
 
