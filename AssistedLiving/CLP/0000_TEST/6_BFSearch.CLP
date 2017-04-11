@@ -46,8 +46,10 @@
   (declare (salience 100))
      (current ?id)
      (temp-goal ?r ?c)
-     (node (ident ?id) (pos-r ?r) (pos-c ?c) (direction ?direction) (gcost ?g))
-    => (printout t " Esiste soluzione per goal (" ?r "," ?c ") con costo "  ?g crlf)
+     (node (ident ?id) (pos-r ?pos-r) (pos-c ?pos-c) (direction ?direction) (gcost ?g))
+     (test (= ?r (getForwardR ?direction ?pos-r)))
+     (test (= ?c (getForwardC ?direction ?pos-c)))
+    => (printout t " Esiste soluzione per goal (" ?pos-r "," ?pos-c ") con costo "  ?g crlf)
       (assert (stampa ?id))
 )
 
