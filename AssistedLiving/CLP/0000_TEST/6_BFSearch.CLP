@@ -132,7 +132,7 @@
   (printout t " fail (last  node expanded " ?curr ")" crlf)
   (halt))
 
-(defmodule NEW (import MAIN ?ALL) (export ?ALL))
+(defmodule NEW (import BFSEARCH ?ALL) (export ?ALL))
 
 ; controllo per evitare loop
 (defrule check-closed
