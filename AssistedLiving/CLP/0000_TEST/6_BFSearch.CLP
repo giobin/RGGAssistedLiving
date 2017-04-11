@@ -26,6 +26,8 @@
 
 ;Regola al posto dei deffacts iniziali
 (defrule create-initial-state
+  (declare (salience 200))
+  (not (temp-goal))
   ?k-agent <- (K-agent (pos-r ?r) (pos-c ?c) (direction ?direction))
   ?current-sub-goal <- (current-sub-goal (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target))
   =>
@@ -36,7 +38,7 @@
   (assert (open-better 0))
   (assert (alreadyclosed 0))
   (assert (numberofnodes 0))
-  (assert (temp-goal ?r ?c))
+  (assert (temp-goal ?pos-r-target ?pos-c-target))
 )
 
 
@@ -47,6 +49,32 @@
      (node (ident ?id) (pos-r ?r) (pos-c ?c) (direction ?direction) (gcost ?g))
     => (printout t " Esiste soluzione per goal (" ?r "," ?c ") con costo "  ?g crlf)
       (assert (stampa ?id))
+)
+
+(defrule stampaSol
+  (declare (salience 101))
+  ?f<-(stampa ?id)
+      (node (ident ?id) (father ?anc&~NA))
+      (exec-temp ?anc ?id ?action ?r ?c ?d)
+  => (printout t " Eseguo azione " ?action " da stato (" ?r "," ?c "), direzione: " ?d crlf)
+     (assert (stampa ?anc))
+     (assert (plan-action (plan-step ?id)(action ?action)))
+     (retract ?f)
+     (pop-focus)
+)
+
+(defrule sub-goal-reached
+(declare (salience 102))
+       (stampa ?id)
+       (node (ident ?id) (father ?anc&NA))
+       (open-worse ?worse)
+       (open-better ?better)
+       (alreadyclosed ?closed)
+       (numberofnodes ?n )
+=> (printout t " stati espansi " ?n crlf)
+   (printout t " stati generati gia in closed " ?closed crlf)
+   (printout t " stati generati gia in open (open-worse) " ?worse crlf)
+   (printout t " stati generati gia in open (open-better) " ?better crlf)
 )
 
 (defrule turnLeft-apply
@@ -146,15 +174,39 @@
   (retract ?f2)
   (pop-focus))
 
-; TODo
+; controllo che genero un nodo uguale ad uno gia esistente, ma con costo minore (nel nostro caso non dovrebbe mai succedere)
 (defrule check-open-better
   (declare (salience 50))
-  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc))
-  ?f2 <- (node (ident ?old) (pos-r ?r) (pos-c ?c) (gcost ?g-old) (open yes))
+  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (direction ?dir))
+  ?f2 <- (node (ident ?old) (pos-r ?r) (pos-c ?c) (gcost ?g-old) (open yes) (direction ?dir))
   (test (<  ?g ?g-old))
   ?f3 <- (open-better ?a)
   =>
-  (assert (node (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (open yes)))
+  (assert (node (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (open yes) (direction ?dir)))
   (assert (open-better (+ ?a 1)))
   (retract ?f1 ?f2 ?f3)
+  (pop-focus))
+
+; controllo che genero un nodo uguale ad uno gia esistente, ma con costo maggiore
+(defrule check-open-worse
+  (declare (salience 50))
+  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (direction ?dir))
+  (node (ident ?old) (pos-r ?r) (pos-c ?c) (gcost ?g-old) (open yes) (direction ?dir))
+  (test (or (> ?g ?g-old) (= ?g-old ?g)))
+  ?f2 <- (open-worse ?a)
+  =>
+  (assert (open-worse (+ ?a 1)))
+  (retract ?f1)
+  (retract ?f2)
+  (pop-focus))
+
+; trasforma il newnode in node normale
+(defrule add-open
+  (declare (salience 49))
+  ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (direction ?dir))
+  ?f2 <- (numberofnodes ?a)
+  =>
+  (assert (node (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (open yes) (direction ?dir)))
+  (assert (numberofnodes (+ ?a 1)))
+  (retract ?f1 ?f2)
   (pop-focus))
