@@ -53,6 +53,18 @@
   (slot param3)
 )
 
+(deftemplate plan-action-aux
+  (slot plan-step)
+  (slot action  (allowed-values Forward Turnright Turnleft Wait
+                                      LoadMeal LoadPill LoadDessert
+                                      DeliveryMeal DeliveryPill DeliveryDessert
+                                      CleanTable EmptyRobot ReleaseTrash CheckId
+                                      Inform Done))
+  (slot param1)
+  (slot param2)
+  (slot param3)
+)
+
 
 ; arriva da rescue, non so cosa serva
 

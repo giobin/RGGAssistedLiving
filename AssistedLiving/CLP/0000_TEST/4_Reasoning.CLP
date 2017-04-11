@@ -34,6 +34,15 @@
   (focus BFSEARCH)
 )
 
+(defrule create-plan
+  ?f <- (plan-action-aux (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3))
+  =>
+  (assert (plan-action (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3)))
+  (retract ?f)
+)
+
+
+
 ; Crea uno stupido piano di prova
 ; (defrule create-test-plan
 ;   (not

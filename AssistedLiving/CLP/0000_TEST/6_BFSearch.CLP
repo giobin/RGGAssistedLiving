@@ -58,9 +58,8 @@
       (exec-temp ?anc ?id ?action ?r ?c ?d)
   => (printout t " Eseguo azione " ?action " da stato (" ?r "," ?c "), direzione: " ?d crlf)
      (assert (stampa ?anc))
-     (assert (plan-action (plan-step ?g)(action ?action)))
+     (assert (plan-action-aux (plan-step ?g)(action ?action)))
      (retract ?f)
-     (pop-focus)
 )
 
 (defrule sub-goal-reached
