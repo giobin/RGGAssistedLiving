@@ -146,17 +146,18 @@
   (modify ?d (done yes))
 )
 
+; non ci servono step e time, li prendiamo da status
 (defrule newmeal-request
-  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (step ?step) (sender ?sender) (request meal) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request meal) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
   =>
-  (assert (K-mealstatus (step ?step) (time ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (assert (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
   (retract ?msg-to-agent)
 )
 
 (defrule newdessert-request
-  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (step ?step) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
   =>
-  (assert (K-dessertstatus (step ?step) (time ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (assert (K-dessertstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
   (retract ?msg-to-agent)
 )
 
@@ -165,7 +166,7 @@
   (prescription (patient ?patient) (pills ?pills))
   (not (K-pillstatus (for ?patient)))
   =>
-  (assert (K-pillstatus (step ?step) (time ?time) (for ?patient) (delivered no) (when ?pills)))
+  (assert (K-pillstatus (for ?patient) (delivered no) (when ?pills)))
 )
 
 ;fixme:

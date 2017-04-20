@@ -49,6 +49,7 @@
 
 		
 (event (step 1) (type meal) (person P2))  
+(event (step 1) (type meal) (person P3))  
 (event (step 3) (type dessert) (person P2))
 (event (step 30) (type meal) (person P1)) 
 (event (step 40) (type dessert) (person P1))
