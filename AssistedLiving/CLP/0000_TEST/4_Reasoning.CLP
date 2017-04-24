@@ -39,12 +39,33 @@
   (assert (main-goal (id 1) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
 )
 
-(defrule create-sub-goals
+(defrule create-sub-goals-meal
   ?main-goal <- (main-goal (id 1) (k-request ?x))
-  ?y <- (K-mealstatus (arrivaltime ?arrivaltime) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (delivertime ?delivertime) (answer ?answer))
+  (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
+  ?y <- (K-mealstatus (arrivaltime ?arrivaltime) (type ?type) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (delivertime ?delivertime) (answer ?answer))
   (test (eq ?x ?y))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean ?clean))  ;mi serve per sapere se il tavolo è pulito e le sue coordinate
+  ?prescription <- (prescription (patient ?requested-by) (pills ?pills) (meal ?meal))  ;prendo le prescription del paziente
+  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))  ;coordinate spazzatura
+  ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))  ;coordinate pilldispenser
+  ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))  ;coordinate mealdispenser
   =>
-  
+  (if (neq ?clean yes) then
+    (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do clean-table)))
+    (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do release-trash))))
+  (if (eq ?pills before) then
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do load-pill)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-pill)))
+    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal))))
+  (if (eq ?pills after) then
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal)))
+    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do load-pill)))
+    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-pill))))
+  (if (eq ?pills no) then
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal))))
 )
 
 
