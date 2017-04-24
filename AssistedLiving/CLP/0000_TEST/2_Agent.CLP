@@ -100,7 +100,7 @@
   (slot time)
 	(slot pos-r)
 	(slot pos-c)
-	(slot clean (allowed-values yes no stop))
+	(slot clean (allowed-values yes no) (default yes))
 	(slot occupied-by)
         )
 

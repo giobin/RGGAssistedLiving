@@ -94,12 +94,12 @@
    (retract ?node)
  )
 
- (defrule clear-apply
+ (defrule clear-exec-temp
    (declare (salience 200))
    (clear-all)
-   ?apply <- (apply)
+   ?exec-temp <- (exec-temp $?)
    =>
-   (retract ?apply)
+   (retract ?exec-temp)
  )
 
  (defrule clear-initial-state
@@ -110,10 +110,9 @@
    ?open-better <- (open-better ?better)
    ?alreadyclosed <- (alreadyclosed ?closed)
    ?numberofnodes <- (numberofnodes ?n)
-   ?temp-goal <- (temp-goal ? ?)
-   ?current <- (current ?)
-   ?lastnode <- (lastnode ?)
-   ?exec-temp <- (exec-temp $?)
+   ?temp-goal <- (temp-goal $?)
+   ?current <- (current $?)
+   ?lastnode <- (lastnode $?)
    =>
    (retract ?stampa)
    (retract ?open-worse)
