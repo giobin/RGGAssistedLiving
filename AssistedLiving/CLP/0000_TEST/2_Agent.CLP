@@ -368,13 +368,13 @@
   (perc-vision (step ?step) (time ?time) (perc2 Table))
   (test (= ?x (getForwardC ?dir ?c)))
   (test (= ?y (getForwardR ?dir ?r)))
-  ?K-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
   ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
-  ?k-pillstatus <- (K-pillstatus (time ?time) (step ?step) (for ?id) (when before) (delivered yes))
+  ?k-pillstatus <- (K-pillstatus (for ?id) (when before) (delivered yes))
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
-  (modify ?K-mealstatus (delivered yes))
-  (modify ?k-tablestatus (clean no))
+  (modify ?k-mealstatus (delivered yes))
+  (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
 (defrule deliveryMealNoBefore
@@ -385,13 +385,13 @@
   (perc-vision (step ?step) (time ?time) (perc2 Table))
   (test (= ?x (getForwardC ?dir ?c)))
   (test (= ?y (getForwardR ?dir ?r)))
-  ?K-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
   ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
-  ?k-pillstatus <- (K-pillstatus (time ?time) (step ?step) (for ?id) (when no|after))
+  ?k-pillstatus <- (K-pillstatus (for ?id) (when no|after))
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
-  (modify ?K-mealstatus (delivered yes))
-  (modify ?k-tablestatus (clean no))
+  (modify ?k-mealstatus (delivered yes))
+  (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
 (defrule inform

@@ -1,0 +1,121 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x000000012a1e8e76, pid=11297, tid=78199
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_45-b14) (build 1.8.0_45-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.45-b02 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# C  [libCLIPSJNI2.jnilib+0xc7e76]  MergePartialMatches+0xf6
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fe9f567a800):  JavaThread "Thread-110" [_thread_in_native, id=78199, stack(0x000070000ade5000,0x000070000aee5000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 0 (unknown), si_addr: 0x0000000000000000
+
+Registers:
+RAX=0xc00007fe9f73d7ba, RBX=0x00000001295a2fe0, RCX=0x0000000000000004, RDX=0x00007fe9f7714dc0
+RSP=0x000070000aee3a90, RBP=0x000070000aee3ad0, RSI=0x00007fe9f3cb1dc0, RDI=0x00007fe9f772eb30
+R8 =0x00007fe9f7040000, R9 =0x0000000000000000, R10=0x0000000000000000, R11=0x000000000371b080
+R12=0x0000000000000000, R13=0x00000001295a2fe0, R14=0x000070000aee47d8, R15=0x00007fe9f567a800
+RIP=0x000000012a1e8e76, EFLAGS=0x0000000000010202, ERR=0x0000000000000000
+  TRAPNO=0x000000000000000d
+
+Top of Stack: (sp=0x000070000aee3a90)
+0x000070000aee3a90:   0000000000000000 0000000000000000
+0x000070000aee3aa0:   0000000000000000 00007fe900000000
+0x000070000aee3ab0:   00007fe9f3ab9160 00007fe9f3cd28a0
+0x000070000aee3ac0:   00007fe9f3cb1dc0 00007fe9f772eb30
+0x000070000aee3ad0:   000070000aee3b20 000000012a1589a5
+0x000070000aee3ae0:   0000700000000000 0000000000000000
+0x000070000aee3af0:   00007fe9f78d11b0 00007fe9f73cce40
+0x000070000aee3b00:   00007fe9f7043280 00007fe9f3cd28a0
+0x000070000aee3b10:   00007fe9f3cb1dc0 00007fe9f772eb30
+0x000070000aee3b20:   000070000aee3b80 000000012a158d69
+0x000070000aee3b30:   000070000aee3b80 00007fe9f7043120
+0x000070000aee3b40:   00007fe9f7267290 00007fe9f7200d20
+0x000070000aee3b50:   0000000000000000 0000000100000001
+0x000070000aee3b60:   00007fe9f3cd28a0 00007fe9f7043280
+0x000070000aee3b70:   00007fe9f3cb1dc0 00007fe9f772eb30
+0x000070000aee3b80:   000070000aee3bd0 000000012a158aa9
+0x000070000aee3b90:   00007fe900000000 0000000000000000
+0x000070000aee3ba0:   00007fe9f738b440 00007fe9f3cb1dc0
+0x000070000aee3bb0:   00007fe9f7043120 0000000000000000
+0x000070000aee3bc0:   00007fe9f7200d20 00007fe9f772eb30
+0x000070000aee3bd0:   000070000aee3c30 000000012a158f00
+0x000070000aee3be0:   000070000aee3c30 00007fe9f7043040
+0x000070000aee3bf0:   00007fe9f7267f50 00007fe9f3bf7690
+0x000070000aee3c00:   0000000000000000 0000000000000001
+0x000070000aee3c10:   0000000000000000 00007fe9f7043120
+0x000070000aee3c20:   00007fe9f7200d20 00007fe9f772eb30
+0x000070000aee3c30:   000070000aee3c80 000000012a158aa9
+0x000070000aee3c40:   00007fe900000000 0000000000000000
+0x000070000aee3c50:   00007fe9f78d18c0 00007fe9f7200d20
+0x000070000aee3c60:   00007fe9f7043040 00007fe9f7267f50
+0x000070000aee3c70:   00007fe9f3bf7690 00007fe9f772eb30
+0x000070000aee3c80:   000070000aee3ce0 000000012a158d69 
+
+Instructions: (pc=0x000000012a1e8e76)
+0x000000012a1e8e56:   52 30 48 8b 92 d8 01 00 00 48 89 42 20 48 8b 45
+0x000000012a1e8e66:   f8 48 8b 40 30 48 8b 80 d8 01 00 00 48 8b 40 20
+0x000000012a1e8e76:   48 8b 00 48 8b 55 f0 0f b7 4a 02 89 ca 48 c1 e2
+0x000000012a1e8e86:   03 48 81 c2 90 00 00 00 48 8b 75 f8 48 8b 76 30 
+
+Register to memory mapping:
+
+RAX=0xc00007fe9f73d7ba is an unknown value
+RBX={method} {0x00000001295a2fe0} 'run' '(JJ)J' in 'net/sf/clipsrules/jni/Environment'
+RCX=0x0000000000000004 is an unknown value
+RDX=0x00007fe9f7714dc0 is an unknown value
+RSP=0x000070000aee3a90 is pointing into the stack for thread: 0x00007fe9f567a800
+RBP=0x000070000aee3ad0 is pointing into the stack for thread: 0x00007fe9f567a800
+RSI=0x00007fe9f3cb1dc0 is an unknown value
+RDI=0x00007fe9f772eb30 is an unknown value
+R8 =0x00007fe9f7040000 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000000 is an unknown value
+R11=0x000000000371b080 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13={method} {0x00000001295a2fe0} 'run' '(JJ)J' in 'net/sf/clipsrules/jni/Environment'
+R14=0x000070000aee47d8 is pointing into the stack for thread: 0x00007fe9f567a800
+R15=0x00007fe9f567a800 is a thread
+
+
+Stack: [0x000070000ade5000,0x000070000aee5000],  sp=0x000070000aee3a90,  free space=1018k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libCLIPSJNI2.jnilib+0xc7e76]  MergePartialMatches+0xf6
+C  [libCLIPSJNI2.jnilib+0x379a5]  PPDrive+0x55
+C  [libCLIPSJNI2.jnilib+0x37d69]  NetworkAssertLeft+0x289
+C  [libCLIPSJNI2.jnilib+0x37aa9]  PPDrive+0x159
+C  [libCLIPSJNI2.jnilib+0x37f00]  NetworkAssertLeft+0x420
+C  [libCLIPSJNI2.jnilib+0x37aa9]  PPDrive+0x159
+C  [libCLIPSJNI2.jnilib+0x37d69]  NetworkAssertLeft+0x289
+C  [libCLIPSJNI2.jnilib+0x37aa9]  PPDrive+0x159
+C  [libCLIPSJNI2.jnilib+0x37d69]  NetworkAssertLeft+0x289
+C  [libCLIPSJNI2.jnilib+0x37178]  EmptyDrive+0x3d8
+C  [libCLIPSJNI2.jnilib+0x36d7a]  NetworkAssert+0x6a
+C  [libCLIPSJNI2.jnilib+0x4ea62]  ProcessFactAlphaMatch+0x172
+C  [libCLIPSJNI2.jnilib+0x4e2d8]  FactPatternMatch+0x348
+C  [libCLIPSJNI2.jnilib+0x50ada]  EnvAssert+0x3ba
+C  [libCLIPSJNI2.jnilib+0x48b7f]  AssertCommand+0x23f
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xbb9f9]  PrognFunction+0xa9
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xbb9f9]  PrognFunction+0xa9
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xb987e]  EvaluateProcActions+0x17e
+C  [libCLIPSJNI2.jnilib+0x3aff8]  EnvRun+0x6a8
+C  [libCLIPSJNI2.jnilib+0xfaaf9]  Java_net_sf_clipsrules_jni_Environment_run+0x49
+j  net.sf.clipsrules.jni.Environment.run(JJ)J+0
+J 7686 C1 org.clipsmonitor.core.MonitorModel.run()V (659 bytes) @ 0x000000010e620034 [0x000000010e61fb80+0x4b4]
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub

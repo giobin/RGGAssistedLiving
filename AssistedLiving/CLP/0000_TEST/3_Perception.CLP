@@ -149,15 +149,19 @@
 ; non ci servono step e time, li prendiamo da status
 (defrule newmeal-request
   ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request meal) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  ?tablestatus <- (K-tablestatus (pos-r ?t_pos-r) (pos-c ?t_pos-c))
   =>
   (assert (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (modify ?tablestatus (occupied-by ?sender))
   (retract ?msg-to-agent)
 )
 
 (defrule newdessert-request
   ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  ?tablestatus <- (K-tablestatus (pos-r ?t_pos-r) (pos-c ?t_pos-c))
   =>
   (assert (K-dessertstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
+  (modify ?tablestatus (occupied-by ?sender))
   (retract ?msg-to-agent)
 )
 
