@@ -29,7 +29,7 @@
   (declare (salience 200))
   (not (temp-goal))
   ?k-agent <- (K-agent (pos-r ?r) (pos-c ?c) (direction ?direction))
-  ?current-sub-goal <- (current-sub-goal (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target))
+  ?current-sub-goal <- (current-sub-goal (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   =>
   (assert (node (ident 0) (gcost 0) (father NA) (pos-r ?r) (pos-c ?c) (direction ?direction) (open yes)))
   (assert (current 0))
@@ -49,35 +49,82 @@
      (node (ident ?id) (pos-r ?pos-r) (pos-c ?pos-c) (direction ?direction) (gcost ?g))
      (test (= ?r (getForwardR ?direction ?pos-r)))
      (test (= ?c (getForwardC ?direction ?pos-c)))
+     ?current-sub-goal <- (current-sub-goal (id ?ident) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+     ?sub-goal <- (sub-goal (id ?ident))
     => (printout t " Esiste soluzione per goal (" ?pos-r "," ?pos-c ") con costo "  ?g crlf)
-      (assert (stampa ?id))
+     (assert (plan-action-aux (plan-step (+ ?g 1)) (action ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
+     (assert (stampa ?id))
+     (retract ?current-sub-goal) ; eliminiamo il current sub goal
+     (retract ?sub-goal) ; eliminiamo il sub goal (che è uguale al current)
 )
 
-(defrule stampaSol
+(defrule create-plan-actions-aux
   (declare (salience 101))
-  ?f<-(stampa ?id)
+  ?f<- (stampa ?id)
       (node (ident ?id) (father ?anc&~NA) (gcost ?g))
-      (exec-temp ?anc ?id ?action ?r ?c ?d)
+  ?exec-temp <- (exec-temp ?anc ?id ?action ?r ?c ?d)
   => (printout t " Eseguo azione " ?action " da stato (" ?r "," ?c "), direzione: " ?d crlf)
      (assert (stampa ?anc))
      (assert (plan-action-aux (plan-step ?g)(action ?action)))
      (retract ?f)
+     (retract ?exec-temp)
 )
 
 (defrule sub-goal-reached
 (declare (salience 102))
-       (stampa ?id)
-       (node (ident ?id) (father ?anc&NA))
-       (open-worse ?worse)
-       (open-better ?better)
-       (alreadyclosed ?closed)
-       (numberofnodes ?n )
+      (stampa ?id)
+      (node (ident ?id) (father ?anc&NA))
+      (open-worse ?worse)
+      (open-better ?better)
+      (alreadyclosed ?closed)
+      (numberofnodes ?n )
 => (printout t " stati espansi " ?n crlf)
    (printout t " stati generati gia in closed " ?closed crlf)
    (printout t " stati generati gia in open (open-worse) " ?worse crlf)
    (printout t " stati generati gia in open (open-better) " ?better crlf)
-   (pop-focus)
+   (assert (clear-all))
 )
+
+
+ (defrule clear-nodes
+   (declare (salience 200))
+   (clear-all)
+   ?node <- (node)
+   =>
+   (retract ?node)
+ )
+
+ (defrule clear-apply
+   (declare (salience 200))
+   (clear-all)
+   ?apply <- (apply)
+   =>
+   (retract ?apply)
+ )
+
+ (defrule clear-initial-state
+   (declare (salience 199))
+   ?clear-all <-(clear-all)
+   ?stampa <- (stampa ?id)
+   ?open-worse <- (open-worse ?worse)
+   ?open-better <- (open-better ?better)
+   ?alreadyclosed <- (alreadyclosed ?closed)
+   ?numberofnodes <- (numberofnodes ?n)
+   ?temp-goal <- (temp-goal ? ?)
+   ?current <- (current ?)
+   ?lastnode <- (lastnode ?)
+   ?exec-temp <- (exec-temp $?)
+   =>
+   (retract ?stampa)
+   (retract ?open-worse)
+   (retract ?open-better)
+   (retract ?alreadyclosed)
+   (retract ?numberofnodes)
+   (retract ?temp-goal)
+   (retract ?current)
+   (retract ?clear-all)
+   (pop-focus)
+ )
 
 (defrule turnLeft-apply
   (declare (salience 50))

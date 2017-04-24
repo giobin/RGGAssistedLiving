@@ -1,4 +1,4 @@
-#Mon Apr 24 10:44:34 CEST 2017
+#Mon Apr 24 12:07:00 CEST 2017
 org.netbeans.core.startup.OpenIDE-Module-Deprecated=\u0000
 org.netbeans.modules.settings.AutoUpdate-Show-In-Client=false
 org.netbeans.core.startup.OpenIDE-Module-Layer=org/netbeans/core/startup/layer.xml
@@ -364,8 +364,8 @@ org.netbeans.swing.tabcontrol.OpenIDE-Module-Deprecated=\u0000
 org.netbeans.modules.options.keymap.OpenIDE-Module-Install=\u0000
 org.netbeans.modules.print.OpenIDE-Module-Description=\u0000
 net.java.html.sound.AutoUpdate-Show-In-Client=\u0000
-org.netbeans.libs.felix.AutoUpdate-Show-In-Client=false
 org.netbeans.modules.masterfs.macosx.AutoUpdate-Show-In-Client=false
+org.netbeans.libs.felix.AutoUpdate-Show-In-Client=false
 org.netbeans.swing.plaf.OpenIDE-Module-Install=\u0000
 org.openide.util.lookup.AutoUpdate-Show-In-Client=false
 org.netbeans.api.intent.OpenIDE-Module-Install=\u0000

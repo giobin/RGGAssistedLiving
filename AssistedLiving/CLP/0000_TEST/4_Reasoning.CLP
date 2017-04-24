@@ -19,6 +19,10 @@
   (slot pos-r-target)
   (slot pos-c-target)
   (slot action-to-do)
+  (slot param1)
+  (slot param2)
+  (slot param3)
+  (slot param4)
 )
 
 ;prossimo sub-goal di cui stiamo creando il piano
@@ -28,6 +32,10 @@
   (slot pos-r-target)
   (slot pos-c-target)
   (slot action-to-do)
+  (slot param1)
+  (slot param2)
+  (slot param3)
+  (slot param4)
 )
 
 ;crea il piano generale per servire le richieste di meal
@@ -51,32 +59,33 @@
   ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))  ;coordinate mealdispenser
   =>
   (if (neq ?clean yes) then
-    (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do clean-table)))
-    (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do release-trash))))
+    (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
+    (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c))))
   (if (eq ?pills before) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do load-pill)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-pill)))
-    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal))))
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
   (if (eq ?pills after) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal)))
-    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do load-pill)))
-    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-pill))))
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by))))
   (if (eq ?pills no) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do delivery-meal))))
+    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
 )
 
+(defrule create-current-sub-goal
+  (not(plan-action))
+  ?sub-goal <- (sub-goal (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (id ?id1&:(< ?id1 ?id))))
+  =>
+  (assert (current-sub-goal (goal-ref 1) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
+  (focus BFSEARCH)
+)
 
-; (defrule piano-di-prova
-;   (not(plan-action))
-;   =>
-;   (assert (current-sub-goal (goal-ref 1) (id 1) (pos-r-target 4) (pos-c-target 4)))
-;   (focus BFSEARCH)
-; )
-
-(defrule create-plan
+(defrule create-action-plan
   ?f <- (plan-action-aux (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3))
   =>
   (assert (plan-action (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3)))
@@ -87,13 +96,13 @@
 
 Crea uno stupido piano di prova
 (defrule create-test-plan
+  (declare (salience -1))
   (not
     (plan-action)
   )
   =>
   (assert
-    (plan-action (plan-step -1)(action Wait) )
-    (plan-action (plan-step 0)(action Wait) )
+    (plan-action (plan-step -1)(action Wait))
     ; (plan-action (plan-step 0)(action Turnleft) )
     ; (plan-action (plan-step 1)(action Turnleft) )
     ; (plan-action (plan-step 2)(action Forward) )
