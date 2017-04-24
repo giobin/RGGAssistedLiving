@@ -121,6 +121,7 @@
    (retract ?numberofnodes)
    (retract ?temp-goal)
    (retract ?current)
+   (retract ?lastnode)
    (retract ?clear-all)
    (pop-focus)
  )

@@ -348,6 +348,18 @@
   (modify ?k (time (+ ?time 15)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 ?type)))
 )
 
+(defrule loadPill
+  (declare (salience 10))
+  (exec (step ?step) (action LoadPill) (param1 ?y) (param2 ?x) (param3 ?patient))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (> ?free 0))
+  (perc-vision (step ?step) (time ?time) (perc2 PillDispenser))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  =>
+  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 ?patient)))
+)
+
 (defrule loadDessert
   (declare (salience 10))
   (exec (step ?step) (action LoadDessert) (param1 ?y) (param2 ?x))
@@ -392,6 +404,20 @@
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
   (modify ?k-mealstatus (delivered yes))
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
+)
+
+(defrule deliveryPill
+  (declare (salience 10))
+  (exec (step ?step) (action DeliveryPill) (param1 ?y) (param2 ?x) (param3 ?patient))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (member$ ?patient $?cont))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-pillstatus <- (K-pillstatus (for ?patient))
+  =>
+  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (content (delete-member$ $?cont ?patient)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-pillstatus (time ?time) (step ?step) (delivered yes))
 )
 
 (defrule inform

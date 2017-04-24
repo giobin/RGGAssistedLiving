@@ -92,9 +92,7 @@
   (retract ?f)
 )
 
-
-
-Crea uno stupido piano di prova
+;Crea uno stupido piano di prova
 (defrule create-test-plan
   (declare (salience -1))
   (not
