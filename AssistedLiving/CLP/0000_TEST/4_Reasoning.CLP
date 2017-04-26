@@ -40,6 +40,7 @@
 
 ;crea il piano generale per servire le richieste di meal
 (defrule create-goal-meal
+  (declare (salience 50))
   ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending))
   (not (K-mealstatus (arrivaltime ?request-time2&:(< ?request-time2 ?request-time)) (delivered no) (answer pending)))
   (not (main-goal))
@@ -48,6 +49,7 @@
 )
 
 (defrule create-sub-goals-meal
+  (declare (salience 50))
   ?main-goal <- (main-goal (id 1) (k-request ?x))
   (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
   ?y <- (K-mealstatus (arrivaltime ?arrivaltime) (type ?type) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (delivertime ?delivertime) (answer ?answer))
@@ -77,6 +79,7 @@
 )
 
 (defrule create-current-sub-goal
+  (declare (salience 50))
   (not(plan-action))
   ?sub-goal <- (sub-goal (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   (not (sub-goal (id ?id1&:(< ?id1 ?id))))
@@ -86,15 +89,25 @@
 )
 
 (defrule create-action-plan
+  (declare (salience 50))
   ?f <- (plan-action-aux (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3))
   =>
   (assert (plan-action (plan-step ?ps) (action ?action) (param1 ?p1) (param2 ?p2) (param3 ?p3)))
   (retract ?f)
 )
 
+(defrule clear-main-goal
+  (declare (salience 20))
+  (not (sub-goal))
+  ?f <- (main-goal)
+  =>
+  (retract ?f)
+
+)
+
 ;Crea uno stupido piano di prova
 (defrule create-test-plan
-  (declare (salience -1))
+  (declare (salience 10))
   (not
     (plan-action)
   )

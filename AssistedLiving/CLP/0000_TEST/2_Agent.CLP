@@ -416,7 +416,7 @@
   (test (= ?y (getForwardR ?dir ?r)))
   ?k-pillstatus <- (K-pillstatus (for ?patient))
   =>
-  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (content (delete-member$ $?cont ?patient)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k (time (+ ?time 8)) (step (+ ?step 1)) (content (delete-member$ $?cont ?patient)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
   (modify ?k-pillstatus (time ?time) (step ?step) (delivered yes))
 )
 

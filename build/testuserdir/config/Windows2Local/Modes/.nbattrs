@@ -26,7 +26,7 @@
         <attr name="WinSys-TCRef-Order" stringvalue=""/>
     </fileobject>
     <fileobject name="facts">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
+        <attr name="WinSys-TCRef-Order" stringvalue="FactsTopComponent"/>
     </fileobject>
     <fileobject name="focus">
         <attr name="WinSys-TCRef-Order" stringvalue="FocusTopComponent"/>
