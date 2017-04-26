@@ -48,6 +48,16 @@
   (assert (main-goal (id 1) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
 )
 
+(defrule create-goal-dessert-YES
+  (declare (salience 50))
+  (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
+  ?prescription <- (prescription (patient ?sender) (dessert yes))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (patient ?sender) (answer pending))
+  (not (main-goal))
+  =>
+  (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
+)
+
 (defrule create-sub-goals-meal
   (declare (salience 50))
   ?main-goal <- (main-goal (id 1) (k-request ?x))
