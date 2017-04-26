@@ -7,32 +7,17 @@
     <fileobject name="anonymousMode_1">
         <attr name="WinSys-TCRef-Order" stringvalue="FactsTopComponent"/>
     </fileobject>
-    <fileobject name="bottomSlidingSide">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
-    </fileobject>
     <fileobject name="console">
         <attr name="WinSys-TCRef-Order" stringvalue="ConsoleTopComponent"/>
     </fileobject>
     <fileobject name="controls">
         <attr name="WinSys-TCRef-Order" stringvalue="ControlsTopComponent"/>
     </fileobject>
-    <fileobject name="debugger">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
-    </fileobject>
-    <fileobject name="editor">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
-    </fileobject>
-    <fileobject name="explorer">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
-    </fileobject>
     <fileobject name="facts">
         <attr name="WinSys-TCRef-Order" stringvalue="FactsTopComponent"/>
     </fileobject>
     <fileobject name="focus">
         <attr name="WinSys-TCRef-Order" stringvalue="FocusTopComponent"/>
-    </fileobject>
-    <fileobject name="leftSlidingSide">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
     </fileobject>
     <fileobject name="map">
         <attr name="WinSys-TCRef-Order" stringvalue="AgentMapTopComponent/EnvMapTopComponent"/>
@@ -45,11 +30,5 @@
     </fileobject>
     <fileobject name="properties">
         <attr name="WinSys-TCRef-Order" stringvalue="properties"/>
-    </fileobject>
-    <fileobject name="rightSlidingSide">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
-    </fileobject>
-    <fileobject name="topSlidingSide">
-        <attr name="WinSys-TCRef-Order" stringvalue=""/>
     </fileobject>
 </attributes>

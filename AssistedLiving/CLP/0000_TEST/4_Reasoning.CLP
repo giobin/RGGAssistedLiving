@@ -96,6 +96,18 @@
   (retract ?f)
 )
 
+(defrule clear-sub-goal
+  (declare (salience 60))
+  (not (plan-action-aux))
+  (not (plan-action))
+  ?f1 <- (current-sub-goal (id ?ident))
+  ?f2 <- (sub-goal (id ?ident))
+  =>
+  (retract ?f1)
+  (retract ?f2)
+  (printout t " Cancella current-sub-goal " ?ident crlf)
+)
+
 (defrule clear-main-goal
   (declare (salience 20))
   (not (sub-goal))

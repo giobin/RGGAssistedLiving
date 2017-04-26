@@ -54,8 +54,8 @@
     => (printout t " Esiste soluzione per goal (" ?pos-r "," ?pos-c ") con costo "  ?g crlf)
      (assert (plan-action-aux (plan-step (+ ?g 1)) (action ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
      (assert (stampa ?id))
-     (retract ?current-sub-goal) ; eliminiamo il current sub goal
-     (retract ?sub-goal) ; eliminiamo il sub goal (che è uguale al current)
+    ;  (retract ?current-sub-goal) ; eliminiamo il current sub goal
+    ;  (retract ?sub-goal) ; eliminiamo il sub goal (che è uguale al current)
 )
 
 (defrule create-plan-actions-aux
