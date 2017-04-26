@@ -156,12 +156,26 @@
   (retract ?msg-to-agent)
 )
 
-(defrule newdessert-request
+
+(defrule newdessert-request-moved
   ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
-  ?tablestatus <- (K-tablestatus (pos-r ?t_pos-r) (pos-c ?t_pos-c))
+  ?tablestatus-old <- (K-tablestatus (pos-r ?t_pos-r-old) (pos-c ?t_pos-c-old) (occupied-by ?sender)) ;posizione vecchia del paziente
+  ?tablestatus-new <- (K-tablestatus (pos-r ?t_pos-r) (pos-c ?t_pos-c)) ;posizione corrente del paziente
+  (test (neq ?t_pos-r-old ?t_pos-r))
+  (test (neq ?t_pos-c-old ?t_pos-c))
   =>
   (assert (K-dessertstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
-  (modify ?tablestatus (occupied-by ?sender))
+  (modify ?tablestatus-old (occupied-by no))
+  (modify ?tablestatus-new (occupied-by ?sender))
+  (retract ?msg-to-agent)
+)
+
+;
+(defrule newdessert-request-not-moved
+  ?msg-to-agent <- (msg-to-agent (request-time ?request-time) (sender ?sender) (request dessert) (t_pos-r ?t_pos-r) (t_pos-c ?t_pos-c))
+  ?tablestatus <- (K-tablestatus (pos-r ?t_pos-r) (pos-c ?t_pos-c) (occupied-by ?sender))
+  =>
+  (assert (K-dessertstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending)))
   (retract ?msg-to-agent)
 )
 

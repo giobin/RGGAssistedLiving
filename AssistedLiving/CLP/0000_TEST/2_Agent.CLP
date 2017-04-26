@@ -406,6 +406,21 @@
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
+(defrule deliveryDessert
+  (declare (salience 10))
+  (exec (step ?step) (action DeliveryDessert) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content $?cont))
+  (test (member$ dessert $?cont))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (tpos-r ?y) (tpos-c ?x))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont dessert)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-dessertstatus (time ?time) (step ?step) (delivered yes))
+
+)
+
 (defrule deliveryPill
   (declare (salience 10))
   (exec (step ?step) (action DeliveryPill) (param1 ?y) (param2 ?x) (param3 ?patient))
