@@ -2,7 +2,7 @@
 (prescription (patient P2)
               (meal normal)
               (pills  no )
-              (dessert yes))
+              (dessert no))
 
 (prescription (patient P1)
               (meal dietetic)
