@@ -437,22 +437,22 @@
 
 (defrule inform-meal
   (declare (salience 10))
-  (exec (step ?step) (action Inform) (param1 ?receiver) (param2 ?request) (param3 ?answer))
+  (exec (step ?step) (action Inform) (param1 ?receiver) (param2 meal) (param3 ?answer))
   ?k <- (K-agent (time ?time) (step ?step))
   ?k-mealstatus <- (K-mealstatus (requested-by ?receiver))
   =>
-  (printout t "inform meal, answer: " ?answer)
+  (printout t "inform meal to " ?receiver ", answer: " ?answer)
   (modify ?k (time (+ ?time 1)) (step (+ ?step 1)))
   (modify ?k-mealstatus (time ?time) (step ?step) (answer ?answer))
 )
 
 (defrule inform-dessert
   (declare (salience 10))
-  (exec (step ?step) (action Inform) (param1 ?receiver) (param2 ?request) (param3 ?answer))
+  (exec (step ?step) (action Inform) (param1 ?receiver) (param2 dessert) (param3 ?answer))
   ?k <- (K-agent (time ?time) (step ?step))
-  ?k-dessertstatus <- (K-dessertstatus(requested-by ?receiver))
+  ?k-dessertstatus <- (K-dessertstatus (requested-by ?receiver))
   =>
-  (printout t "inform dessert, answer: " ?answer)
+  (printout t "inform dessert to " ?receiver ", answer: " ?answer)
   (modify ?k (time (+ ?time 1)) (step (+ ?step 1)))
   (modify ?k-dessertstatus (time ?time) (step ?step) (answer ?answer))
 )
