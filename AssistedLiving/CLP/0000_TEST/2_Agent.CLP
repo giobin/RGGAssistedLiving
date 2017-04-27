@@ -435,7 +435,61 @@
   (modify ?k-pillstatus (time ?time) (step ?step) (delivered yes))
 )
 
-(defrule inform-meal
+(defrule cleanTable
+  (declare (salience 10))
+  (exec (step ?step) (action CleanTable) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (loaded no))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean no))
+  =>
+  (modify ?k (waste yes) (time (+ ?time 30)) (step (+ ?step 1)))
+  (modify ?k-tablestatus (clean yes))
+)
+
+(defrule emptyRobot
+  (declare (salience 10))
+  (exec (step ?step) (action EmptyRobot) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (loaded yes))
+  (perc-vision (step ?step) (time ?time) (perc2 TrashBasket))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  =>
+  (modify ?k (time (+ ?time 20)) (step (+ ?step 1)) (loaded no) (free 2))
+)
+
+(defrule releaseTrash
+  (declare (salience 10))
+  (exec (step ?step) (action ReleaseTrash) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste yes))
+  (perc-vision (step ?step) (time ?time) (perc2 TrashBasket))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  =>
+  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (waste no))
+)
+
+(defrule done
+  (declare (salience 10))
+  (exec (step ?step) (action Done))
+  ?k <- (K-agent (step ?step))
+  =>
+  (halt)
+)
+
+(defrule checkId
+  (declare (salience 10))
+  (exec (step ?step) (action CheckId) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir))
+  (perc-vision (step ?step) (time ?time) (perc2 PersonSeated|PersonStanding))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  =>
+  (modify ?k (time (+ ?time 20)) (step (+ ?step 1)))
+)
+
+(defrule informMeal
   (declare (salience 10))
   (exec (step ?step) (action Inform) (param1 ?receiver) (param2 meal) (param3 ?answer))
   ?k <- (K-agent (time ?time) (step ?step))
@@ -446,7 +500,7 @@
   (modify ?k-mealstatus (time ?time) (step ?step) (answer ?answer))
 )
 
-(defrule inform-dessert
+(defrule informDessert
   (declare (salience 10))
   (exec (step ?step) (action Inform) (param1 ?receiver) (param2 dessert) (param3 ?answer))
   ?k <- (K-agent (time ?time) (step ?step))

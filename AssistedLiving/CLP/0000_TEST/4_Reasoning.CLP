@@ -57,6 +57,12 @@
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
+(defrule create-goal-clean-all
+  (declare (salience 50))
+  =>
+)
+
+
 (defrule create-sub-goals-meal
   (declare (salience 50))
   ?main-goal <- (main-goal (id 1) (k-request ?x))
