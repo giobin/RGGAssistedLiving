@@ -369,7 +369,7 @@
   (test (= ?x (getForwardC ?dir ?c)))
   (test (= ?y (getForwardR ?dir ?r)))
   =>
-  (modify ?k (time (+ ?time 10)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 dessert)))
+  (modify ?k (time (+ ?time 15)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 dessert)))
 )
 
 (defrule deliveryMealBefore

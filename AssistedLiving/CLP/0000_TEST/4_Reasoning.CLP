@@ -48,15 +48,29 @@
   (assert (main-goal (id 1) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
 )
 
+; nel caso in cui il nonno è autorizzato a prendere il dessert
 (defrule create-goal-dessert-YES
   (declare (salience 50))
   (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
   ?prescription <- (prescription (patient ?sender) (dessert yes))
-  ?k-dessertstatus <- (K-dessertstatus (delivered no) (patient ?sender) (answer pending))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer pending))
   (not (main-goal))
   =>
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
+
+(defrule create-sub-goals-dessert
+  (declare (salience 50))
+  ?main-goal <- (main-goal (id 1) (k-request ?x))
+  (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
+  ?y <- (K-dessertstatus (arrivaltime ?arrivaltime) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (answer ?answer))
+  (test (eq ?x ?y))
+  ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))  ;coordinate dessert dispender
+  =>
+  (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c)))
+  (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryDessert) (param1 ?tpos-r) (param2 ?tpos-c)))
+)
+
 
 (defrule create-sub-goals-meal
   (declare (salience 50))
