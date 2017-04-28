@@ -38,6 +38,47 @@
   (slot param4)
 )
 
+(defrule create-goal-wait
+  (declare (salience 10))
+  (not (plan-action))
+  =>
+  (assert (plan-action (plan-step -1) (action Wait)))
+)
+
+(defrule create-goal-done
+  (declare (salience 80))
+  (status (time ?time))
+  (maxduration ?maxduration)
+  (test (> ?time (- ?maxduration 30)))
+  =>
+  (assert (plan-action (plan-step -2) (action Done)))
+)
+
+;se il vecchio ha chiesto il dessert possiamo pulire subito il tavolo
+(defrule create-goal-clean-dessert-table
+  (declare (salience 40))
+  (not (main-goal))
+  (status (time ?time))
+  ?K-mealstatus <- (K-mealstatus (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered yes) (delivertime ?deliveredtime) (requested-by ?patient))
+  ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
+  ?K-dessertstatus <- (K-dessertstatus (requested-by ?patient))
+  (test (> ?time (+ ?deliveredtime 1)))
+  =>
+  (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
+)
+
+;se non ha chiesto dessert allora per pulire deve essere passato 500 time
+(defrule create-goal-clean-table
+  (declare (salience 40))
+  (not (main-goal))
+  (status (time ?time))
+  ?K-mealstatus <- (K-mealstatus (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered yes) (delivertime ?deliveredtime) (requested-by ?patient))
+  ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
+  (test (> ?time (+ ?deliveredtime 500)))
+  =>
+  (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
+)
+
 ;crea il piano generale per servire le richieste di meal
 (defrule create-goal-meal
   (declare (salience 50))
@@ -57,11 +98,17 @@
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
-(defrule create-goal-clean-all
+(defrule create-sub-goals-clean-table
   (declare (salience 50))
+  ?main-goal <- (main-goal (id 1) (k-request ?x))
+  (not (sub-goal))
+  ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
+  (test (eq ?x ?y))
+  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
   =>
+  (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
+  (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
 )
-
 
 (defrule create-sub-goals-meal
   (declare (salience 50))
@@ -170,71 +217,4 @@
   =>
   (retract ?f)
 
-)
-
-;Crea uno stupido piano di prova
-(defrule create-test-plan
-  (declare (salience 10))
-  (not
-    (plan-action)
-  )
-  =>
-  (assert
-    (plan-action (plan-step -1)(action Wait))
-    ; (plan-action (plan-step 0)(action Turnleft) )
-    ; (plan-action (plan-step 1)(action Turnleft) )
-    ; (plan-action (plan-step 2)(action Forward) )
-    ; (plan-action (plan-step 3)(action Inform) (param1 P2) (param2 meal) (param3 yes) )
-    ; (plan-action (plan-step 4)(action Forward) )
-    ; (plan-action (plan-step 5)(action Turnleft) )
-    ; (plan-action (plan-step 6)(action Forward) )
-    ; (plan-action (plan-step 7)(action Turnleft) )
-    ; (plan-action (plan-step 8)(action Forward) )
-    ; (plan-action (plan-step 9)(action LoadMeal) (param1 8) (param2 7) (param3 normal) )
-    ; (plan-action (plan-step 10)(action Turnleft) )
-    ; (plan-action (plan-step 11) (action Turnleft) )
-    ; (plan-action (plan-step 12)(action Forward) )
-    ; (plan-action (plan-step 13)(action Forward) )
-    ; (plan-action (plan-step 14)(action Turnright) )
-    ; (plan-action (plan-step 15)(action Forward) )
-    ; (plan-action (plan-step 16)(action Forward) )
-    ; (plan-action (plan-step 17) (action Forward) )
-    ; (plan-action (plan-step 18)(action Turnleft) )
-    ; (plan-action (plan-step 19)(action DeliveryMeal)(param1 4) (param2 4) (param3 normal) )
-    ; (plan-action (plan-step 20)(action Turnleft) )
-    ; (plan-action (plan-step 21)(action Forward) )
-    ; (plan-action (plan-step 22)(action Turnleft) )
-    ; (plan-action (plan-step 23)(action Forward) )
-    ; (plan-action (plan-step 24)(action Forward) )
-    ; (plan-action (plan-step 25)(action LoadDessert)(param1 8) (param2 5) )
-    ; (plan-action (plan-step 26)(action Turnleft) )
-    ; (plan-action (plan-step 27)(action Turnleft) )
-    ; (plan-action (plan-step 28)(action Forward) )
-    ; (plan-action (plan-step 29)(action Forward) )
-    ; (plan-action (plan-step 30)(action Turnright) )
-    ; (plan-action (plan-step 31)(action Forward) )
-    ; (plan-action (plan-step 32) (action Turnleft) )
-    ; (plan-action (plan-step 33)(action DeliveryDessert)(param1 4)(param2 4) )
-    ; (plan-action (plan-step 34)(action Turnleft) )
-    ; (plan-action (plan-step 35)(action Forward) )
-    ; (plan-action (plan-step 36)(action Forward) )
-    ; (plan-action (plan-step 37)(action Turnleft) )
-    ; (plan-action (plan-step 38)(action Turnleft) )
-    ; (plan-action (plan-step 39)(action Forward) )
-    ; (plan-action (plan-step 40)(action Forward) )
-    ; (plan-action (plan-step 41)(action Turnleft) )
-    ; (plan-action (plan-step 42)(action CleanTable)(param1 4) (param2 4) )
-    ; (plan-action (plan-step 43)(action Turnleft) )
-    ; (plan-action (plan-step 44)(action Forward) )
-    ; (plan-action (plan-step 45)(action Forward) )
-    ; (plan-action (plan-step 46)(action Turnleft) )
-    ; (plan-action (plan-step 47)(action Forward) )
-    ; (plan-action (plan-step 48)(action Forward) )
-    ; (plan-action (plan-step 49)(action Forward) )
-    ; (plan-action (plan-step 50)(action ReleaseTrash)(param1 9) (param2 6) )
-    ; (plan-action (plan-step 51)(action Turnleft) )
-    ; (plan-action (plan-step 52)(action Turnleft) )
-    ; (plan-action (plan-step 53)(action Forward) )
-    ; (plan-action (plan-step 54)(action Done) )
-   )
 )

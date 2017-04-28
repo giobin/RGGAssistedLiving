@@ -385,7 +385,7 @@
   ?k-pillstatus <- (K-pillstatus (for ?id) (when before) (delivered yes))
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
-  (modify ?k-mealstatus (delivered yes))
+  (modify ?k-mealstatus (delivered yes) (delivertime (+ ?time 12)))
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
@@ -402,7 +402,7 @@
   ?k-pillstatus <- (K-pillstatus (for ?id) (when no|after))
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
-  (modify ?k-mealstatus (delivered yes))
+  (modify ?k-mealstatus (delivered yes) (delivertime (+ ?time 12)))
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
