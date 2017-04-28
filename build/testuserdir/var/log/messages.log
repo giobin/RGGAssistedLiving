@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Friday, April 28, 2017 4:51:34 PM CEST
+>Log Session: Friday, April 28, 2017 5:33:14 PM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Linux version 4.8.0-49-generic running on amd64
@@ -110,9 +110,9 @@ Input arguments:
 Compiler: HotSpot 64-Bit Tiered Compilers
 Heap memory usage: initial 124,0MB maximum 1756,5MB
 Non heap memory usage: initial 2,4MB maximum -1b
-Garbage collector: PS Scavenge (Collections=4 Total time spent=0s)
+Garbage collector: PS Scavenge (Collections=5 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
-Classes: loaded=4982 total loaded=4982 unloaded 0
+Classes: loaded=4990 total loaded=4990 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 8.281.911.296
 INFO [null]: Total physical memory 8.281.911.296
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]

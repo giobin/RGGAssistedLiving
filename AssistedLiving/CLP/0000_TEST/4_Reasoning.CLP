@@ -118,8 +118,8 @@
 ;crea il piano generale per servire le richieste di meal
 (defrule create-goal-meal
   (declare (salience 50))
-  ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending))
-  (not (K-mealstatus (arrivaltime ?request-time2&:(< ?request-time2 ?request-time)) (delivered no) (answer pending)))
+  ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer wait | yes) )
+  (not (K-mealstatus (arrivaltime ?request-time2&:(< ?request-time2 ?request-time)) (delivered no) (answer wait | yes)))
   (not (main-goal))
   =>
   (assert (main-goal (id 1) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
@@ -128,7 +128,7 @@
 (defrule create-goal-dessert
   (declare (salience 50))
   (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
-  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer pending))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
   (not (main-goal))
   =>
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
