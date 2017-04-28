@@ -216,5 +216,4 @@
   ?f <- (main-goal)
   =>
   (retract ?f)
-
 )
