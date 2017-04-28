@@ -122,25 +122,25 @@
   ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))  ;coordinate pilldispenser
   ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))  ;coordinate mealdispenser
   =>
-  (if (or (neq ?clean yes) (eq ?pills before)) then
-  (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 wait))))
+  (if (eq ?pills before) then
+    (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 wait)))
+  else
+    (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
+  )
   (if (neq ?clean yes) then
     (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
     (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c))))
   (if (eq ?pills before) then
     (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
     (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by)))
-    (assert (sub-goal (goal-ref 1) (id 5) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
     (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
     (assert (sub-goal (goal-ref 1) (id 7) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
   (if (eq ?pills after) then
-    (assert (sub-goal (goal-ref 1) (id 3) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
     (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
     (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal)))
     (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
     (assert (sub-goal (goal-ref 1) (id 7) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by))))
   (if (eq ?pills no) then
-    (assert (sub-goal (goal-ref 1) (id 3) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
     (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
     (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
 )
