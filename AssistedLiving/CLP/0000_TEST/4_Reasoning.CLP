@@ -38,6 +38,42 @@
   (slot param4)
 )
 
+(defrule create-meal-inform
+  (declare (salience 100))
+  (not (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 meal)))
+  ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?patient) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending))
+  ?prescription <- (prescription (patient ?patient) (pills ?pills))  ;prendo le prescription del paziente
+  =>
+  (if (eq ?pills before) then
+    (assert (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 meal) (param3 wait)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+  else
+    (assert (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 meal) (param3 yes)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+  )
+)
+
+(defrule create-dessert-inform-YES
+  (declare (salience 100))
+  (not (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 dessert)))
+  ?K-dessertstatus <- (K-dessertstatus (arrivaltime ?request-time) (requested-by ?patient) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending))
+  ?K-pillstatus <- (K-pillstatus (for ?patient) (delivered ?pillsdelivered))
+  ?prescription <- (prescription (patient ?patient) (pills ?pills) (dessert yes))  ;prendo le prescription del paziente
+  =>
+  (if (and (eq ?pills after) (eq ?pillsdelivered no)) then
+    (assert (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 dessert) (param3 wait)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+  else
+    (assert (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 dessert) (param3 yes)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+  )
+)
+
+(defrule create-dessert-inform-NO
+  (declare (salience 100))
+  (not (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 dessert)))
+  ?K-dessertstatus <- (K-dessertstatus (arrivaltime ?request-time) (requested-by ?patient) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer pending))
+  ?prescription <- (prescription (patient ?patient) (pills ?pills) (dessert no))  ;prendo le prescription del paziente
+  =>
+  (assert (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 dessert) (param3 reject)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+)
+
 (defrule create-goal-wait
   (declare (salience 10))
   (not (plan-action))
@@ -122,11 +158,11 @@
   ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))  ;coordinate pilldispenser
   ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))  ;coordinate mealdispenser
   =>
-  (if (eq ?pills before) then
-    (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 wait)))
-  else
-    (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
-  )
+  ; (if (eq ?pills before) then
+  ;   (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 wait)))
+  ; else
+  ;   (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
+  ; )
   (if (neq ?clean yes) then
     (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
     (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c))))
@@ -154,21 +190,21 @@
   ?prescription <- (prescription (patient ?requested-by) (dessert yes))
   ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))  ;coordinate dessert dispender
   =>
-  (assert (sub-goal (goal-ref 1) (id 1) (action-to-do Inform) (param1 ?requested-by) (param2 dessert) (param3 yes)))
+  ;(assert (sub-goal (goal-ref 1) (id 1) (action-to-do Inform) (param1 ?requested-by) (param2 dessert) (param3 yes)))
   (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c)))
   (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryDessert) (param1 ?tpos-r) (param2 ?tpos-c)))
 )
 
-(defrule create-sub-goals-dessert-NO
-  (declare (salience 50))
-  ?main-goal <- (main-goal (id 1) (k-request ?x))
-  (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
-  ?y <- (K-dessertstatus (arrivaltime ?arrivaltime) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (answer ?answer))
-  (test (eq ?x ?y))
-  ?prescription <- (prescription (patient ?requested-by) (dessert no))
-  =>
-  (assert (sub-goal (goal-ref 1) (id 1) (action-to-do Inform) (param1 ?requested-by) (param2 dessert) (param3 reject)))
-)
+; (defrule create-sub-goals-dessert-NO
+;   (declare (salience 50))
+;   ?main-goal <- (main-goal (id 1) (k-request ?x))
+;   (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
+;   ?y <- (K-dessertstatus (arrivaltime ?arrivaltime) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (answer ?answer))
+;   (test (eq ?x ?y))
+;   ?prescription <- (prescription (patient ?requested-by) (dessert no))
+;   =>
+;   (assert (sub-goal (goal-ref 1) (id 1) (action-to-do Inform) (param1 ?requested-by) (param2 dessert) (param3 reject)))
+; )
 
 (defrule create-current-sub-goal
   (declare (salience 50))
@@ -180,15 +216,15 @@
   (focus BFSEARCH)
 )
 
-(defrule create-current-sub-goal-inform
-  (declare (salience 60))
-  (not(plan-action))
-  ?sub-goal <- (sub-goal (id ?id) (action-to-do Inform) (param1 ?patient) (param2 ?request) (param3 ?answer))
-  (not (sub-goal (id ?id1&:(< ?id1 ?id))))
-  =>
-  (assert (current-sub-goal (goal-ref 1) (id ?id) (action-to-do Inform) (param1 ?patient) (param2 ?request) (param3 ?answer))) ;asserito per clear-sub-goal
-  (assert (plan-action (plan-step 1) (action Inform) (param1 ?patient) (param2 ?request) (param3 ?answer)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
-)
+; (defrule create-current-sub-goal-inform
+;   (declare (salience 60))
+;   (not(plan-action))
+;   ?sub-goal <- (sub-goal (id ?id) (action-to-do Inform) (param1 ?patient) (param2 ?request) (param3 ?answer))
+;   (not (sub-goal (id ?id1&:(< ?id1 ?id))))
+;   =>
+;   (assert (current-sub-goal (goal-ref 1) (id ?id) (action-to-do Inform) (param1 ?patient) (param2 ?request) (param3 ?answer))) ;asserito per clear-sub-goal
+;   (assert (plan-action (plan-step 1) (action Inform) (param1 ?patient) (param2 ?request) (param3 ?answer)))  ;plan-step 1 perchè è semplicemente una singola plan action e viene fatta se non ci sono altre plan action
+; )
 
 (defrule create-action-plan
   (declare (salience 50))
