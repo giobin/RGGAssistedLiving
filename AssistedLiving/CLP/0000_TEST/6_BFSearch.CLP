@@ -63,7 +63,7 @@
   ?f<- (stampa ?id)
       (node (ident ?id) (father ?anc&~NA) (gcost ?g))
   ?exec-temp <- (exec-temp ?anc ?id ?action ?r ?c ?d)
-  => (printout t " Eseguo azione " ?action " da stato (" ?r "," ?c "), direzione: " ?d crlf)
+  =>
      (assert (stampa ?anc))
      (assert (plan-action-aux (plan-step ?g)(action ?action)))
      (retract ?f)
@@ -78,10 +78,7 @@
       (open-better ?better)
       (alreadyclosed ?closed)
       (numberofnodes ?n )
-=> (printout t " stati espansi " ?n crlf)
-   (printout t " stati generati gia in closed " ?closed crlf)
-   (printout t " stati generati gia in open (open-worse) " ?worse crlf)
-   (printout t " stati generati gia in open (open-better) " ?better crlf)
+=>
    (assert (clear-all))
 )
 
