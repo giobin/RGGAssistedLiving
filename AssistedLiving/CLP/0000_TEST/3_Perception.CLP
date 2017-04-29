@@ -14,6 +14,16 @@
 	(assert (updated-K-cell (done no)))
 )
 
+;pulizia perc-vision
+(defrule clean-old-perc-vision
+  (declare (salience 100))
+  (status (time ?time))
+  ?k <- (perc-vision (time ?time-old))
+  (test (> ?time (+ ?time-old 1)))
+  =>
+  (retract ?k)
+)
+
 ; -----------------------------------
 ; --- aggiornamento perc-vision ---
 ; -----------------------------------

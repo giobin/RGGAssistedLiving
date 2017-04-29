@@ -30,3 +30,13 @@
    (assert (exec (action ?action) (step ?s) (param1 ?p1) (param2 ?p2) (param3 ?p3)))
    (retract ?plan-action)
 )
+
+
+;pulizia vecchie exec
+(defrule clear-old-exec
+  (status (step ?step))
+  ?k <- (exec (step ?step-old))
+  (test (> ?step ?step-old 1))
+  =>
+  (retract ?k)
+)

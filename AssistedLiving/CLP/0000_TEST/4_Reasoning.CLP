@@ -38,6 +38,46 @@
   (slot param4)
 )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                         REPLANNING                         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;la prossima azione è una Forward
+(defrule action-unfeasible
+  (declare (salience 80))
+  (not (replanning))
+  (status (time ?time))
+  (perc-vision (step ?step) (time ?time) (perc2 PersonStanding))
+  (plan-action (plan-step ?ps) (action Forward))
+  (not (plan-action (plan-step ?plan-step&:(< ?plan-step ?ps))))
+  =>
+  (printout t "Non puoi eseguire Forward!" crlf)
+  (assert (replanning))
+)
+
+(defrule cancel-plan
+  (declare (salience 80))
+  (replanning)
+  ?k <- (plan-action)
+  =>
+  (printout t "Cancello piano" crlf)
+  (retract ?k)
+)
+
+(defrule create-new-plan
+  (declare (salience 80))
+  ?k <- (replanning)
+  (not (plan-action))
+  =>
+  (retract ?k)
+  (printout t "Entro in BFSEARCH" crlf)
+  (focus BFSEARCH)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                    END REPLANNING                          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defrule create-meal-inform
   (declare (salience 100))
   (not (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 meal)))
