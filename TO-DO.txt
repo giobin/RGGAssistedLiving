@@ -1,0 +1,9 @@
+TO-DO:
+
+. gestire i sub goals controllando i trashbasket, pilldispenser, mealdispenser....ecc, più vicini
+
+.(opzionale) gestire situazione di blocco con vecchio in mezzo alle balle e bfs che non trova la strada (perché non esiste)
+
+.gestione richieste multiple con A* e Manhattan
+
+.implementare A* per ricerca cammino

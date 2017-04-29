@@ -204,7 +204,11 @@
   (retract ?f1)
   (modify ?f2 (open no))
   (printout t " fail (last  node expanded " ?curr ")" crlf)
-  (halt))
+  ;(assert (plan-action-aux (plan-step 0) (action Wait)))
+  ;(assert (clear-all))
+  ;)
+  (halt)
+  )
 
 (defmodule NEW (import BFSEARCH ?ALL) (export ?ALL))
 

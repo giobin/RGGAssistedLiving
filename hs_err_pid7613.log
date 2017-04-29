@@ -1,0 +1,116 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x0000000123047e76, pid=7613, tid=77235
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_45-b14) (build 1.8.0_45-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.45-b02 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# C  [libCLIPSJNI2.jnilib+0xc7e76]  MergePartialMatches+0xf6
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f8a2973f800):  JavaThread "Thread-330" [_thread_in_native, id=77235, stack(0x00007000065fe000,0x00007000066fe000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 0 (unknown), si_addr: 0x0000000000000000
+
+Registers:
+RAX=0x300007f8a33adce3, RBX=0x0000000740153090, RCX=0x0000000000000002, RDX=0x00007f8a2d4c0f40
+RSP=0x00007000066fcec0, RBP=0x00007000066fcf00, RSI=0x00007f8a2d4d4e30, RDI=0x00007f8a2d4b4e00
+R8 =0x00007f8a33900000, R9 =0x0000000000000000, R10=0x0000000000000000, R11=0x0000000006606250
+R12=0x0000000000000000, R13=0x0000000000000000, R14=0x0000000000000009, R15=0x00007f8a2973f800
+RIP=0x0000000123047e76, EFLAGS=0x0000000000010206, ERR=0x0000000000000000
+  TRAPNO=0x000000000000000d
+
+Top of Stack: (sp=0x00007000066fcec0)
+0x00007000066fcec0:   0000000000000000 0000000000000000
+0x00007000066fced0:   0000000000000000 00007f8a00000000
+0x00007000066fcee0:   00007f8a33acd020 00007f8a33acd020
+0x00007000066fcef0:   00007f8a2d4d4e30 00007f8a2d4b4e00
+0x00007000066fcf00:   00007000066fcf50 0000000122fb79a5
+0x00007000066fcf10:   0000700000000000 0000000000000000
+0x00007000066fcf20:   00007f8a33a3cdc0 00007f8a33adc4d0
+0x00007000066fcf30:   00007f8a33909540 00007f8a33acd020
+0x00007000066fcf40:   00007f8a2d4d4e30 00007f8a2d4b4e00
+0x00007000066fcf50:   00007000066fcfb0 0000000122fb74fe
+0x00007000066fcf60:   00007f8a339094e0 0000000000000000
+0x00007000066fcf70:   0000000000000000 00007f8a33adda10
+0x00007000066fcf80:   0000000100000001 0000000000000000
+0x00007000066fcf90:   00007f8a2d4d4e30 00007f8a33909540
+0x00007000066fcfa0:   00007f8a33acd020 00007f8a2d4b4e00
+0x00007000066fcfb0:   00007000066fcfe0 0000000122fb6d90
+0x00007000066fcfc0:   00007f8a339094e0 00007f8a33909540
+0x00007000066fcfd0:   00007f8a33acd020 00007f8a2d4b4e00
+0x00007000066fcfe0:   00007000066fd040 0000000122fcea62
+0x00007000066fcff0:   00000003066fd030 00007f8a33ab8230
+0x00007000066fd000:   0000000000000000 00007f8a33909540
+0x00007000066fd010:   0000000000000000 00007f8a33acd020
+0x00007000066fd020:   00007f8a339094e0 0000000000000000
+0x00007000066fd030:   00007f8a3355a8d0 00007f8a2d4b4e00
+0x00007000066fd040:   00007000066fd0e0 0000000122fce2d8
+0x00007000066fd050:   0000000000000009 0000000000000009
+0x00007000066fd060:   00007f8a2d4abdd0 0000000000000000
+0x00007000066fd070:   0000000000002ee3 00007f8a3355a8d0
+0x00007000066fd080:   00007f8a2d4b4e00 fffffffe00000000
+0x00007000066fd090:   0000000200000001 00007f8a2d2bc780
+0x00007000066fd0a0:   00007f8a3355a8d0 0000000000000000
+0x00007000066fd0b0:   0000000000000000 0000000000000000 
+
+Instructions: (pc=0x0000000123047e76)
+0x0000000123047e56:   52 30 48 8b 92 d8 01 00 00 48 89 42 20 48 8b 45
+0x0000000123047e66:   f8 48 8b 40 30 48 8b 80 d8 01 00 00 48 8b 40 20
+0x0000000123047e76:   48 8b 00 48 8b 55 f0 0f b7 4a 02 89 ca 48 c1 e2
+0x0000000123047e86:   03 48 81 c2 90 00 00 00 48 8b 75 f8 48 8b 76 30 
+
+Register to memory mapping:
+
+RAX=0x300007f8a33adce3 is an unknown value
+RBX=0x0000000740153090 is an oop
+java.lang.String 
+ - klass: 'java/lang/String'
+RCX=0x0000000000000002 is an unknown value
+RDX=0x00007f8a2d4c0f40 is an unknown value
+RSP=0x00007000066fcec0 is pointing into the stack for thread: 0x00007f8a2973f800
+RBP=0x00007000066fcf00 is pointing into the stack for thread: 0x00007f8a2973f800
+RSI=0x00007f8a2d4d4e30 is an unknown value
+RDI=0x00007f8a2d4b4e00 is an unknown value
+R8 =0x00007f8a33900000 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000000 is an unknown value
+R11=0x0000000006606250 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13=0x0000000000000000 is an unknown value
+R14=0x0000000000000009 is an unknown value
+R15=0x00007f8a2973f800 is a thread
+
+
+Stack: [0x00007000065fe000,0x00007000066fe000],  sp=0x00007000066fcec0,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libCLIPSJNI2.jnilib+0xc7e76]  MergePartialMatches+0xf6
+C  [libCLIPSJNI2.jnilib+0x379a5]  PPDrive+0x55
+C  [libCLIPSJNI2.jnilib+0x374fe]  NetworkAssertRight+0x34e
+C  [libCLIPSJNI2.jnilib+0x36d90]  NetworkAssert+0x80
+C  [libCLIPSJNI2.jnilib+0x4ea62]  ProcessFactAlphaMatch+0x172
+C  [libCLIPSJNI2.jnilib+0x4e2d8]  FactPatternMatch+0x348
+C  [libCLIPSJNI2.jnilib+0x50ada]  EnvAssert+0x3ba
+C  [libCLIPSJNI2.jnilib+0x48b7f]  AssertCommand+0x23f
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xbb9f9]  PrognFunction+0xa9
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xb987e]  EvaluateProcActions+0x17e
+C  [libCLIPSJNI2.jnilib+0x3aff8]  EnvRun+0x6a8
+C  [libCLIPSJNI2.jnilib+0xfaaf9]  Java_net_sf_clipsrules_jni_Environment_run+0x49
+J 7067  net.sf.clipsrules.jni.Environment.run(JJ)J (0 bytes) @ 0x000000010da69bea [0x000000010da69b40+0xaa]
+J 6370 C1 org.clipsmonitor.core.MonitorModel.run()V (659 bytes) @ 0x000000010da46574 [0x000000010da460c0+0x4b4]
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.dylib+0x2e032a]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x6ae
+V

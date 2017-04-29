@@ -1,0 +1,121 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x000000012bef83e1, pid=7905, tid=39015
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_45-b14) (build 1.8.0_45-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.45-b02 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# C  [libCLIPSJNI2.jnilib+0x13e1]  AddActivation+0xd1
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fe2fab3b800):  JavaThread "Thread-12" [_thread_in_native, id=39015, stack(0x00007000120ae000,0x00007000121ae000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 0 (unknown), si_addr: 0x0000000000000000
+
+Registers:
+RAX=0xa00007fe3018573c, RBX=0x000000012ebd7350, RCX=0x00007fe2fed5a320, RDX=0x00007fe2febac4f0
+RSP=0x00007000121ace50, RBP=0x00007000121acea0, RSI=0x00007fe2febac4f0, RDI=0x00007fe2fed6c290
+R8 =0x00007fe2febac460, R9 =0x0000000000000000, R10=0x0000000000000000, R11=0x0000000002e62920
+R12=0x0000000000000000, R13=0x00007000121ad860, R14=0x0000000000000000, R15=0x00007fe2fab3b800
+RIP=0x000000012bef83e1, EFLAGS=0x0000000000010286, ERR=0x0000000000000000
+  TRAPNO=0x000000000000000d
+
+Top of Stack: (sp=0x00007000121ace50)
+0x00007000121ace50:   0000000000000098 000000012ebd7350
+0x00007000121ace60:   00007000121aceb0 000000012bf7e1d9
+0x00007000121ace70:   00007fe301a1ed60 00007fe2febac4f0
+0x00007000121ace80:   00007fe2febac8d0 00007fe301a1ed60
+0x00007000121ace90:   00007fe2febac4f0 00007fe2fed6c290
+0x00007000121acea0:   00007000121acf00 000000012bf2eb70
+0x00007000121aceb0:   00007000121acf00 0000000000000000
+0x00007000121acec0:   0000000000000000 0000000000000000
+0x00007000121aced0:   0000000000000000 00007fe200000000
+0x00007000121acee0:   00007fe2feada320 00007fe2febac460
+0x00007000121acef0:   00007fe301a1ed60 00007fe2fed6c290
+0x00007000121acf00:   00007000121acf50 000000012bf2eaa9
+0x00007000121acf10:   0000000000000000 0000000000000000
+0x00007000121acf20:   00007fe2fee08080 00007fe301a1ed60
+0x00007000121acf30:   00007fe2febac040 00007fe2feada320
+0x00007000121acf40:   00007fe2febbc440 00007fe2fed6c290
+0x00007000121acf50:   00007000121acfb0 000000012bf2e4fe
+0x00007000121acf60:   00007fe2fed6c290 0000000000000000
+0x00007000121acf70:   0000000000000000 00007fe301a1f0e0
+0x00007000121acf80:   0000000100000001 0000000000000000
+0x00007000121acf90:   00007fe2febbc440 00007fe2febac040
+0x00007000121acfa0:   00007fe2feada320 00007fe2fed6c290
+0x00007000121acfb0:   00007000121acfe0 000000012bf2dd90
+0x00007000121acfc0:   00007fe2febabfb0 00007fe2febac040
+0x00007000121acfd0:   00007fe2feada320 00007fe2fed6c290
+0x00007000121acfe0:   00007000121ad040 000000012bf45a62
+0x00007000121acff0:   00007000121ad040 00007fe2febf1cc0
+0x00007000121ad000:   0000000000000000 00007fe2febac040
+0x00007000121ad010:   00007fe2fee22a50 00007fe2feada320
+0x00007000121ad020:   00007fe2febabfb0 0000000000000000
+0x00007000121ad030:   00007fe2fea9fdb0 00007fe2fed6c290
+0x00007000121ad040:   00007000121ad0e0 000000012bf45259 
+
+Instructions: (pc=0x000000012bef83e1)
+0x000000012bef83c1:   49 30 48 8b 89 d8 01 00 00 48 89 41 20 48 8b 45
+0x000000012bef83d1:   f8 48 8b 40 30 48 8b 80 d8 01 00 00 48 8b 40 20
+0x000000012bef83e1:   48 8b 00 48 8b 4d f8 48 8b 49 30 48 8b 89 d8 01
+0x000000012bef83f1:   00 00 48 8b 49 28 48 89 81 c0 01 00 00 48 8b 45 
+
+Register to memory mapping:
+
+RAX=0xa00007fe3018573c is an unknown value
+RBX={method} {0x000000012ebd7350} 'run' '()J' in 'org/clipsmonitor/clips/ClipsCore'
+RCX=0x00007fe2fed5a320 is an unknown value
+RDX=0x00007fe2febac4f0 is an unknown value
+RSP=0x00007000121ace50 is pointing into the stack for thread: 0x00007fe2fab3b800
+RBP=0x00007000121acea0 is pointing into the stack for thread: 0x00007fe2fab3b800
+RSI=0x00007fe2febac4f0 is an unknown value
+RDI=0x00007fe2fed6c290 is an unknown value
+R8 =0x00007fe2febac460 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000000 is an unknown value
+R11=0x0000000002e62920 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13=0x00007000121ad860 is pointing into the stack for thread: 0x00007fe2fab3b800
+R14=0x0000000000000000 is an unknown value
+R15=0x00007fe2fab3b800 is a thread
+
+
+Stack: [0x00007000120ae000,0x00007000121ae000],  sp=0x00007000121ace50,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libCLIPSJNI2.jnilib+0x13e1]  AddActivation+0xd1
+C  [libCLIPSJNI2.jnilib+0x37b70]  NetworkAssertLeft+0x90
+C  [libCLIPSJNI2.jnilib+0x37aa9]  PPDrive+0x159
+C  [libCLIPSJNI2.jnilib+0x374fe]  NetworkAssertRight+0x34e
+C  [libCLIPSJNI2.jnilib+0x36d90]  NetworkAssert+0x80
+C  [libCLIPSJNI2.jnilib+0x4ea62]  ProcessFactAlphaMatch+0x172
+C  [libCLIPSJNI2.jnilib+0x4e259]  FactPatternMatch+0x2c9
+C  [libCLIPSJNI2.jnilib+0x50ada]  EnvAssert+0x3ba
+C  [libCLIPSJNI2.jnilib+0x48b7f]  AssertCommand+0x23f
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xbb9f9]  PrognFunction+0xa9
+C  [libCLIPSJNI2.jnilib+0x3e2e0]  EvaluateExpression+0x770
+C  [libCLIPSJNI2.jnilib+0xb987e]  EvaluateProcActions+0x17e
+C  [libCLIPSJNI2.jnilib+0x3aff8]  EnvRun+0x6a8
+C  [libCLIPSJNI2.jnilib+0xfaaf9]  Java_net_sf_clipsrules_jni_Environment_run+0x49
+J 7269  net.sf.clipsrules.jni.Environment.run(JJ)J (0 bytes) @ 0x000000011b26b0ea [0x000000011b26b040+0xaa]
+J 7168 C1 org.clipsmonitor.clips.ClipsCore.run()J (8 bytes) @ 0x000000011a61f1b4 [0x000000011a61f000+0x1b4]
+j  org.clipsmonitor.core.MonitorModel.run()V+71
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.dylib+0x2e032a]
+V  [libjvm.dylib+0x2e0ab8]
+V  [libjvm.dylib+0x2e0c64]
+V  [libjvm.dylib+0x3331a5]
+V  [libjvm.dylib+0x549acf]
+V  [libjvm.dylib+0x54b1c0]
+V  [libjvm.dylib+0x46ea7e]
