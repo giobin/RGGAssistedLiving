@@ -1,6 +1,4 @@
 
-
-
 (defmodule BFSEARCH (import REASONING ?ALL)(export ?ALL))
 
 (deftemplate node
@@ -21,8 +19,6 @@
   (slot pos-c)
   (slot direction)
 )
-
-
 
 ;Regola al posto dei deffacts iniziali
 (defrule create-initial-state
