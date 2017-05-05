@@ -70,7 +70,7 @@
   (not (plan-action))
   =>
   (retract ?k)
-  (printout t "Entro in BFSEARCH" crlf)
+  (printout t "Entro in A-STAR" crlf)
   (focus A-STAR)
 )
 

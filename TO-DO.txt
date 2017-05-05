@@ -6,4 +6,4 @@ TO-DO:
 
 .gestione richieste multiple con A* e Manhattan
 
-.implementare A* per ricerca cammino
+.implementare A* per ricerca cammino (DONE)

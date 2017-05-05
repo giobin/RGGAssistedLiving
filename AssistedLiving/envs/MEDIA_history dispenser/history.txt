@@ -122,7 +122,9 @@
 (event (step 401) (type dessert) (person P12))
 (event (step 402) (type dessert) (person P9))
 
-;(personmove(step 47)(ident P10)(path-id P100))
+
+(personmove(step 355)(ident P2)(path-id P10))
+(personmove(step 370)(ident P2)(path-id P11))
 ;(personmove(step 150)(ident P7)(path-id P70))
 (personmove(step 370)(ident P5)(path-id P50))
 (personmove(step 500)(ident P3)(path-id P30))
@@ -139,6 +141,12 @@
 ( move-path P30 5 P3 10 11 )
 ( move-path P30 6 P3 10 12 )
 ( move-path P30 7 P3 12 13 )
+
+( move-path P10 1 P2 9 3 )
+( move-path P10 2 P2 9 2 )
+
+( move-path P11 1 P2 9 3 )
+
 
 ( move-path P50 1 P5 4 5 )
 ( move-path P50 2 P5 4 6 )

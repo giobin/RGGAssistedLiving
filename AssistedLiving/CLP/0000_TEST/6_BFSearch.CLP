@@ -133,11 +133,36 @@
   => (assert (apply ?curr Turnright ?pos-r ?pos-c ?direction))
 )
 
-(defrule forward-apply
+; (defrule forward-apply
+;   (declare (salience 50))
+;   (current ?curr)
+;   (node (ident ?curr) (pos-r ?r) (pos-c ?c) (direction ?dir) (open yes))
+;   (K-cell (pos-r =(getForwardR ?dir ?r)) (pos-c =(getForwardC ?dir ?c)) (contains Empty|Parking))
+;   => (assert (apply ?curr Forward ?r ?c ?dir))
+; )
+
+;tenta di applicare la forward nel caso in cui la cella in cui vuole andare è nello spazio di visione del k-agent
+(defrule forward-inside-apply
   (declare (salience 50))
   (current ?curr)
   (node (ident ?curr) (pos-r ?r) (pos-c ?c) (direction ?dir) (open yes))
-  (K-cell (pos-r =(getForwardR ?dir ?r)) (pos-c =(getForwardC ?dir ?c)) (contains Empty|Parking))
+  ?k-agent <- (K-agent (pos-r ?agent-r) (pos-c ?agent-c))
+  (K-cell (pos-r ?new-r&=(getForwardR ?dir ?r)) (pos-c ?new-c&=(getForwardC ?dir ?c)) (contains Empty|Parking))
+  (test (<= (abs(- ?new-r ?agent-r)) 1))
+  (test (<= (abs(- ?new-c ?agent-c)) 1))
+  => (assert (apply ?curr Forward ?r ?c ?dir))
+)
+
+;tenta di applicare la forward nel caso in cui la cella in cui vuole andare è FUORI dallo spazio di visione del k-agent
+;se poi la cella in cui vuole andare è ancora occupata allora in esecuzione fa replanning
+(defrule forward-outside-apply
+  (declare (salience 50))
+  (current ?curr)
+  (node (ident ?curr) (pos-r ?r) (pos-c ?c) (direction ?dir) (open yes))
+  ?k-agent <- (K-agent (pos-r ?agent-r) (pos-c ?agent-c))
+  (K-cell (pos-r ?new-r&=(getForwardR ?dir ?r)) (pos-c ?new-c&=(getForwardC ?dir ?c)) (contains Empty|Parking|PersonStanding))
+  (or (test (> (abs(- ?new-r ?agent-r)) 1))
+  (test (> (abs(- ?new-c ?agent-c)) 1)))
   => (assert (apply ?curr Forward ?r ?c ?dir))
 )
 
@@ -200,10 +225,10 @@
   (retract ?f1)
   (modify ?f2 (open no))
   (printout t " fail (last  node expanded " ?curr ")" crlf)
-  ;(assert (plan-action-aux (plan-step 0) (action Wait)))
-  ;(assert (clear-all))
+  (assert (plan-action-aux (plan-step 0) (action Wait)))
+  (assert (clear-all))
   ;)
-  (halt)
+  ;(halt)
   )
 
 (defmodule NEW (import BFSEARCH ?ALL) (export ?ALL))
