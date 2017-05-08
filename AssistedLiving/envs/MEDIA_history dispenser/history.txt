@@ -106,7 +106,7 @@
   (pos-c 2)
 )
 
-(event (step 1) (type meal) (person P1))
+(event (step 300) (type meal) (person P1))
 (event (step 2) (type meal) (person P4))
 (event (step 3) (type meal) (person P7))
 
@@ -114,7 +114,7 @@
 (event (step 101) (type meal) (person P12))
 (event (step 102) (type meal) (person P9))
 
-(event (step 300) (type meal) (person P6))
+(event (step 1) (type meal) (person P6))
 (event (step 301) (type meal) (person P2))
 (event (step 302) (type dessert) (person P7))
 
@@ -123,8 +123,8 @@
 (event (step 402) (type dessert) (person P9))
 
 
-(personmove(step 355)(ident P2)(path-id P10))
-(personmove(step 370)(ident P2)(path-id P11))
+(personmove(step 24)(ident P2)(path-id P10))
+(personmove(step 30)(ident P2)(path-id P11))
 ;(personmove(step 150)(ident P7)(path-id P70))
 (personmove(step 370)(ident P5)(path-id P50))
 (personmove(step 500)(ident P3)(path-id P30))

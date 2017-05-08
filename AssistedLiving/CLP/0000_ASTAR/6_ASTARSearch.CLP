@@ -1,5 +1,5 @@
 (defmodule A-STAR (import REASONING ?ALL)(export ?ALL))
-(deftemplate node  (slot ident)  (slot gcost)  (slot fcost)  (slot father)  (slot pos-r)  (slot pos-c)  (slot direction)  (slot open))(deftemplate newnode  (slot ident)  (slot gcost)  (slot fcost)  (slot father)  (slot pos-r)  (slot pos-c)  (slot direction));Regola al posto dei deffacts iniziali(defrule create-initial-state  (declare (salience 200))  (not (temp-goal))  ?k-agent <- (K-agent (pos-r ?r) (pos-c ?c) (direction ?direction))  ?current-sub-goal <- (current-sub-goal (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))  =>  (assert (node (ident 0) (gcost 0) (father NA) (fcost 0) (pos-r ?r) (pos-c ?c) (direction ?direction) (open yes)))  (assert (current 0))  (assert (lastnode 0))  (assert (open-worse 0))  (assert (open-better 0))  (assert (alreadyclosed 0))  (assert (numberofnodes 0))  (assert (temp-goal ?pos-r-target ?pos-c-target)))
+(deftemplate node  (slot ident)  (slot gcost)  (slot fcost)  (slot father)  (slot pos-r)  (slot pos-c)  (slot direction)  (slot open))(deftemplate newnode  (slot ident)  (slot gcost)  (slot fcost)  (slot father)  (slot pos-r)  (slot pos-c)  (slot direction));Regola al posto dei deffacts iniziali(defrule create-initial-state  (declare (salience 200))  (not (temp-goal))  ?k-agent <- (K-agent (pos-r ?r) (pos-c ?c) (direction ?direction))  ?current-sub-goal <- (current-sub-goal (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))  =>  (assert (node (ident 0) (gcost 0) (father NA) (fcost 0) (pos-r ?r) (pos-c ?c) (direction ?direction) (open yes)))  (assert (current 0))  (assert (lastnode 0))  (assert (open-worse 0))  (assert (open-better 0))  (assert (alreadyclosed 0))  (assert (numberofnodes 0))  (assert (temp-goal ?pos-r-target ?pos-c-target)))(defrule clear-failure  (declare (salience 198))  ?f <- (failure)  =>  (retract ?f))
 (defrule achieved-goal (declare (salience 100))    (current ?id)    (temp-goal ?r ?c)    (node (ident ?id) (pos-r ?pos-r) (pos-c ?pos-c) (direction ?direction) (gcost ?g))    (test (= ?r (getForwardR ?direction ?pos-r)))    (test (= ?c (getForwardC ?direction ?pos-c)))    ?current-sub-goal <- (current-sub-goal (id ?ident) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))    ?sub-goal <- (sub-goal (id ?ident))   => (printout t " Esiste soluzione per goal (" ?pos-r "," ?pos-c ") con costo "  ?g crlf)    (assert (plan-action-aux (plan-step (+ ?g 1)) (action ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))    (assert (stampa ?id))   ;  (retract ?current-sub-goal) ; eliminiamo il current sub goal   ;  (retract ?sub-goal) ; eliminiamo il sub goal (che è uguale al current))(defrule create-plan-actions-aux
   (declare (salience 101))
   ?f<- (stampa ?id)
@@ -64,6 +64,30 @@
   (pop-focus)
 )
 
+(defrule clear-initial-state-failure
+   (declare (salience 199))
+   ?failure <- (failure)
+   ?clear-all <-(clear-all)
+   ;?stampa <- (stampa ?id)
+   ?open-worse <- (open-worse ?worse)
+   ?open-better <- (open-better ?better)
+   ?alreadyclosed <- (alreadyclosed ?closed)
+   ?numberofnodes <- (numberofnodes ?n)
+   ?temp-goal <- (temp-goal $?)
+   ;?current <- (current $?)
+   ?lastnode <- (lastnode $?)
+   =>
+   ;(retract ?stampa)
+   (retract ?open-worse)
+   (retract ?open-better)
+   (retract ?alreadyclosed)
+   (retract ?numberofnodes)
+   (retract ?temp-goal)
+   ;(retract ?current)
+   (retract ?lastnode)
+   (retract ?clear-all)
+   (pop-focus)
+ )
 (defrule turnLeft-apply  (declare (salience 50))  (current ?curr)  (node (ident ?curr) (pos-r ?pos-r) (pos-c ?pos-c) (direction ?direction) (open yes))  => (assert (apply ?curr Turnleft ?pos-r ?pos-c ?direction)))
 (defrule turnRight-apply
   (declare (salience 50))
@@ -139,7 +163,7 @@
 )
 
 ; scegliamo quale nodo espandere(defrule change-current  (declare (salience 49))  ?f1 <- (current ?curr)  ?f2 <- (node (ident ?curr))  (node (ident ?best&:(neq ?best ?curr)) (fcost ?bestcost) (open yes))  (not (node (ident ?id&:(neq ?id ?curr)) (fcost ?gg&:(< ?gg ?bestcost)) (open yes)))  ?f3 <- (lastnode ?last)  =>  (assert (current ?best) (lastnode (+ ?last 4)))  (retract ?f1 ?f3)  (modify ?f2 (open no)))
-; non ci sono nodi più nodi da espandere quindi ci fermiamo (caso in cui fallisce)(defrule close-empty (declare (salience 49)) ?f1 <- (current ?curr) ?f2 <- (node (ident ?curr)) (not (node (ident ?id&:(neq ?id ?curr))  (open yes))) => (retract ?f1) (modify ?f2 (open no)) (printout t " fail (last  node expanded " ?curr ")" crlf) ;(assert (plan-action-aux (plan-step 0) (action Wait))) ;(assert (clear-all)) ;) (halt) )
+; non ci sono nodi più nodi da espandere quindi ci fermiamo (caso in cui fallisce)(defrule close-empty (declare (salience 49)) ?f1 <- (current ?curr) ?f2 <- (node (ident ?curr)) (not (node (ident ?id&:(neq ?id ?curr))  (open yes))) => (retract ?f1) (modify ?f2 (open no)) (printout t " fail (last  node expanded " ?curr ")" crlf) (assert (plan-action-aux (plan-step 0) (action Wait))) (assert (clear-all)) (assert (failure)) ;) ;(halt) )
 (defmodule NEW (import A-STAR ?ALL) (export ?ALL)); controllo per evitare loop(defrule check-closed (declare (salience 50)) ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (direction ?dir)) (node (ident ?old) (pos-r ?r) (pos-c ?c) (open no) (direction ?dir)) ?f2 <- (alreadyclosed ?a) => (assert (alreadyclosed (+ ?a 1))) (retract ?f1) (retract ?f2) (pop-focus)); controllo che genero un nodo uguale ad uno gia esistente, ma con costo maggiore(defrule check-open-worse (declare (salience 50)) ?f1 <- (newnode (ident ?id) (pos-r ?r) (pos-c ?c) (gcost ?g) (father ?anc) (direction ?dir)) (node (ident ?old) (pos-r ?r) (pos-c ?c) (gcost ?g-old) (open yes) (direction ?dir)) (test (or (> ?g ?g-old) (= ?g-old ?g))) ?f2 <- (open-worse ?a) => (assert (open-worse (+ ?a 1))) (retract ?f1) (retract ?f2) (pop-focus))
 ; controllo che genero un nodo uguale ad uno gia esistente, ma con costo minore (nel nostro caso non dovrebbe mai succedere)
 (defrule check-open-better

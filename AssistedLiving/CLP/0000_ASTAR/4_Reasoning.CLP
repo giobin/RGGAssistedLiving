@@ -278,6 +278,7 @@
   (declare (salience 60))
   (not (plan-action-aux))
   (not (plan-action))
+  (not (failure))
   ?f1 <- (current-sub-goal (id ?ident))
   ?f2 <- (sub-goal (id ?ident))
   =>

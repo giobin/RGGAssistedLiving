@@ -37,6 +37,12 @@
   (assert (temp-goal ?pos-r-target ?pos-c-target))
 )
 
+(defrule clear-failure
+  (declare (salience 198))
+  ?f <- (failure)
+  =>
+  (retract ?f)
+)
 
 (defrule achieved-goal
   (declare (salience 100))
@@ -114,6 +120,31 @@
    (retract ?numberofnodes)
    (retract ?temp-goal)
    (retract ?current)
+   (retract ?lastnode)
+   (retract ?clear-all)
+   (pop-focus)
+ )
+
+ (defrule clear-initial-state-failure
+   (declare (salience 199))
+   ?failure <- (failure)
+   ?clear-all <-(clear-all)
+   ;?stampa <- (stampa ?id)
+   ?open-worse <- (open-worse ?worse)
+   ?open-better <- (open-better ?better)
+   ?alreadyclosed <- (alreadyclosed ?closed)
+   ?numberofnodes <- (numberofnodes ?n)
+   ?temp-goal <- (temp-goal $?)
+   ;?current <- (current $?)
+   ?lastnode <- (lastnode $?)
+   =>
+   ;(retract ?stampa)
+   (retract ?open-worse)
+   (retract ?open-better)
+   (retract ?alreadyclosed)
+   (retract ?numberofnodes)
+   (retract ?temp-goal)
+   ;(retract ?current)
    (retract ?lastnode)
    (retract ?clear-all)
    (pop-focus)
@@ -227,6 +258,7 @@
   (printout t " fail (last  node expanded " ?curr ")" crlf)
   (assert (plan-action-aux (plan-step 0) (action Wait)))
   (assert (clear-all))
+  (assert (failure))
   ;)
   ;(halt)
   )
