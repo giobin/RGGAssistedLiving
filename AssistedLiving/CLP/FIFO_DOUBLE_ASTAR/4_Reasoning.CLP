@@ -156,22 +156,44 @@
 )
 
 ;crea il piano generale per servire le richieste di meal
-(defrule create-goal-meal
+(defrule create-first-goal-meal
   (declare (salience 50))
   ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer wait | yes) )
   (not (K-mealstatus (arrivaltime ?request-time2&:(< ?request-time2 ?request-time)) (delivered no) (answer wait | yes)))
-  (not (main-goal))
+  (not (main-goal (id 1)))
+  (not (main-goal (id 2) (k-request ?K-mealstatus)))
   =>
   (assert (main-goal (id 1) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
 )
 
-(defrule create-goal-dessert
+(defrule create-second-goal-meal
+  (declare (salience 50))
+  ?K-mealstatus <- (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered no) (answer wait | yes) )
+  (not (K-mealstatus (arrivaltime ?request-time2&:(< ?request-time2 ?request-time)) (delivered no) (answer wait | yes)))
+  (not (main-goal (id 2)))
+  (not (main-goal (id 1) (k-request ?K-mealstatus)))
+  =>
+  (assert (main-goal (id 2) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
+)
+
+(defrule create-first-goal-dessert
   (declare (salience 50))
   (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
   ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
-  (not (main-goal))
+  (not (main-goal (id 1)))
+  (not (main-goal (id 2) (k-request ?k-dessertstatus)))
   =>
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
+)
+
+(defrule create-second-goal-dessert
+  (declare (salience 50))
+  (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
+  (not (main-goal (id 2)))
+  (not (main-goal (id 1) (k-request ?K-dessertstatus)))
+  =>
+  (assert (main-goal (id 2) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
 (defrule create-sub-goals-clean-table
@@ -188,8 +210,8 @@
 
 (defrule create-sub-goals-meal
   (declare (salience 50))
-  ?main-goal <- (main-goal (id 1) (k-request ?x))
-  (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal (goal-ref ?id)))  ;controllo che non ci siano già dei sub-goal da portare a termine
   ?y <- (K-mealstatus (arrivaltime ?arrivaltime) (type ?type) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (delivertime ?delivertime) (answer ?answer))
   (test (eq ?x ?y))
   ?k-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean ?clean))  ;mi serve per sapere se il tavolo è pulito e le sue coordinate
@@ -204,34 +226,34 @@
   ;   (assert (sub-goal (goal-ref 1) (id 0) (action-to-do Inform) (param1 ?requested-by) (param2 meal) (param3 yes)))
   ; )
   (if (neq ?clean yes) then
-    (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
-    (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c))))
+    (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
+    (assert (sub-goal (goal-ref ?id) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c))))
   (if (eq ?pills before) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by)))
-    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
+    (assert (sub-goal (goal-ref ?id) (id 3) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref ?id) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref ?id) (id 5) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref ?id) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
   (if (eq ?pills after) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
-    (assert (sub-goal (goal-ref 1) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by))))
+    (assert (sub-goal (goal-ref ?id) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref ?id) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref ?id) (id 5) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?requested-by)))
+    (assert (sub-goal (goal-ref ?id) (id 6) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryPill) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?requested-by))))
   (if (eq ?pills no) then
-    (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
-    (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
+    (assert (sub-goal (goal-ref ?id) (id 3) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?meal)))
+    (assert (sub-goal (goal-ref ?id) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
 )
 
 (defrule create-sub-goals-dessert-YES
   (declare (salience 50))
-  ?main-goal <- (main-goal (id 1) (k-request ?x))
-  (not (sub-goal))  ;controllo che non ci siano già dei sub-goal da portare a termine
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal (goal-ref ?id)))  ;controllo che non ci siano già dei sub-goal da portare a termine
   ?y <- (K-dessertstatus (arrivaltime ?arrivaltime) (requested-by ?requested-by) (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered ?delivered) (answer ?answer))
   (test (eq ?x ?y))
   ?prescription <- (prescription (patient ?requested-by) (dessert yes))
   ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))  ;coordinate dessert dispender
   =>
-  (assert (sub-goal (goal-ref 1) (id 3) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c)))
-  (assert (sub-goal (goal-ref 1) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryDessert) (param1 ?tpos-r) (param2 ?tpos-c)))
+  (assert (sub-goal (goal-ref ?id) (id 3) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c)))
+  (assert (sub-goal (goal-ref ?id) (id 4) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryDessert) (param1 ?tpos-r) (param2 ?tpos-c)))
 )
 
 ; (defrule create-sub-goals-dessert-NO
@@ -248,10 +270,10 @@
 (defrule create-current-sub-goal
   (declare (salience 50))
   (not(plan-action))
-  ?sub-goal <- (sub-goal (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   (not (sub-goal (id ?id1&:(< ?id1 ?id))))
   =>
-  (assert (current-sub-goal (goal-ref 1) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
   (focus A-STAR)
 )
 
@@ -278,8 +300,8 @@
   (not (plan-action-aux))
   (not (plan-action))
   (not (failure))
-  ?f1 <- (current-sub-goal (id ?ident))
-  ?f2 <- (sub-goal (id ?ident))
+  ?f1 <- (current-sub-goal (goal-ref ?goalid) (id ?ident))
+  ?f2 <- (sub-goal (goal-ref ?goalid) (id ?ident))
   =>
   (retract ?f1)
   (retract ?f2)
@@ -288,8 +310,8 @@
 
 (defrule clear-main-goal
   (declare (salience 20))
-  (not (sub-goal))
-  ?f <- (main-goal)
+  ?f <- (main-goal (id ?id))
+  (not (sub-goal (goal-ref ?id)))
   =>
   (retract ?f)
 )
