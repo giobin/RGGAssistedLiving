@@ -1,9 +1,9 @@
-/Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/platform=1475191117000
-cluster./Users/giovannibonetta/Desktop/RGGAssistedLiving/build/cluster=1494250253000
-cluster./Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/platform=1475191117000
-user=1494250253000
+netbeans-8.2/platform=1490023197000
+cluster.GithubUni/RGGAssistedLiving/build/cluster=1494404407000
+cluster.netbeans-8.2/platform=1490023197000
+user=1494404407000
 crc=7
-locale=it_IT
+locale=en_US
 branding=clipsmonitor
-java.version=1.8.0_45
-java.vm.version=25.45-b02
+java.version=1.8.0_131
+java.vm.version=25.131-b11
