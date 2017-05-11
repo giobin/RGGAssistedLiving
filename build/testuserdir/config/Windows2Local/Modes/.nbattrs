@@ -4,11 +4,14 @@
     <fileobject name="agenda">
         <attr name="WinSys-TCRef-Order" stringvalue="AgendaTopComponent"/>
     </fileobject>
+    <fileobject name="anonymousMode_2">
+        <attr name="WinSys-TCRef-Order" stringvalue="ConsoleTopComponent"/>
+    </fileobject>
     <fileobject name="bottomSlidingSide">
         <attr name="WinSys-TCRef-Order" stringvalue=""/>
     </fileobject>
     <fileobject name="console">
-        <attr name="WinSys-TCRef-Order" stringvalue="ConsoleTopComponent"/>
+        <attr name="WinSys-TCRef-Order" stringvalue=""/>
     </fileobject>
     <fileobject name="controls">
         <attr name="WinSys-TCRef-Order" stringvalue="ControlsTopComponent"/>
