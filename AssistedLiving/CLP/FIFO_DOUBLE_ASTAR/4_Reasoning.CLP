@@ -176,9 +176,10 @@
   (assert (main-goal (id 2) (k-request ?K-mealstatus) (request-type DeliveryMeal)))
 )
 
-(defrule create-first-goal-dessert
+(defrule create-first-goal-dessert-pillafter
   (declare (salience 50))
   (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
+  (K-pillstatus (for ?sender) (when after) (delivered yes))
   ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
   (not (main-goal (id 1)))
   (not (main-goal (id 2) (k-request ?k-dessertstatus)))
@@ -186,10 +187,33 @@
   (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
+(defrule create-first-goal-dessert
+  (declare (salience 50))
+  (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
+  (K-pillstatus (for ?sender) (when ~after))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
+  (not (main-goal (id 1)))
+  (not (main-goal (id 2) (k-request ?k-dessertstatus)))
+  =>
+  (assert (main-goal (id 1) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
+)
+
+(defrule create-second-goal-dessert-pillafter
+  (declare (salience 50))
+  (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
+  (K-pillstatus (for ?sender) (when after) (delivered yes))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
+  (not (main-goal (id 2)))
+  (not (main-goal (id 1) (k-request ?K-dessertstatus)))
+  =>
+  (assert (main-goal (id 2) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
+)
+
 (defrule create-second-goal-dessert
   (declare (salience 50))
   (K-mealstatus (arrivaltime ?request-time) (requested-by ?sender) (tpos-r ?t_pos-r) (tpos-c ?t_pos-c) (delivered yes))
   ?k-dessertstatus <- (K-dessertstatus (delivered no) (requested-by ?sender) (answer wait | yes))
+  (K-pillstatus (for ?sender) (when ~after))
   (not (main-goal (id 2)))
   (not (main-goal (id 1) (k-request ?K-dessertstatus)))
   =>
