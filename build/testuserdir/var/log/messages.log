@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Friday, May 12, 2017 9:26:10 PM CEST
+>Log Session: Friday, May 12, 2017 11:32:04 PM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Linux version 4.4.0-75-generic running on amd64
@@ -89,7 +89,6 @@ INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network prox
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy - mode: direct
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy: fell to default (correct if direct mode went before)
 INFO [org.netbeans.ui.metrics.laf]: USG_LOOK_AND_FEEL
-INFO [org.netbeans.core.windows.persistence]: [WinSys.ModeParser.handleSlidingSide] Warning: Wrong value "null" of attribute "side" for sliding mode
 WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
 Diagnostic information
 Input arguments:
@@ -113,68 +112,7 @@ Heap memory usage: initial 186.0MB maximum 2642.0MB
 Non heap memory usage: initial 2.4MB maximum -1b
 Garbage collector: PS Scavenge (Collections=3 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=1 Total time spent=0s)
-Classes: loaded=4920 total loaded=4920 unloaded 0
+Classes: loaded=4966 total loaded=4966 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 12,457,148,416
 INFO [null]: Total physical memory 12,457,148,416
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [org-clipsmonitor-core-ControlsTopComponent.shadow, org-clipsmonitor-gui-AgendaTopComponent.shadow, org-clipsmonitor-gui-AgentMapTopComponent.shadow, org-clipsmonitor-gui-ConsoleTopComponent.shadow, org-clipsmonitor-gui-EnvMapTopComponent.shadow, org-clipsmonitor-gui-FactsTopComponent.shadow, org-clipsmonitor-gui-FocusTopComponent.shadow, org-clipsmonitor-gui-MapGeneratorTopComponent.shadow], but some are: [org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
-INFO [org.netbeans.core.windows.persistence]: [PersistenceManager.getTopComponentForID] Problem when deserializing TopComponent for tcID:'ControlsTopComponent'. Reason: null
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@32bea338[Windows2Local/Components/ControlsTopComponent.settings]
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-Class: class org.clipsmonitor.gui.ControlsTopComponent
-Source: MultiFileObject@32bea338[Windows2Local/Components/ControlsTopComponent.settings]
-Caused: java.lang.NullPointerException
-	at org.clipsmonitor.gui.ControlsTopComponent.<init>(ControlsTopComponent.java:99)
-Caused: java.lang.reflect.InvocationTargetException
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.netbeans.modules.settings.convertors.XMLSettingsSupport.newInstance(XMLSettingsSupport.java:100)
-	at org.netbeans.modules.settings.convertors.XMLSettingsSupport$SettingsRecognizer.instanceCreate(XMLSettingsSupport.java:628)
-Caused: java.io.IOException
-	at org.netbeans.modules.settings.convertors.XMLSettingsSupport$SettingsRecognizer.instanceCreate(XMLSettingsSupport.java:630)
-	at org.netbeans.modules.settings.convertors.SerialDataConvertor$SettingsInstance.instanceCreate(SerialDataConvertor.java:426)
-[catch] at org.netbeans.core.windows.persistence.PersistenceManager.getTopComponentPersistentForID(PersistenceManager.java:571)
-	at org.netbeans.core.windows.persistence.PersistenceManager.getTopComponentForID(PersistenceManager.java:681)
-	at org.netbeans.core.windows.PersistenceHandler.getTopComponentForID(PersistenceHandler.java:478)
-	at org.netbeans.core.windows.LazyLoader.loadNow(LazyLoader.java:158)
-	at org.netbeans.core.windows.LazyLoader.access$400(LazyLoader.java:62)
-	at org.netbeans.core.windows.LazyLoader$2.run(LazyLoader.java:129)
-	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:709)
-	at java.awt.EventQueue$3.run(EventQueue.java:703)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
-	at org.netbeans.core.TimableEventQueue.dispatchEvent(TimableEventQueue.java:159)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-Content: 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="org.clipsmonitor.gui.ControlsTopComponent"/>
-</settings>
-ALL [null]: Class: class org.clipsmonitor.gui.ControlsTopComponent
-ALL [null]: Source: MultiFileObject@32bea338[Windows2Local/Components/ControlsTopComponent.settings]
-INFO [org.netbeans.core.windows.persistence]: [WinSys.ModeParser.handleSlidingSide] Warning: Wrong value "null" of attribute "side" for sliding mode
-WARNING [org.netbeans.core.startup.InstalledFileLocatorImpl]: no code name base passed when looking up . at org.clipsmonitor.gui.ControlsTopComponent.loadPreferences(ControlsTopComponent.java:1042)
-WARNING [org.netbeans.modules.progress.spi.InternalHandle]: Cannot switch to silent mode when not running at org.netbeans.core.ui.warmup.MenuWarmUpTask$NbWindowsAdapter$1HandleBridge.run(MenuWarmUpTask.java:269)

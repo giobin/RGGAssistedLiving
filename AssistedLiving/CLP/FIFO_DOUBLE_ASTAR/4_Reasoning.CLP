@@ -271,8 +271,6 @@
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
-  ; (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
-  ; (not (and (K-cell (pos-r ?trash_pos_r2) (pos-c ?trash_pos_c2) (contains TrashBasket)) (test (< (+ (abs (- ?trash_pos_r2 ?r-agent)) (abs (- ?trash_pos_c2 ?c-agent))) (+ (abs (- ?trash_pos_r ?r-agent )) (abs (- ?trash_pos_c ?c-agent)))))))
   =>
   (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
   (assert (sub-goal (goal-ref ?id) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
@@ -362,11 +360,15 @@
   (declare (salience 48))
   (not(plan-action))
   ?last-current <- (last-current ? ~ReleaseTrash)
-  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
+  ?trashbasket2 <- (K-cell (pos-r ?trash_pos_r2) (pos-c ?trash_pos_c2) (contains TrashBasket))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  (not (test (< (+ (abs (- ?trash_pos_r2 ?r-agent)) (abs (- ?trash_pos_c2 ?c-agent))) (+ (abs (- ?trash_pos_r ?r-agent )) (abs (- ?trash_pos_c ?c-agent))))))
   =>
   (retract ?last-current)
   (assert (last-current ?goalid ReleaseTrash))
-  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c) (param3 ?param3)))
   (focus A-STAR)
 )
 
