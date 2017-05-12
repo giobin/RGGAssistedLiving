@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.clipsmonitor.clipsjni">
-    <module_version install_time="1494578168520" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1494580751945" last="true" origin="installer" specification_version="1.0">
         <file crc="1767156288" name="config/Modules/org-clipsmonitor-clipsjni.xml"/>
         <file crc="1962669258" name="modules/ext/clips.jni-0.4.jar"/>
-        <file crc="2505655725" name="modules/org-clipsmonitor-clipsjni.jar"/>
+        <file crc="2959631648" name="modules/org-clipsmonitor-clipsjni.jar"/>
     </module_version>
 </module>
