@@ -10,6 +10,58 @@
               (dessert no))
 
 (prescription (patient P3)
+              (meal dietetic)
+              (pills  after )
+              (dessert yes))
+
+(prescription (patient P4)
+              (meal normal)
+              (pills  no )
+              (dessert yes))
+
+(prescription (patient P5)
+              (meal dietetic)
+              (pills  before )
+              (dessert yes))
+
+(prescription (patient P6)
               (meal normal)
               (pills  after )
+              (dessert yes))
+
+
+(prescription (patient P7)
+              (meal dietetic)
+              (pills  before)
+              (dessert yes))
+
+(prescription (patient P8)
+              (meal normal)
+              (pills  after )
+              (dessert yes))
+
+
+(prescription (patient P9)
+              (meal normal)
+              (pills  after )
+              (dessert yes))
+
+(prescription (patient P10)
+              (meal normal)
+              (pills  no )
+              (dessert yes))
+
+(prescription (patient P11)
+              (meal dietetic)
+              (pills  before )
+              (dessert no))
+
+(prescription (patient P12)
+              (meal normal)
+              (pills  after )
+              (dessert yes))
+
+(prescription (patient P13)
+              (meal dietetic)
+              (pills  before )
               (dessert yes))

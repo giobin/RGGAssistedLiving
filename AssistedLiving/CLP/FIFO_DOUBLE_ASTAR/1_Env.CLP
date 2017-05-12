@@ -2184,7 +2184,246 @@
         (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
 )
 
+;  Le seguenti regole sono state aggiunte quando agent porta due meal dello stesso tipo
 
+(defrule delivery-meal_North_OK1_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(- ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when no|after))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-meal_North_OK2_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(- ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when before) (delivered yes))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-meal_South_OK1_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(+ ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when no|after))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+       (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+
+(defrule delivery-meal_South_OK2_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(+ ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when before) (delivered yes))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+       (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+
+(defrule delivery-meal_East_OK1_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(- ?y 1))
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when no|after))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+(defrule delivery-meal_East_OK2_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(- ?y 1))
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when before) (delivered yes))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-meal_West_OK1_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(+ ?y 1))
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when no|after))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+(defrule delivery-meal_West_OK2_same_meal
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryMeal) (param1 ?x) (param2 ?y) (param3 ?type))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(+ ?y 1))
+                     (waste no) (free ?ff) (content ?type ?type))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (clean yes) (occupied-by ?id))
+?f4 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (type ?type)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (pillstatus (step ?i) (time ?t) (for ?id) (when before) (delivered yes))
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  ?type))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)) (clean no))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes)
+                    (delivertime (+ ?t 12)))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
 
 ;// Operazione fisicamente possibile, ma in situazione errata
 
@@ -2487,7 +2726,259 @@
         (modify ?f6 (step (+ ?i 1)) (time (+ ?t 12)))
 )
 
+;/////  regole aggiunte per casi in cui agente porta due dessert
 
+(defrule delivery-dessert_North_OK1_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(- ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills no|before))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+(defrule delivery-dessert_North_OK2_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(- ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills after))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+?f6 <-  (pillstatus (step ?i) (time ?t) (for ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f6 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-dessert_South_OK1_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(+ ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills no|before))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+(defrule delivery-dessert_South_OK2_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r =(+ ?x 1)) (pos-c ?y)
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills after))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+?f6 <-  (pillstatus (step ?i) (time ?t) (for ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f6 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+
+(defrule delivery-dessert_East_OK1_two_dessert
+        (declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(- ?y 1))
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills no|before))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-dessert_East_OK2_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(- ?y 1))
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills after))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+?f6 <-  (pillstatus (step ?i) (time ?t) (for ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f6 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+
+(defrule delivery-dessert_West_OK1_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(+ ?y 1))
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills no|before))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content  dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+)
+
+(defrule delivery-dessert_West_OK2_two_dessert
+
+	(declare (salience 21))
+
+?f2<-	(status (time ?t) (step ?i))
+
+	(exec (step ?i) (action DeliveryDessert) (param1 ?x) (param2 ?y))
+
+	(cell (pos-r ?x) (pos-c ?y) (contains Table))
+
+?f1<-	(agentstatus (step ?i) (time ?t) (pos-r ?x) (pos-c =(+ ?y 1))
+                     (waste no) (free ?ff) (content dessert dessert))
+?f3 <-  (tablestatus (step ?i) (time ?t) (pos-r ?x) (pos-c ?y)
+                     (occupied-by ?id))
+        (prescription (patient ?id) (dessert yes) (pills after))
+?f4 <-  (dessertstatus (step ?i) (time ?t) (requested-by ?id)
+                    (tpos-r ?x) (tpos-c ?y) (delivered no))
+?f5 <-  (mealstatus (step ?i) (time ?t) (requested-by ?id) (delivered yes))
+?f6 <-  (pillstatus (step ?i) (time ?t) (for ?id) (delivered yes))
+
+=>
+
+	(modify ?f2 (step (+ ?i 1)) (time (+ ?t 12)))
+
+	(modify ?f1 (step (+ ?i 1)) (time (+ ?t 12)) (free (+ ?ff 1))
+                    (content dessert))
+        (modify ?f3 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f4 (step (+ ?i 1)) (time (+ ?t 12)) (delivered yes))
+        (modify ?f5 (step (+ ?i 1)) (time (+ ?t 12)))
+        (modify ?f6 (step (+ ?i 1)) (time (+ ?t 12)))
+)
 
 ;// Operazione fisicamente possibile, ma in situazione errata
 
