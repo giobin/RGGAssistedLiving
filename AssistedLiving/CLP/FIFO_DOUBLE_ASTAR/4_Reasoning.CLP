@@ -78,6 +78,15 @@
 ;                    END REPLANNING                          ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(defrule clear-sub-goal-failure
+  (declare (salience 70))
+  (failure)
+  ?current-sub-goal <- (current-sub-goal)
+  =>
+  (retract ?current-sub-goal)
+)
+
 (defrule create-meal-inform
   (declare (salience 100))
   (not (plan-action (plan-step 0) (action Inform) (param1 ?patient) (param2 meal)))
