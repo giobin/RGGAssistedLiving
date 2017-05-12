@@ -1,4 +1,4 @@
-#Fri May 12 16:23:28 CEST 2017
+#Fri May 12 16:35:48 CEST 2017
 org.netbeans.core.startup.OpenIDE-Module-Deprecated=\u0000
 org.netbeans.modules.settings.AutoUpdate-Show-In-Client=false
 org.netbeans.core.startup.OpenIDE-Module-Layer=org/netbeans/core/startup/layer.xml
@@ -134,8 +134,8 @@ org.netbeans.spi.quicksearch.OpenIDE-Module-Install=\u0000
 org.netbeans.core.OpenIDE-Module-Description=\u0000
 org.netbeans.libs.jna.platform.AutoUpdate-Show-In-Client=false
 org.openide.nodes.OpenIDE-Module-Deprecated=\u0000
-org.netbeans.modules.uihandler.AutoUpdate-Show-In-Client=false
 org.netbeans.core.io.ui.AutoUpdate-Show-In-Client=false
+org.netbeans.modules.uihandler.AutoUpdate-Show-In-Client=false
 org.netbeans.api.templates.AutoUpdate-Show-In-Client=false
 org.netbeans.modules.settings.OpenIDE-Module-Description=\u0000
 org.json.simple.OpenIDE-Module-Description=\u0000

@@ -157,7 +157,7 @@
   (not (main-goal (id 1) (request-type DeliveryMeal|DeliveryDessert|DeliveryPill)))
   (not (main-goal (id 2)))
   =>
-  (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
+  (assert (main-goal (id 2) (k-request ?K-tablestatus) (request-type CleanTable)))
   (printout t "create-second-goal-clean-dessert-table")
 )
 
@@ -258,7 +258,7 @@
 (defrule create-sub-goals-clean-tableReleaseYES
   (declare (salience 50))
   ?main-goal <- (main-goal (id ?id) (k-request ?x))
-  (not (sub-goal) (goal-ref ?id))
+  (not (sub-goal (goal-ref ?id)))
   (not (sub-goal (action-to-do ReleaseTrash)))
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
@@ -271,7 +271,7 @@
 (defrule create-sub-goals-clean-tableReleaseNO
   (declare (salience 50))
   ?main-goal <- (main-goal (id ?id) (k-request ?x))
-  (not (sub-goal) (goal-ref ?id))
+  (not (sub-goal (goal-ref ?id)))
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
