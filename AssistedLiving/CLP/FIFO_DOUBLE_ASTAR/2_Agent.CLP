@@ -372,6 +372,22 @@
   (modify ?k (time (+ ?time 15)) (step (+ ?step 1)) (loaded yes) (free (- ?free 1)) (content (insert$ $?cont 1 dessert)))
 )
 
+(defrule deliveryMealBefore-same-meal
+  (declare (salience 11))
+  (exec (step ?step) (action DeliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content ?type ?type))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
+  ?k-pillstatus <- (K-pillstatus (for ?id) (when before) (delivered yes))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content ?type) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-mealstatus (delivered yes) (delivertime (+ ?time 12)))
+  (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
+)
+
 (defrule deliveryMealBefore
   (declare (salience 10))
   (exec (step ?step) (action DeliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
@@ -385,6 +401,22 @@
   ?k-pillstatus <- (K-pillstatus (for ?id) (when before) (delivered yes))
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont ?type)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-mealstatus (delivered yes) (delivertime (+ ?time 12)))
+  (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
+)
+
+(defrule deliveryMealNoBefore-same-meal
+  (declare (salience 11))
+  (exec (step ?step) (action DeliveryMeal) (param1 ?y) (param2 ?x) (param3 ?type))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content ?type ?type))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-mealstatus <- (K-mealstatus (tpos-r ?y) (tpos-c ?x) (delivered no))
+  ?k-tablestatus <- (K-tablestatus (pos-r ?y) (pos-c ?x) (clean yes) (occupied-by ?id))
+  ?k-pillstatus <- (K-pillstatus (for ?id) (when no|after))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content ?type) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
   (modify ?k-mealstatus (delivered yes) (delivertime (+ ?time 12)))
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
@@ -406,6 +438,19 @@
   (modify ?k-tablestatus (time ?time) (step ?step) (clean no))
 )
 
+(defrule deliveryDessert-two-dessert
+  (declare (salience 11))
+  (exec (step ?step) (action DeliveryDessert) (param1 ?y) (param2 ?x))
+  ?k <- (K-agent (time ?time) (step ?step) (pos-r ?r) (pos-c ?c) (direction ?dir) (free ?free) (waste no) (content dessert dessert))
+  (perc-vision (step ?step) (time ?time) (perc2 Table))
+  (test (= ?x (getForwardC ?dir ?c)))
+  (test (= ?y (getForwardR ?dir ?r)))
+  ?k-dessertstatus <- (K-dessertstatus (delivered no) (tpos-r ?y) (tpos-c ?x))
+  =>
+  (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content dessert) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
+  (modify ?k-dessertstatus (time ?time) (step ?step) (delivered yes))
+)
+
 (defrule deliveryDessert
   (declare (salience 10))
   (exec (step ?step) (action DeliveryDessert) (param1 ?y) (param2 ?x))
@@ -418,7 +463,6 @@
   =>
   (modify ?k (time (+ ?time 12)) (step (+ ?step 1)) (content (delete-member$ $?cont dessert)) (loaded (getLoaded (+ ?free 1))) (free (+ ?free 1)))
   (modify ?k-dessertstatus (time ?time) (step ?step) (delivered yes))
-
 )
 
 (defrule deliveryPill
