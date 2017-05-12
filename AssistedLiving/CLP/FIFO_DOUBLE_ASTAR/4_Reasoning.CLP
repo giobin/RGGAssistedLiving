@@ -136,9 +136,10 @@
   (status (time ?time))
   ?K-mealstatus <- (K-mealstatus (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered yes) (delivertime ?deliveredtime) (requested-by ?patient))
   ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
-  ?K-dessertstatus <- (K-dessertstatus (requested-by ?patient) (delivered yes))
+  ?K-dessertstatus <- (K-dessertstatus (requested-by ?patient))
   (test (> ?time (+ ?deliveredtime 1)))
   (not (main-goal (id 2) (k-request ?K-tablestatus)))
+  (not (main-goal (id 2) (request-type DeliveryMeal|DeliveryDessert|DeliveryPill)))
   (not (main-goal (id 1)))
   =>
   (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
@@ -150,9 +151,10 @@
   (status (time ?time))
   ?K-mealstatus <- (K-mealstatus (tpos-r ?tpos-r) (tpos-c ?tpos-c) (delivered yes) (delivertime ?deliveredtime) (requested-by ?patient))
   ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
-  ?K-dessertstatus <- (K-dessertstatus (requested-by ?patient) (delivered yes))
+  ?K-dessertstatus <- (K-dessertstatus (requested-by ?patient))
   (test (> ?time (+ ?deliveredtime 1)))
   (not (main-goal (id 1) (k-request ?K-tablestatus)))
+  (not (main-goal (id 1) (request-type DeliveryMeal|DeliveryDessert|DeliveryPill)))
   (not (main-goal (id 2)))
   =>
   (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
@@ -167,6 +169,7 @@
   ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
   (test (> ?time (+ ?deliveredtime 500)))
   (not (main-goal (id 2) (k-request ?K-tablestatus)))
+  (not (main-goal (id 2) (request-type DeliveryMeal|DeliveryDessert|DeliveryPill)))
   (not (main-goal (id 1)))
   =>
   (assert (main-goal (id 1) (k-request ?K-tablestatus) (request-type CleanTable)))
@@ -180,6 +183,7 @@
   ?K-tablestatus <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c) (clean no))
   (test (> ?time (+ ?deliveredtime 500)))
   (not (main-goal (id 1) (k-request ?K-tablestatus)))
+  (not (main-goal (id 1) (request-type DeliveryMeal|DeliveryDessert|DeliveryPill)))
   (not (main-goal (id 2)))
   =>
   (assert (main-goal (id 2) (k-request ?K-tablestatus) (request-type CleanTable)))
@@ -251,16 +255,28 @@
   (assert (main-goal (id 2) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
-(defrule create-sub-goals-clean-table
+(defrule create-sub-goals-clean-tableReleaseYES
   (declare (salience 50))
-  ?main-goal <- (main-goal (id 1) (k-request ?x))
-  (not (sub-goal))
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal) (goal-ref ?id))
+  (not (sub-goal (action-to-do ReleaseTrash)))
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
   =>
-  (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
-  (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
+  (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
+  (assert (sub-goal (goal-ref ?id) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
+)
+
+(defrule create-sub-goals-clean-tableReleaseNO
+  (declare (salience 50))
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal) (goal-ref ?id))
+  ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
+  (test (eq ?x ?y))
+  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
+  =>
+  (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
 )
 
 (defrule create-sub-goals-meal

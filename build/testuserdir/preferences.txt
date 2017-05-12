@@ -1,1 +1,1 @@
-/home/riccardo/Dropbox/Universita/Magistrale/Primo_anno/IALab/Torasso/Progetto/RGGAssistedLiving/AssistedLiving
+/Users/giovannibonetta/Desktop/RGGAssistedLiving/./AssistedLiving
