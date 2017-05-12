@@ -220,16 +220,28 @@
   (assert (main-goal (id 2) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
-(defrule create-sub-goals-clean-table
+(defrule create-sub-goals-clean-tableReleaseYES
   (declare (salience 50))
-  ?main-goal <- (main-goal (id 1) (k-request ?x))
-  (not (sub-goal))
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal) (goal-ref ?id))
+  (not (sub-goal (action-to-do ReleaseTrash)))
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
   =>
-  (assert (sub-goal (goal-ref 1) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
-  (assert (sub-goal (goal-ref 1) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
+  (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
+  (assert (sub-goal (goal-ref ?id) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
+)
+
+(defrule create-sub-goals-clean-tableReleaseNO
+  (declare (salience 50))
+  ?main-goal <- (main-goal (id ?id) (k-request ?x))
+  (not (sub-goal) (goal-ref ?id))
+  ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
+  (test (eq ?x ?y))
+  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
+  =>
+  (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
 )
 
 (defrule create-sub-goals-meal
@@ -300,7 +312,7 @@
   (focus A-STAR)
 )
 
-(defrule create-current-sub-goal-relase
+(defrule create-current-sub-goal-release
   (declare (salience 48))
   (not(plan-action))
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
