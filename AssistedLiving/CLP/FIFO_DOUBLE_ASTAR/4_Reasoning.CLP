@@ -255,28 +255,18 @@
   (assert (main-goal (id 2) (k-request ?k-dessertstatus) (request-type DeliveryDessert)))
 )
 
-(defrule create-sub-goals-clean-tableReleaseYES
+(defrule create-sub-goals-clean-table
   (declare (salience 50))
   ?main-goal <- (main-goal (id ?id) (k-request ?x))
   (not (sub-goal (goal-ref ?id)))
-  (not (sub-goal (action-to-do ReleaseTrash)))
   ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
   (test (eq ?x ?y))
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
+  ; (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ; (not (and (K-cell (pos-r ?trash_pos_r2) (pos-c ?trash_pos_c2) (contains TrashBasket)) (test (< (+ (abs (- ?trash_pos_r2 ?r-agent)) (abs (- ?trash_pos_c2 ?c-agent))) (+ (abs (- ?trash_pos_r ?r-agent )) (abs (- ?trash_pos_c ?c-agent)))))))
   =>
   (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
   (assert (sub-goal (goal-ref ?id) (id 2) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c)))
-)
-
-(defrule create-sub-goals-clean-tableReleaseNO
-  (declare (salience 50))
-  ?main-goal <- (main-goal (id ?id) (k-request ?x))
-  (not (sub-goal (goal-ref ?id)))
-  ?y <- (K-tablestatus (pos-r ?tpos-r) (pos-c ?tpos-c))
-  (test (eq ?x ?y))
-  ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
-  =>
-  (assert (sub-goal (goal-ref ?id) (id 1) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do CleanTable) (param1 ?tpos-r) (param2 ?tpos-c)))
 )
 
 (defrule create-sub-goals-meal
@@ -341,17 +331,32 @@
 (defrule create-current-sub-goal-clean
   (declare (salience 49))
   (not(plan-action))
+  ?last-current <- (last-current ? ?)
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do CleanTable) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   =>
+  (retract ?last-current)
+  (assert (last-current ?goalid CleanTable))
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do CleanTable) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
   (focus A-STAR)
 )
 
-(defrule create-current-sub-goal-relase
+(defrule create-current-sub-goal-relase-KO
   (declare (salience 48))
   (not(plan-action))
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  ?last-current <- (last-current ? ReleaseTrash)
   =>
+  (retract ?sub-goal)
+)
+
+(defrule create-current-sub-goal-relase-OK
+  (declare (salience 48))
+  (not(plan-action))
+  ?last-current <- (last-current ? ~ReleaseTrash)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  =>
+  (retract ?last-current)
+  (assert (last-current ?goalid ReleaseTrash))
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
   (focus A-STAR)
 )
@@ -359,13 +364,13 @@
 (defrule create-current-sub-goal1
   (declare (salience 47))
   (not(plan-action))
-  ?last-current<- (last-current ?last-goalid)
+  ?last-current<- (last-current ?last-goalid ?)
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   (test (neq ?last-goalid ?goalid))
   (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
   =>
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
-  (assert (last-current ?goalid))
+  (assert (last-current ?goalid ?action-to-do))
   (retract ?last-current)
   (focus A-STAR)
 )
@@ -373,12 +378,12 @@
 (defrule create-current-sub-goal2
   (declare (salience 46))
   (not(plan-action))
-  (not (last-current ?))
+  (not (last-current ? ?))
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
   =>
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
-  (assert (last-current ?goalid))
+  (assert (last-current ?goalid ?action-to-do))
   (focus A-STAR)
 )
 
@@ -386,12 +391,12 @@
   (declare (salience 45))
   (not(plan-action))
   (not (and (main-goal (id 1)) (main-goal (id 2))))
-  ?last-current <- (last-current ?)
+  ?last-current <- (last-current ? ?)
   ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3))
   (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
   =>
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
-  (assert (last-current ?goalid))
+  (assert (last-current ?goalid ?action-to-do))
   (retract ?last-current)
   (focus A-STAR)
 )
