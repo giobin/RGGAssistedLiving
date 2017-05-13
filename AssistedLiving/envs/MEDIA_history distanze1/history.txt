@@ -1,5 +1,5 @@
 ; distanze
-(maxduration 2100)
+(maxduration 2600)
 
 (initpersonpos
   (ident P1)
