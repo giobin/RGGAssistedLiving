@@ -356,7 +356,7 @@
   (retract ?sub-goal)
 )
 
-(defrule create-current-sub-goal-relase-OK
+(defrule create-current-sub-goal-relase-OK-twotrashbasket
   (declare (salience 48))
   (not(plan-action))
   ?last-current <- (last-current ? ~ReleaseTrash)
@@ -364,11 +364,81 @@
   ?trashbasket <- (K-cell (pos-r ?trash_pos_r) (pos-c ?trash_pos_c) (contains TrashBasket))
   ?trashbasket2 <- (K-cell (pos-r ?trash_pos_r2) (pos-c ?trash_pos_c2) (contains TrashBasket))
   (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  (test (neq ?trashbasket ?trashbasket2))
   (not (test (< (+ (abs (- ?trash_pos_r2 ?r-agent)) (abs (- ?trash_pos_c2 ?c-agent))) (+ (abs (- ?trash_pos_r ?r-agent )) (abs (- ?trash_pos_c ?c-agent))))))
   =>
   (retract ?last-current)
   (assert (last-current ?goalid ReleaseTrash))
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?trash_pos_r) (pos-c-target ?trash_pos_c) (action-to-do ReleaseTrash) (param1 ?trash_pos_r) (param2 ?trash_pos_c) (param3 ?param3)))
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal-relase-OK
+  (declare (salience 48))
+  (not(plan-action))
+  ?last-current <- (last-current ? ~ReleaseTrash)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  =>
+  (retract ?last-current)
+  (assert (last-current ?goalid ReleaseTrash))
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?param1) (pos-c-target ?param2) (action-to-do ReleaseTrash) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal1-loadpill-twopilldispenser
+  (declare (salience 47))
+  (not(plan-action))
+  ?last-current<- (last-current ?last-goalid ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadPill) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (test (neq ?last-goalid ?goalid))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))
+  ?pilldispenser2 <- (K-cell (pos-r ?pill_pos_r2) (pos-c ?pill_pos_c2) (contains PillDispenser))
+  (test (neq ?pilldispenser ?pilldispenser2))
+  (not (test (< (+ (abs (- ?pill_pos_r2 ?r-agent)) (abs (- ?pill_pos_c2 ?c-agent))) (+ (abs (- ?pill_pos_r ?r-agent )) (abs (- ?pill_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadPill))
+  (retract ?last-current)
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal1-loadmeal-twomealdispenser
+  (declare (salience 47))
+  (not(plan-action))
+  ?last-current<- (last-current ?last-goalid ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadMeal) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (test (neq ?last-goalid ?goalid))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))
+  ?mealdispenser2 <- (K-cell (pos-r ?meal_pos_r2) (pos-c ?meal_pos_c2) (contains MealDispenser))
+  (test (neq ?mealdispenser ?mealdispenser2))
+  (not (test (< (+ (abs (- ?meal_pos_r2 ?r-agent)) (abs (- ?meal_pos_c2 ?c-agent))) (+ (abs (- ?meal_pos_r ?r-agent )) (abs (- ?meal_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadMeal))
+  (retract ?last-current)
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal1-loaddessert-twodessertdispenser
+  (declare (salience 47))
+  (not(plan-action))
+  ?last-current<- (last-current ?last-goalid ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadDessert) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (test (neq ?last-goalid ?goalid))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))
+  ?dessertdispenser2 <- (K-cell (pos-r ?dessert_pos_r2) (pos-c ?dessert_pos_c2) (contains DessertDispenser))
+  (test (neq ?dessertdispenser ?dessertdispenser2))
+  (not (test (< (+ (abs (- ?dessert_pos_r2 ?r-agent)) (abs (- ?dessert_pos_c2 ?c-agent))) (+ (abs (- ?dessert_pos_r ?r-agent )) (abs (- ?dessert_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadDessert))
+  (retract ?last-current)
   (focus A-STAR)
 )
 
@@ -386,6 +456,57 @@
   (focus A-STAR)
 )
 
+(defrule create-current-sub-goal2-loadpill-twopilldispenser
+  (declare (salience 46))
+  (not(plan-action))
+  (not (last-current ? ?))
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadPill) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))
+  ?pilldispenser2 <- (K-cell (pos-r ?pill_pos_r2) (pos-c ?pill_pos_c2) (contains PillDispenser))
+  (test (neq ?pilldispenser ?pilldispenser2))
+  (not (test (< (+ (abs (- ?pill_pos_r2 ?r-agent)) (abs (- ?pill_pos_c2 ?c-agent))) (+ (abs (- ?pill_pos_r ?r-agent )) (abs (- ?pill_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadPill))
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal2-loadmeal-twomealdispenser
+  (declare (salience 46))
+  (not(plan-action))
+  (not (last-current ? ?))
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadMeal) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))
+  ?mealdispenser2 <- (K-cell (pos-r ?meal_pos_r2) (pos-c ?meal_pos_c2) (contains MealDispenser))
+  (test (neq ?mealdispenser ?mealdispenser2))
+  (not (test (< (+ (abs (- ?meal_pos_r2 ?r-agent)) (abs (- ?meal_pos_c2 ?c-agent))) (+ (abs (- ?meal_pos_r ?r-agent )) (abs (- ?meal_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadMeal))
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal2-loaddessert-twodessertdispenser
+  (declare (salience 46))
+  (not(plan-action))
+  (not (last-current ? ?))
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadDessert) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))
+  ?dessertdispenser2 <- (K-cell (pos-r ?dessert_pos_r2) (pos-c ?dessert_pos_c2) (contains DessertDispenser))
+  (test (neq ?dessertdispenser ?dessertdispenser2))
+  (not (test (< (+ (abs (- ?dessert_pos_r2 ?r-agent)) (abs (- ?dessert_pos_c2 ?c-agent))) (+ (abs (- ?dessert_pos_r ?r-agent )) (abs (- ?dessert_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadDessert))
+  (focus A-STAR)
+)
+
 (defrule create-current-sub-goal2
   (declare (salience 46))
   (not(plan-action))
@@ -395,6 +516,63 @@
   =>
   (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do ?action-to-do) (param1 ?param1) (param2 ?param2) (param3 ?param3)))
   (assert (last-current ?goalid ?action-to-do))
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal3-loadpill-twopilldispenser
+  (declare (salience 45))
+  (not(plan-action))
+  (not (and (main-goal (id 1)) (main-goal (id 2))))
+  ?last-current <- (last-current ? ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadPill) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?pilldispenser <- (K-cell (pos-r ?pill_pos_r) (pos-c ?pill_pos_c) (contains PillDispenser))
+  ?pilldispenser2 <- (K-cell (pos-r ?pill_pos_r2) (pos-c ?pill_pos_c2) (contains PillDispenser))
+  (test (neq ?pilldispenser ?pilldispenser2))
+  (not (test (< (+ (abs (- ?pill_pos_r2 ?r-agent)) (abs (- ?pill_pos_c2 ?c-agent))) (+ (abs (- ?pill_pos_r ?r-agent )) (abs (- ?pill_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pill_pos_r) (pos-c-target ?pill_pos_c) (action-to-do LoadPill) (param1 ?pill_pos_r) (param2 ?pill_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadPill))
+  (retract ?last-current)
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal3-loadmeal-twomealdispenser
+  (declare (salience 45))
+  (not(plan-action))
+  (not (and (main-goal (id 1)) (main-goal (id 2))))
+  ?last-current <- (last-current ? ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadMeal) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?mealdispenser <- (K-cell (pos-r ?meal_pos_r) (pos-c ?meal_pos_c) (contains MealDispenser))
+  ?mealdispenser2 <- (K-cell (pos-r ?meal_pos_r2) (pos-c ?meal_pos_c2) (contains MealDispenser))
+  (test (neq ?mealdispenser ?mealdispenser2))
+  (not (test (< (+ (abs (- ?meal_pos_r2 ?r-agent)) (abs (- ?meal_pos_c2 ?c-agent))) (+ (abs (- ?meal_pos_r ?r-agent )) (abs (- ?meal_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?meal_pos_r) (pos-c-target ?meal_pos_c) (action-to-do LoadMeal) (param1 ?meal_pos_r) (param2 ?meal_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadMeal))
+  (retract ?last-current)
+  (focus A-STAR)
+)
+
+(defrule create-current-sub-goal3-loaddessert-twodessertdispenser
+  (declare (salience 45))
+  (not(plan-action))
+  (not (and (main-goal (id 1)) (main-goal (id 2))))
+  ?last-current <- (last-current ? ?)
+  ?sub-goal <- (sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?pos-r-target) (pos-c-target ?pos-c-target) (action-to-do LoadDessert) (param1 ?param1) (param2 ?param2) (param3 ?param3))
+  (not (sub-goal (goal-ref ?goalid) (id ?id1&:(< ?id1 ?id))))
+  (K-agent (pos-r ?r-agent) (pos-c ?c-agent))
+  ?dessertdispenser <- (K-cell (pos-r ?dessert_pos_r) (pos-c ?dessert_pos_c) (contains DessertDispenser))
+  ?dessertdispenser2 <- (K-cell (pos-r ?dessert_pos_r2) (pos-c ?dessert_pos_c2) (contains DessertDispenser))
+  (test (neq ?dessertdispenser ?dessertdispenser2))
+  (not (test (< (+ (abs (- ?dessert_pos_r2 ?r-agent)) (abs (- ?dessert_pos_c2 ?c-agent))) (+ (abs (- ?dessert_pos_r ?r-agent )) (abs (- ?dessert_pos_c ?c-agent))))))
+  =>
+  (assert (current-sub-goal (goal-ref ?goalid) (id ?id) (pos-r-target ?dessert_pos_r) (pos-c-target ?dessert_pos_c) (action-to-do LoadDessert) (param1 ?dessert_pos_r) (param2 ?dessert_pos_c) (param3 ?param3)))
+  (assert (last-current ?goalid LoadDessert))
+  (retract ?last-current)
   (focus A-STAR)
 )
 

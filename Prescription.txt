@@ -10,7 +10,7 @@
               (dessert no))
 
 (prescription (patient P3)
-              (meal dietetic)
+              (meal normal)
               (pills  after )
               (dessert yes))
 
@@ -22,7 +22,7 @@
 (prescription (patient P5)
               (meal dietetic)
               (pills  before )
-              (dessert yes))
+              (dessert no))
 
 (prescription (patient P6)
               (meal normal)
@@ -31,20 +31,19 @@
 
 
 (prescription (patient P7)
-              (meal dietetic)
-              (pills  before)
+              (meal normal)
+              (pills  no )
               (dessert yes))
 
 (prescription (patient P8)
-              (meal normal)
-              (pills  after )
-              (dessert yes))
-
+              (meal dietetic)
+              (pills  before )
+              (dessert no))
 
 (prescription (patient P9)
               (meal normal)
-              (pills  after )
-              (dessert yes))
+              (pills  before)
+              (dessert no))
 
 (prescription (patient P10)
               (meal normal)
@@ -57,11 +56,48 @@
               (dessert no))
 
 (prescription (patient P12)
-              (meal normal)
+              (meal dietetic)
               (pills  after )
               (dessert yes))
+
 
 (prescription (patient P13)
               (meal dietetic)
               (pills  before )
+              (dessert no))
+
+(prescription (patient P14)
+              (meal normal)
+              (pills  no)
+              (dessert yes))
+
+(prescription (patient P15)
+              (meal normal)
+              (pills  after )
+              (dessert yes))
+
+(prescription (patient P16)
+              (meal normal)
+              (pills  no )
+              (dessert yes))
+
+(prescription (patient P17)
+              (meal dietetic)
+              (pills  before )
+              (dessert no))
+
+(prescription (patient P18)
+              (meal normal)
+              (pills  after )
+              (dessert no))
+
+
+(prescription (patient P19)
+              (meal dietetic)
+              (pills  before )
+              (dessert no))
+
+(prescription (patient P20)
+              (meal normal)
+              (pills  after)
               (dessert yes))
