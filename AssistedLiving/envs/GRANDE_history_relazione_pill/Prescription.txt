@@ -1,0 +1,10 @@
+
+(prescription (patient P2)
+              (meal normal)
+              (pills  before)
+              (dessert yes))
+
+(prescription (patient P1)
+              (meal normal)
+              (pills  before)
+              (dessert no))

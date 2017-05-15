@@ -1,4 +1,4 @@
-#Mon May 15 14:21:01 CEST 2017
+#Mon May 15 16:51:31 CEST 2017
 org.netbeans.core.startup.OpenIDE-Module-Deprecated=\u0000
 org.netbeans.modules.settings.AutoUpdate-Show-In-Client=false
 org.netbeans.core.startup.OpenIDE-Module-Layer=org/netbeans/core/startup/layer.xml
@@ -190,8 +190,8 @@ org.openide.loaders.OpenIDE-Module-Layer=org/netbeans/modules/openide/loaders/la
 org.netbeans.modules.print.OpenIDE-Module-Install=\u0000
 org.netbeans.libs.jna.AutoUpdate-Show-In-Client=false
 org.openide.util.OpenIDE-Module-Description=\u0000
-org.json.simple.AutoUpdate-Show-In-Client=true
 org.openide.text.AutoUpdate-Show-In-Client=false
+org.json.simple.AutoUpdate-Show-In-Client=true
 org.netbeans.core.ui.AutoUpdate-Show-In-Client=false
 org.json.OpenIDE-Module-Hide-Classpath-Packages=\u0000
 org.netbeans.modules.masterfs.nio2.OpenIDE-Module-Hide-Classpath-Packages=\u0000
