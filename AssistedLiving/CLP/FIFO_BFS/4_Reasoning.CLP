@@ -221,6 +221,7 @@
     (assert (sub-goal (goal-ref 1) (id 5) (pos-r-target ?tpos-r) (pos-c-target ?tpos-c) (action-to-do DeliveryMeal) (param1 ?tpos-r) (param2 ?tpos-c) (param3 ?meal))))
 )
 
+
 (defrule create-sub-goals-dessert-YES
   (declare (salience 50))
   ?main-goal <- (main-goal (id 1) (k-request ?x))
@@ -278,6 +279,7 @@
   (declare (salience 60))
   (not (plan-action-aux))
   (not (plan-action))
+  (not (failure))
   ?f1 <- (current-sub-goal (id ?ident))
   ?f2 <- (sub-goal (id ?ident))
   =>
